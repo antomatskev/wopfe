@@ -1,5 +1,3 @@
-<img src="https://wopfe.herokuapp.com//logo.png" height="64px"/>
-
 **WOPFE** stands for **W**eb **O**nline **P**latform **F**or **E**ducation, which goal is to provide a convenient way
 for both teachers and students to attend in lessons using their personal devices and the Internet. 
 

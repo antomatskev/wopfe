@@ -11,5 +11,4 @@ public class MainController {
     public String home(Model model) {
         return "home";
     }
-
 }

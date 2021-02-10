@@ -1,0 +1,90 @@
+/* The sidebar menu */
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 200px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #0a9471; /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+}
+
+/* The navigation menu links */
+.sidenav a {
+    padding: 10px 8px 8px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    display: block;
+    position: relative;
+    top: 100px;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+    color: #000000;
+}
+
+/* Style page content */
+.main {
+    margin-left: 200px; /* Same as the width of the sidebar */
+    padding: 10px 10px;
+}
+
+.greentext {
+    color: #0a9471;
+}
+
+.moregreenertext {
+    color: #08775b;
+}
+
+.addlater {
+    font-size: 50px;
+}
+
+.line {
+    margin-top: 40px;
+}
+
+.app_name {
+    margin-bottom: -60px;
+    padding-left: 75px;
+}
+
+.my_class_page {
+    padding: 10px;
+}
+
+.grades_page {
+    padding-right: 10px;
+}
+
+.tasks_page {
+    padding-right: 10px;
+}
+
+.tests_page {
+    padding-right: 10px;
+}
+
+
+.menue_top {
+    padding-left: 1260px;
+    padding-top: 20px;
+    position: relative;
+    top: 30px;
+
+}
+
+.addlater{
+    left: 0;
+    line-height: 200px;
+    margin-top: -100px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+}

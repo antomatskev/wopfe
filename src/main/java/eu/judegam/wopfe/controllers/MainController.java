@@ -12,4 +12,9 @@ public class MainController {
         return "home";
     }
 
+    @GetMapping("/main")
+    public String main(Model model) {
+        return "main";
+    }
+
 }

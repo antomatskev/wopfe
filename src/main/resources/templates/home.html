@@ -1,15 +1,25 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>WOPFE</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
+    <meta charset="UTF-8">
+    <title> WOPFE </title>
+    <link rel="stylesheet" href="css/homeCSS.css" type="text/css">
 <body>
-<div th:insert="blocks/header :: header"></div>
-<div class="container mt-5">
-    <h1>WOPFE</h1>
+<p align="center" style="color: gray; font-size:45px">
+    WOPFE</p>
+<div class="login-box">
+    <h1>Log In</h1>
+    <div class="textbox">
+        <input type="text" placeholder="Username" neme="" value="">
+    </div>
+    <div class="textbox">
+
+        <input type="password" placeholder="Password" neme="" value="">
+    </div>
+    <input class="btn" type="button" name="" value="Sign in">
+    <input class="btnNoAccount" type="button" name="" value="No account?">
 </div>
-<div th:insert="blocks/footer :: footer"></div>
+
 </body>
+
 </html>

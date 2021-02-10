@@ -1,0 +1,68 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url("https://images.unsplash.com/photo-1493673272479-a20888bcee10?ixid=MXwxMjA3fDB8MHxzZWFyY2h8M3x8ZGFyayUyMGdyZWVuJTIwcGxhbnR8ZW58MHx8MHw%3D&ixlib=rb-1.2.1&w=1000&q=80");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-box {
+    width: 280px;
+    position: absolute;
+    border-left-color: green;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: grey;
+}
+.login-box h1{
+    float: inside;
+    font-size: 39px;
+    border-bottom: 6px solid #4caf50;
+    margin-bottom: 10px;
+    padding: 13px 0;
+}
+.h2{
+    top: 50%;
+    left: 50%;
+}
+.textbox{
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    border-bottom: 1px solid #4caf50;
+}
+.textbox input{
+    border: none;
+    outline: #4caf50;
+    background: none;
+    font-size: 12px;
+    color: white;
+    width: 80px;
+    float: left;
+    margin: 10px;
+}
+.btn{
+    width: 100%;
+    background: none;
+    border: 2px solid green;
+    color: grey;
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 12px 0;
+}
+.btnNoAccount{
+    width: 30%;
+    background: none;
+    border: none;
+    color: grey;
+    padding: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 12px 0;
+    float: right;
+}

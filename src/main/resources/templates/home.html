@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title> WOPFE </title>
-    <link rel="stylesheet" href="css/homeCSS.css" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 <body>
-<p align="center" style="color: gray; font-size:45px">
-    WOPFE</p>
+
 <div class="login-box">
+    <p>WOPFE</p>
     <h1>Log In</h1>
     <div class="textbox">
-        <input type="text" placeholder="Username" neme="" value="">
+        <input type="text" placeholder="Username" name="" value="">
     </div>
     <div class="textbox">
 
@@ -18,8 +18,9 @@
     </div>
     <input class="btn" type="button" name="" value="Sign in">
     <input class="btnNoAccount" type="button" name="" value="No account?">
-</div>
 
+</div>
+<div class="footer" th:insert="blocks/footer :: footer"></div>
 </body>
 
 </html>

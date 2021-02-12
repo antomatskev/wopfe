@@ -1,0 +1,96 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url("plant.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+
+.login-box p {
+    color: grey;
+    font-size: 45px;
+    left: 50%;
+}
+
+.login-box {
+    width: 280px;
+    position: absolute;
+    border-left-color: green;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: grey;
+}
+
+.login-box h1 {
+    float: inside;
+    font-size: 39px;
+    border-bottom: 4px solid #4caf50;
+    margin-bottom: 10px;
+    padding: 13px 0;
+}
+
+.h2 {
+    top: 50%;
+    left: 50%;
+}
+
+.textbox {
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    border-bottom: 1px solid #4caf50;
+}
+
+.textbox input {
+    border: none;
+    outline: #4caf50;
+    background: none;
+    font-size: 12px;
+    color: white;
+    width: 80px;
+    float: left;
+    margin: 10px;
+}
+
+.btn {
+    width: 100%;
+    background: none;
+    border: 2px solid green;
+    color: grey;
+    padding: 5px;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 12px 0;
+}
+
+.btnNoAccount {
+    width: 30%;
+    background: none;
+    border: none;
+    color: grey;
+    padding: 5px;
+    font-size: 12px;
+    cursor: pointer;
+    margin: 12px 0;
+    float: right;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+    left: 42%;
+    color: grey;
+    margin: auto;
+
+    word-spacing: 10px;
+
+}
+

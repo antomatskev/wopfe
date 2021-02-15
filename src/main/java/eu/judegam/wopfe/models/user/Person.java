@@ -1,12 +1,13 @@
 package eu.judegam.wopfe.models.user;
 
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+/**
+ * Parent class for all users. Holds id, name, last name and status. Should be extended by others.
+ */
 public class Person {
 
     @Id

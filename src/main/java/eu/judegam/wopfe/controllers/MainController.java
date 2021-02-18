@@ -22,4 +22,10 @@ public class MainController {
         return "main";
     }
 
+    @GetMapping("/main/student")
+    public String student(Model model) {
+        return "student_main";
+    }
+
+
 }

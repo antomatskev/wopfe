@@ -22,7 +22,7 @@ public class MainController {
         return "main";
     }
 
-    @GetMapping("/student")
+    @GetMapping("/main/student")
     public String student(Model model) {
         return "student_main";
     }

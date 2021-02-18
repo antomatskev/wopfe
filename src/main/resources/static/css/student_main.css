@@ -41,38 +41,17 @@
     color: #08775b;
 }
 
-.addLater {
-    font-size: 50px;
-}
 
 .line {
-    margin-top: 40px;
-    size: 1px;
-    width: 90%;
-    color: #08775b;
+    border-top: 1px solid #0a9471;
+    position: relative;
+    top: 60px;
 }
 
 .appName {
     margin-bottom: -60px;
     padding-left: 75px;
 }
-
-.myСlassPage {
-    padding: 10px;
-}
-
-.gradesPage {
-    padding-right: 10px;
-}
-
-.tasksPage {
-    padding-right: 10px;
-}
-
-.testsPage {
-    padding-right: 10px;
-}
-
 
 /*.menuTop {*/
 /*    padding-left: 1260px;*/
@@ -89,4 +68,5 @@
     text-align: center;
     top: 50%;
     width: 100%;
+    font-size: 50px;
 }

@@ -20,13 +20,12 @@ public class School {
     private String location;
 //    private List<Teacher> teachers;
 //    private List<Class> classes;
-//    private List<Principals> principals;
+//    private List<Principal> principals;
     private String places;
 
     public School() {
 
     }
-
 
     public String getName() {
         return name;
@@ -60,11 +59,11 @@ public class School {
 //        this.classes = classes;
 //    }
 //
-//    public List<Principals> getPrincipals() {
+//    public List<Principal> getPrincipals() {
 //        return principals;
 //    }
 //
-//    public void setPrincipals(List<Principals> principals) {
+//    public void setPrincipals(List<Principal> principals) {
 //        this.principals = principals;
 //    }
 

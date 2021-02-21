@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import java.util.List;
 
 /**
- * Represents a school.
+ * Represents a  school.
  */
 @Entity
 public class School {

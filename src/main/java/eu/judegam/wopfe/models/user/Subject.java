@@ -13,11 +13,9 @@ public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-//    private int id;
     private String name;
     private String specialty;
-//    private List<Classes> classes;
+//    private List<Class> classes;
     private String school;
     private String teacher;
     private String period;
@@ -38,11 +36,11 @@ public class Subject {
         this.specialty = specialty;
     }
 
-//    public List<Classes> getClasses() {
+//    public List<Class> getClasses() {
 //        return classes;
 //    }
 //
-//    public void setClasses(List<Classes> classes) {
+//    public void setClasses(List<Class> classes) {
 //        this.classes = classes;
 //    }
 

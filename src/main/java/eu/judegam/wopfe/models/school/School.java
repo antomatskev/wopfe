@@ -1,11 +1,10 @@
-package eu.judegam.wopfe.models.user;
+package eu.judegam.wopfe.models.school;
 
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.List;
 
 /**
  * Represents a  school.
@@ -15,17 +14,12 @@ public class School {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String name;
     private String location;
-//    private List<Teacher> teachers;
-//    private List<Class> classes;
-//    private List<Principal> principals;
+    private String teachers;
+    private String classes;
+    private String principals;
     private String places;
-
-    public School() {
-
-    }
 
     public String getName() {
         return name;
@@ -43,29 +37,29 @@ public class School {
         this.location = location;
     }
 
-//    public List<Teacher> getTeachers() {
-//        return teachers;
-//    }
-//
-//    public void setTeachers(List<Teacher> teachers) {
-//        this.teachers = teachers;
-//    }
-//
-//    public List<Class> getClasses() {
-//        return classes;
-//    }
-//
-//    public void setClasses(List<Class> classes) {
-//        this.classes = classes;
-//    }
-//
-//    public List<Principal> getPrincipals() {
-//        return principals;
-//    }
-//
-//    public void setPrincipals(List<Principal> principals) {
-//        this.principals = principals;
-//    }
+    public String getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(String teachers) {
+        this.teachers = teachers;
+    }
+
+    public String getClasses() {
+        return classes;
+    }
+
+    public void setClasses(String classes) {
+        this.classes = classes;
+    }
+
+    public String getPrincipals() {
+        return principals;
+    }
+
+    public void setPrincipals(String principals) {
+        this.principals = principals;
+    }
 
     public String getPlaces() {
         return places;
@@ -75,5 +69,15 @@ public class School {
         this.places = places;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public School() {
+    }
 
 }

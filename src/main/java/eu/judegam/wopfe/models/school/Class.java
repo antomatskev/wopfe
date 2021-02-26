@@ -1,4 +1,4 @@
-package eu.judegam.wopfe.models.user;
+package eu.judegam.wopfe.models.school;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,17 +15,8 @@ public class Class {
     private Long id;
     private String name;
     private String school;
-
     private String students;
     private String timetable;
-
-    public Class() {
-    }
-
-    public Class(String name, String school) {
-        this.name = name;
-        this.school = school;
-    }
 
     public Long getId() {
         return id;
@@ -65,5 +56,13 @@ public class Class {
 
     public void setTimetable(String timetable) {
         this.timetable = timetable;
+    }
+
+    public Class() {
+    }
+
+    public Class(String name, String school) {
+        this.name = name;
+        this.school = school;
     }
 }

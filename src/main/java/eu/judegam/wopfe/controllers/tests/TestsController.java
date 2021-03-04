@@ -3,7 +3,6 @@ package eu.judegam.wopfe.controllers.tests;
 import eu.judegam.wopfe.models.tests.Test;
 import eu.judegam.wopfe.tests.service.TestsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;

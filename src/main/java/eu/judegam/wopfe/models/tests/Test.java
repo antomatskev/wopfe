@@ -9,7 +9,7 @@ public class Test {
     private String name;
     private String date;
     private int time;
-    private int id;
+    private Long id;
 
     public String getName() {
         return name;
@@ -44,12 +44,12 @@ public class Test {
         this.time = time;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
     @Id
-    public int getId() {
+    public Long getId() {
         return id;
     }
 }

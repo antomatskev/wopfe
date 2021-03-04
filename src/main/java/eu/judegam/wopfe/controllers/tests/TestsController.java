@@ -37,7 +37,7 @@ public class TestsController {
     }
 
     @PostMapping("/test/{id}")
-    public Test getTestById(@PathVariable int id) {
+    public Test getTestById(@PathVariable Long id) {
         return service.getTestById(id);
     }
 
@@ -53,7 +53,7 @@ public class TestsController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable int id) {
+    public String deleteProduct(@PathVariable Long id) {
         return service.deleteTest(id);
     }
 

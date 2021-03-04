@@ -17,14 +17,14 @@ public class TestsService {
     }
 
     public List<Test> saveTests(List<Test> test) {
-        return repository.saveAll(test);
+        return (List<Test>) repository.saveAll(test);
     }
 
     public List<Test> getTest() {
-        return repository.findAll();
+        return (List<Test>) repository.findAll();
     }
 
-    public Test getTestById(int id) {
+    public Test getTestById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
@@ -32,7 +32,7 @@ public class TestsService {
         return repository.findByName(name);
     }
 
-    public String deleteTest(int id) {
+    public String deleteTest(Long id) {
         repository.deleteById(id);
         return "Test is not available!";
     }

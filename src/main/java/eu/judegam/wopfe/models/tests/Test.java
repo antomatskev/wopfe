@@ -10,6 +10,9 @@ public class Test {
     private String date;
     private int time;
     private Long id;
+    private String content;
+    private String answer;
+
 
     public String getName() {
         return name;
@@ -35,9 +38,10 @@ public class Test {
         this.time = time;
     }
 
-    public Test(){
+    public Test() {
 
     }
+
     public Test(String name, String date, int time) {
         this.name = name;
         this.date = date;

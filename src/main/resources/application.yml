@@ -1,6 +1,0 @@
-spring:
-  datasource:
-    username: mysql
-    password: mysql
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/wopfe_db?serverTimezone=UTC
-    driver-class-name:

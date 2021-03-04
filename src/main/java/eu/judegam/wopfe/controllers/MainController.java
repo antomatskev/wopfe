@@ -19,21 +19,21 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(Model model) {
-        return "main";
+        return "mains/main";
     }
     @GetMapping("/main/teacher")
     public String teachermain(Model model){
-        return "teacher_main";
+        return "mains/teacher_main";
     }
 
     @GetMapping("/main/student")
     public String student(Model model) {
-        return "student_main";
+        return "mains/student_main";
     }
 
     @GetMapping("/main/principal")
     public String principal(Model model) {
-        return "principal_main";
+        return "mains/principal_main";
     }
 
 

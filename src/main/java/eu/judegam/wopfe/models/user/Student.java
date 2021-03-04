@@ -1,26 +1,58 @@
 package eu.judegam.wopfe.models.user;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Child class
+ * Represent a student.
  */
-public class Student extends Person{
+@Entity
+public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+    private String lastName;
+    private Status status;
     private int studentClass;
     private String school;
-    private List<Integer> grades = new ArrayList<>();
-    private String timetble;
+    private String grades;
+    private String timetable;
 
-    public Student(){
-
+    public Long getId() {
+        return id;
     }
 
-    public Student(int studentClass, String school, List<Integer> grades, String timetble){
-        this.studentClass = studentClass;
-        this.school = school;
-        this.grades = grades;
-        this.timetble = timetble;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public int getStudentClass() {
@@ -39,19 +71,23 @@ public class Student extends Person{
         this.school = school;
     }
 
-    public List<Integer> getGrades() {
+    public String getGrades() {
         return grades;
     }
 
-    public void setGrades(List<Integer> grades) {
+    public void setGrades(String grades) {
         this.grades = grades;
     }
 
-    public String getTimetble() {
-        return timetble;
+    public String getTimetable() {
+        return timetable;
     }
 
-    public void setTimetble(String timetble) {
-        this.timetble = timetble;
+    public void setTimetable(String timetable) {
+        this.timetable = timetable;
     }
+
+    public Student() {
+    }
+
 }

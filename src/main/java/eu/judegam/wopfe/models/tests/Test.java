@@ -2,17 +2,44 @@ package eu.judegam.wopfe.models.tests;
 
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Test {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String name;
     private String date;
     private int time;
-    private Long id;
     private String content;
     private String answer;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
 
     public String getName() {
         return name;
@@ -39,7 +66,6 @@ public class Test {
     }
 
     public Test() {
-
     }
 
     public Test(String name, String date, int time) {
@@ -48,12 +74,4 @@ public class Test {
         this.time = time;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    @Id
-    public Long getId() {
-        return id;
-    }
 }

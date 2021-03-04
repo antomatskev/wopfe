@@ -11,27 +11,34 @@ import java.util.List;
 public class TestsService {
     @Autowired
     private TestsRepository repository;
-    public Test saveTest(Test test){
+
+    public Test saveTest(Test test) {
         return repository.save(test);
     }
-    public List<Test> saveTests(List<Test> test){
+
+    public List<Test> saveTests(List<Test> test) {
         return repository.saveAll(test);
     }
-    public List<Test> getTest(){
+
+    public List<Test> getTest() {
         return repository.findAll();
     }
-    public Test getTestById(int id){  // можно сделать для любых входных данных
+
+    public Test getTestById(int id) {
         return repository.findById(id).orElse(null);
     }
-    public Test getTestByName(String name){  // можно сделать для любых входных данных
+
+    public Test getTestByName(String name) {
         return repository.findByName(name);
     }
-    public String deleteTest(int id){
+
+    public String deleteTest(int id) {
         repository.deleteById(id);
         return "Test is not available!";
     }
-    public Test updateTest(Test test){
-        Test existingProduct=repository.findById(test.getId()).orElse(null);
+
+    public Test updateTest(Test test) {
+        Test existingProduct = repository.findById(test.getId()).orElse(null);
         assert existingProduct != null;
         existingProduct.setName(test.getName());
         existingProduct.setDate(test.getDate());

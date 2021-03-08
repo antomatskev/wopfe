@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service for Subject class.
+ */
 @Service
 public class SubjectService {
     @Autowired

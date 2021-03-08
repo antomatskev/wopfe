@@ -31,10 +31,5 @@ public class MainController {
         return "mains/student_main";
     }
 
-    @GetMapping("/main/principal")
-    public String principal(Model model) {
-        return "mains/principal_main";
-    }
-
 
 }

@@ -1,6 +1,6 @@
 package eu.judegam.wopfe.controllers;
 
-import eu.judegam.wopfe.classs.service.ClassService;
+import eu.judegam.wopfe.models.repositories.school.classs.service.ClassService;
 import eu.judegam.wopfe.models.school.Class;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,12 +46,12 @@ public class ClassController {
         return service.getClassByName(name);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/class/{id}/update")
     public Class updateClass(@RequestBody Class classs) {
         return service.updateClass(classs);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/class/{id}/delete/{id}")
     public String deleteClass(@PathVariable Long id) {
         return service.deleteClass(id);
     }

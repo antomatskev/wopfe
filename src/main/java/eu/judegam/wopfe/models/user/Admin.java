@@ -1,9 +1,14 @@
 package eu.judegam.wopfe.models.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Version;
+import java.util.Objects;
 
 /**
  * Represents an administrator, which has overview of everything in all schools from own schools list.
@@ -16,8 +21,9 @@ public class Admin {
     private Long id;
     private String name;
     private String lastName;
-    private Status status;
     private String schools;
+    private @Version @JsonIgnore Long version;
+    private @ManyToOne Manager manager;
 
     public Long getId() {
         return id;
@@ -43,14 +49,6 @@ public class Admin {
         this.lastName = lastName;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
     public String getSchools() {
         return schools;
     }
@@ -59,7 +57,59 @@ public class Admin {
         this.schools = schools;
     }
 
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
+
+    public Manager getManager() {
+        return manager;
+    }
+
+    public void setManager(Manager manager) {
+        this.manager = manager;
+    }
+
     public Admin() {
     }
 
+    public Admin(String name, String lastName, String schools, Manager manager) {
+        this.name = name;
+        this.lastName = lastName;
+        this.schools = schools;
+        this.manager = manager;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Admin admin = (Admin) o;
+        return Objects.equals(id, admin.id)
+                && Objects.equals(name, admin.name)
+                && Objects.equals(lastName, admin.lastName)
+                && Objects.equals(schools, admin.schools)
+                && Objects.equals(version, admin.version)
+                && Objects.equals(manager, admin.manager);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, lastName, schools, version, manager);
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", schools='" + schools + '\'' +
+                ", version=" + version +
+                ", manager=" + manager +
+                '}';
+    }
 }

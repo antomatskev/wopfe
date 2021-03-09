@@ -1,4 +1,4 @@
-package eu.judegam.wopfe.models.tests;
+package eu.judegam.wopfe.models.school.tests;
 
 
 import javax.persistence.Entity;

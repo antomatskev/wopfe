@@ -1,4 +1,4 @@
-package eu.judegam.wopfe.classs.repository;
+package eu.judegam.wopfe.models.repositories.school.classs.repository;
 
 import eu.judegam.wopfe.models.school.Class;
 import org.springframework.data.repository.PagingAndSortingRepository;

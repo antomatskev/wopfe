@@ -1,7 +1,7 @@
-package eu.judegam.wopfe.tests.service;
+package eu.judegam.wopfe.models.repositories.school.tests.service;
 
-import eu.judegam.wopfe.models.tests.Test;
-import eu.judegam.wopfe.tests.repository.TestsRepository;
+import eu.judegam.wopfe.models.school.tests.Test;
+import eu.judegam.wopfe.models.repositories.school.tests.repository.TestsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WOPFE</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="sidenav">
+    <a href="/main/sauron">Main</a>
+    <a href="/main/sauron/admins">Admins</a>
+    <a href="/main/sauron/schools">Schools</a>
+</div>
+
+<div>
+    Hello, <span id="managername" th:text="${#authentication.name}">user</span>.
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Log Out"/>
+    </form>
+</div>
+
+<div class="main">
+    <h1 class="moreGreenText appName">WOPFE</h1>
+    <hr class="line">
+    <div class="content">
+        UNDER CONSTRUCTION
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 package eu.judegam.wopfe.controllers.person;
 
-import eu.judegam.wopfe.principal.service.PrincipalService;
+import eu.judegam.wopfe.models.repositories.person.principal.service.PrincipalService;
 import eu.judegam.wopfe.models.user.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -48,12 +48,12 @@ public class PrincipalController {
         return service.getPrincipalByName(name);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/principal/{id}/update")
     public Principal updatePrincipal(@RequestBody Principal principal) {
         return service.updatePrincipal(principal);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/principal/{id}/delete/{id}")
     public String deletePrincipal(@PathVariable Long id) {
         return service.deletePrincipal(id);
     }

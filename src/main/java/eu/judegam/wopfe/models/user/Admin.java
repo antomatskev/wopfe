@@ -22,8 +22,9 @@ public class Admin {
     private String name;
     private String lastName;
     private String schools;
-    private @Version @JsonIgnore Long version;
-    private @ManyToOne Manager manager;
+//    private @ManyToOne Manager manager;
+    private String manager;
+    private boolean isActive = true;
 
     public Long getId() {
         return id;
@@ -45,6 +46,10 @@ public class Admin {
         return lastName;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -57,26 +62,22 @@ public class Admin {
         this.schools = schools;
     }
 
-    public Long getVersion() {
-        return version;
-    }
-
-    public void setVersion(Long version) {
-        this.version = version;
-    }
-
-    public Manager getManager() {
+    public String getManager() {
         return manager;
     }
 
-    public void setManager(Manager manager) {
+    public void setManager(String manager) {
         this.manager = manager;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public Admin() {
     }
 
-    public Admin(String name, String lastName, String schools, Manager manager) {
+    public Admin(String name, String lastName, String schools, String manager) {
         this.name = name;
         this.lastName = lastName;
         this.schools = schools;
@@ -92,13 +93,12 @@ public class Admin {
                 && Objects.equals(name, admin.name)
                 && Objects.equals(lastName, admin.lastName)
                 && Objects.equals(schools, admin.schools)
-                && Objects.equals(version, admin.version)
                 && Objects.equals(manager, admin.manager);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, lastName, schools, version, manager);
+        return Objects.hash(id, name, lastName, schools, manager);
     }
 
     @Override
@@ -108,7 +108,6 @@ public class Admin {
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", schools='" + schools + '\'' +
-                ", version=" + version +
                 ", manager=" + manager +
                 '}';
     }

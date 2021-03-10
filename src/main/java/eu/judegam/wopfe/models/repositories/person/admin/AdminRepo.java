@@ -1,5 +1,6 @@
-package eu.judegam.wopfe.models.repositories.person;
+package eu.judegam.wopfe.models.repositories.person.admin;
 
+import eu.judegam.wopfe.models.school.School;
 import eu.judegam.wopfe.models.user.Admin;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -7,6 +8,9 @@ import org.springframework.data.repository.query.Param;
 
 //@PreAuthorize("hasRole('ROLE_MANAGER')")
 public interface AdminRepo extends PagingAndSortingRepository<Admin, Long> {
+
+    Admin findByName(String name);
+
     @Override
 //    @PreAuthorize("#admin?.manager == null or #admin?.manager?.name == authentication?.name")
     Admin save(@Param("admin") Admin admin);

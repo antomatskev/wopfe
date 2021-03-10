@@ -1,6 +1,6 @@
 package eu.judegam.wopfe;
 
-import eu.judegam.wopfe.models.repositories.person.AdminRepo;
+import eu.judegam.wopfe.models.repositories.person.admin.AdminRepo;
 import eu.judegam.wopfe.models.repositories.person.manager.ManagerRepo;
 import eu.judegam.wopfe.models.repositories.school.school.SchoolRepo;
 import eu.judegam.wopfe.models.user.Admin;
@@ -37,9 +37,9 @@ public class DatabaseLoader implements CommandLineRunner {
 //                    new UsernamePasswordAuthenticationToken("julia", "doesn't matter",
 //                            AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
 
-            this.admins.save(new Admin("Frodo", "Baggins", "ring bearer", julia));
-            this.admins.save(new Admin("Bilbo", "Baggins", "burglar", julia));
-            this.admins.save(new Admin("Gandalf", "the Grey", "wizard", julia));
+            this.admins.save(new Admin("Frodo", "Baggins", "ring bearer", julia.getName()));
+            this.admins.save(new Admin("Bilbo", "Baggins", "burglar", julia.getName()));
+            this.admins.save(new Admin("Gandalf", "the Grey", "wizard", julia.getName()));
         }
         if (this.managers.findByName("ellina") == null) {
             Manager ellina = this.managers.save(new Manager("ellina", "gerdojets",
@@ -49,9 +49,9 @@ public class DatabaseLoader implements CommandLineRunner {
 //                    new UsernamePasswordAuthenticationToken("ellina", "doesn't matter",
 //                            AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
 
-            this.admins.save(new Admin("Samwise", "Gamgee", "gardener", ellina));
-            this.admins.save(new Admin("Merry", "Brandybuck", "pony rider", ellina));
-            this.admins.save(new Admin("Peregrin", "Took", "pipe smoker", ellina));
+            this.admins.save(new Admin("Samwise", "Gamgee", "gardener", ellina.getName()));
+            this.admins.save(new Admin("Merry", "Brandybuck", "pony rider", ellina.getName()));
+            this.admins.save(new Admin("Peregrin", "Took", "pipe smoker", ellina.getName()));
         }
         if (this.managers.findByName("anton") == null) {
             Manager anton = this.managers.save(new Manager("anton", "matskevich",
@@ -61,9 +61,9 @@ public class DatabaseLoader implements CommandLineRunner {
 //                    new UsernamePasswordAuthenticationToken("anton", "doesn't matter",
 //                            AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
 
-            this.admins.save(new Admin("Gendalf", "The Gray", "gardener", anton));
-            this.admins.save(new Admin("Saruman", "The White", "pony rider", anton));
-            this.admins.save(new Admin("Bombadoor", "The Brown", "pipe smoker", anton));
+            this.admins.save(new Admin("Gendalf", "The Gray", "gardener", anton.getName()));
+            this.admins.save(new Admin("Saruman", "The White", "pony rider", anton.getName()));
+            this.admins.save(new Admin("Bombadoor", "The Brown", "pipe smoker", anton.getName()));
         }
 
 //        SecurityContextHolder.clearContext();

@@ -1,6 +1,5 @@
 package eu.judegam.wopfe.models.repositories.person.manager;
 
-import eu.judegam.wopfe.models.user.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.authority.AuthorityUtils;
 //import org.springframework.security.core.userdetails.User;
@@ -12,13 +11,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class ManagerService {// implements UserDetailsService {
 
-//    private final ManagerRepo repository;
-//
-//    @Autowired
-//    public ManagerService(ManagerRepo repository) {
-//        this.repository = repository;
-//    }
-//
+    private final ManagerRepo repository;
+
+    @Autowired
+    public ManagerService(ManagerRepo repository) {
+        this.repository = repository;
+    }
+
 //    @Override
 //    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
 //        Manager manager = this.repository.findByName(name);

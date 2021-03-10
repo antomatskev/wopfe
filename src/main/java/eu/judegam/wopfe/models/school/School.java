@@ -20,6 +20,7 @@ public class School {
     private String classes;
     private String principals;
     private String places;
+    private boolean isActive;
 
     public String getName() {
         return name;
@@ -49,6 +50,10 @@ public class School {
         return classes;
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
     public void setClasses(String classes) {
         this.classes = classes;
     }
@@ -75,6 +80,10 @@ public class School {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 
     public School() {

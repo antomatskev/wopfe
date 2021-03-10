@@ -1,7 +1,7 @@
-package eu.judegam.wopfe.subject.service;
+package eu.judegam.wopfe.models.repositories.school.subject.service;
 
 import eu.judegam.wopfe.models.school.Subject;
-import eu.judegam.wopfe.subject.repository.SubjectRepository;
+import eu.judegam.wopfe.models.repositories.school.subject.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

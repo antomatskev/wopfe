@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WOPFE</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="sidenav">
+    <a href="/main/manager">Main</a>
+    <a href="/main/manager/admins">Admins</a>
+    <a href="/main/manager/schools">Schools</a>
+</div>
+
+<div class="main">
+    <h1 class="moreGreenText appName">WOPFE</h1>
+    <hr class="line">
+    <div class="content">
+        <h1>Schools' list</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Principals</th>
+                <th>Actions</th>
+            </tr>
+            <tr th:if="${#lists.isEmpty(schools)}">
+                <td colspan="7">No Records found. Add some...!</td>
+            </tr>
+            <tr th:each="school : ${schools}">
+                <td th:text="${school.id}"></td>
+                <td th:text="${school.name}"></td>
+                <td th:text="${school.location}"></td>
+                <td th:text="${school.principals}"></td>
+                <td><a th:href="'/main/manager/schools/' + ${school.id}">✏</a></td>
+            </tr>
+        </table>
+        <form method="post" th:action="@{/main/manager/schools}" th:object="${school}">
+            <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
+            <input id="location" placeholder="Location" required th:field="*{location}" type="text"/>
+            <input id="principals" placeholder="Principals" required th:field="*{principals}" type="text"/>
+            <input type="submit" value="Create School">
+            <input type="reset" value="Reset">
+            <div th:if="${schoolMessage}" th:utext="${schoolMessage}"></div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

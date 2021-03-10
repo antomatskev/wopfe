@@ -70,3 +70,11 @@
     width: 100%;
     font-size: 50px;
 }
+
+.content{
+    left: 220px;
+    position: absolute;
+    text-align: center;
+    top: 100px;
+    width: 100%;
+}

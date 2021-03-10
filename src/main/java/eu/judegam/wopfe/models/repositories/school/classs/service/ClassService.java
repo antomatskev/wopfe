@@ -1,6 +1,6 @@
-package eu.judegam.wopfe.classs.service;
+package eu.judegam.wopfe.models.repositories.school.classs.service;
 
-import eu.judegam.wopfe.classs.repository.ClassRepository;
+import eu.judegam.wopfe.models.repositories.school.classs.repository.ClassRepository;
 import eu.judegam.wopfe.models.school.Class;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

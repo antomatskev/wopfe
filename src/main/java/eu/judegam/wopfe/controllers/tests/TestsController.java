@@ -1,7 +1,7 @@
 package eu.judegam.wopfe.controllers.tests;
 
-import eu.judegam.wopfe.models.tests.Test;
-import eu.judegam.wopfe.tests.service.TestsService;
+import eu.judegam.wopfe.models.school.tests.Test;
+import eu.judegam.wopfe.models.repositories.school.tests.service.TestsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,12 +46,12 @@ public class TestsController {
     }
 
 
-    @PutMapping("/update")
+    @PutMapping("/test/{id}/update")
     public Test updateTest(@RequestBody Test test) {
         return service.updateTest(test);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/test/{id}/delete/{id}")
     public String deleteProduct(@PathVariable Long id) {
         return service.deleteTest(id);
     }

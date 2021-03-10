@@ -1,7 +1,7 @@
-package eu.judegam.wopfe.principal.service;
+package eu.judegam.wopfe.models.repositories.person.principal.service;
 
 import eu.judegam.wopfe.models.user.Principal;
-import eu.judegam.wopfe.principal.repository.PrincipalRepository;
+import eu.judegam.wopfe.models.repositories.person.principal.repository.PrincipalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

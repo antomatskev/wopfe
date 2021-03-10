@@ -1,7 +1,7 @@
 package eu.judegam.wopfe.controllers;
 
 import eu.judegam.wopfe.models.school.Subject;
-import eu.judegam.wopfe.subject.service.SubjectService;
+import eu.judegam.wopfe.models.repositories.school.subject.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -45,12 +45,12 @@ public class SubjectController {
         return service.getSubjectByName(name);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/subject/{id}/update")
     public Subject updateSubject(@RequestBody Subject subject) {
         return service.updateSubject(subject);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/subject/{id}/delete/{id}")
     public String deleteSubject(@PathVariable Long id) {
         return service.deleteSubject(id);
     }

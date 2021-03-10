@@ -1,4 +1,4 @@
-package eu.judegam.wopfe.principal.repository;
+package eu.judegam.wopfe.models.repositories.person.principal.repository;
 
 import eu.judegam.wopfe.models.user.Principal;
 import org.springframework.data.repository.PagingAndSortingRepository;

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WOPFE</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="sidenav">
+    <a href="/main/admin/schools">Schools</a>
+</div>
+
+<div class="main">
+    <h1 class="moreGreenText appName">WOPFE</h1>
+    <hr class="line">
+    <div class="content">
+        <h1>School info</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Principals</th>
+                <th>Teachers</th>
+                <th>Classes</th>
+                <th>Places</th>
+                <th>Info</th>
+            </tr>
+            <tr th:if="${school == null}">
+                <td colspan="7">No Records found. Add some...!</td>
+            </tr>
+            <tr>
+                <td th:text="${school.id}"></td>
+                <td th:text="${school.name}"></td>
+                <td th:text="${school.location}"></td>
+                <td th:text="${school.principals}"></td>
+                <td th:text="${school.teachers}"></td>
+                <td th:text="${school.classes}"></td>
+                <td th:text="${school.places}"></td>
+                <td><a th:href="'/main/admin/schools/edit/' + ${school.id}">📃</a></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

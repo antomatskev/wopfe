@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Manager {
 
-    public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder(); // <1>
+//    public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder(); // <1>
 
     private @Id @GeneratedValue Long id; // <2>
     private String name;
@@ -26,7 +26,8 @@ public class Manager {
     private String[] roles;
 
     public void setPassword(String password) { // <3>
-        this.password = PASSWORD_ENCODER.encode(password);
+//        this.password = PASSWORD_ENCODER.encode(password);
+        this.password = password;
     }
 
     public Manager() {}

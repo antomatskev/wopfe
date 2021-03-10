@@ -7,9 +7,9 @@ import eu.judegam.wopfe.models.user.Admin;
 import eu.judegam.wopfe.models.user.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.context.SecurityContextHolder;
+//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.core.authority.AuthorityUtils;
+//import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -33,9 +33,9 @@ public class DatabaseLoader implements CommandLineRunner {
             Manager julia = this.managers.save(new Manager("julia", "djomina",
                     "ROLE_MANAGER"));
 
-            SecurityContextHolder.getContext().setAuthentication(
-                    new UsernamePasswordAuthenticationToken("julia", "doesn't matter",
-                            AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
+//            SecurityContextHolder.getContext().setAuthentication(
+//                    new UsernamePasswordAuthenticationToken("julia", "doesn't matter",
+//                            AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
 
             this.admins.save(new Admin("Frodo", "Baggins", "ring bearer", julia));
             this.admins.save(new Admin("Bilbo", "Baggins", "burglar", julia));
@@ -45,9 +45,9 @@ public class DatabaseLoader implements CommandLineRunner {
             Manager ellina = this.managers.save(new Manager("ellina", "gerdojets",
                     "ROLE_MANAGER"));
 
-            SecurityContextHolder.getContext().setAuthentication(
-                    new UsernamePasswordAuthenticationToken("ellina", "doesn't matter",
-                            AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
+//            SecurityContextHolder.getContext().setAuthentication(
+//                    new UsernamePasswordAuthenticationToken("ellina", "doesn't matter",
+//                            AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
 
             this.admins.save(new Admin("Samwise", "Gamgee", "gardener", ellina));
             this.admins.save(new Admin("Merry", "Brandybuck", "pony rider", ellina));
@@ -57,16 +57,16 @@ public class DatabaseLoader implements CommandLineRunner {
             Manager anton = this.managers.save(new Manager("anton", "matskevich",
                     "ROLE_MANAGER"));
 
-            SecurityContextHolder.getContext().setAuthentication(
-                    new UsernamePasswordAuthenticationToken("anton", "doesn't matter",
-                            AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
+//            SecurityContextHolder.getContext().setAuthentication(
+//                    new UsernamePasswordAuthenticationToken("anton", "doesn't matter",
+//                            AuthorityUtils.createAuthorityList("ROLE_MANAGER")));
 
             this.admins.save(new Admin("Gendalf", "The Gray", "gardener", anton));
             this.admins.save(new Admin("Saruman", "The White", "pony rider", anton));
             this.admins.save(new Admin("Bombadoor", "The Brown", "pipe smoker", anton));
         }
 
-        SecurityContextHolder.clearContext();
+//        SecurityContextHolder.clearContext();
     }
 
 }

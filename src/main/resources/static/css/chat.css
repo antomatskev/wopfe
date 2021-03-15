@@ -149,6 +149,7 @@ button.accent {
     margin-top: 30px;
     height: calc(100% - 60px);
     max-height: 600px;
+    min-height: 600px;
     position: relative;
 }
 
@@ -160,6 +161,8 @@ button.accent {
     overflow-y: scroll;
     padding: 0 20px 0px 20px;
     height: calc(100% - 150px);
+    min-height: 450px;
+    max-height: 450px;
 }
 
 #chat-page #messageForm {

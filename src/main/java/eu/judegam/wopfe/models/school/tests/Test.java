@@ -1,12 +1,12 @@
 package eu.judegam.wopfe.models.school.tests;
 
 
+//import eu.judegam.wopfe.models.tests.Question;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
-import java.util.List;
 
 @Entity
 public class Test {
@@ -15,11 +15,11 @@ public class Test {
     private Long id;
     private String name;
     private String date;
-    private int time;
-    @Transient
-    private List<Question> questions;
+    private String time;
 
+    public Test() {
 
+    }
 
     public Long getId() {
         return id;
@@ -27,14 +27,6 @@ public class Test {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
     }
 
     public String getName() {
@@ -53,21 +45,18 @@ public class Test {
         this.date = date;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
-    public Test() {
-    }
-
-    public Test(String name, String date, int time) {
+    public Test(Long id, String name, String date, String time) {
+        this.id = id;
         this.name = name;
         this.date = date;
         this.time = time;
     }
-
 }

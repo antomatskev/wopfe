@@ -4,60 +4,58 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 
 /**
  * Represents Question, that can be open(students can write their answers manually) or questions for tests.
  */
 @Entity
 public class Question {
-    private String questionText;
-    private Boolean isOpen;
-    @Transient
-    private Answer answer;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private Long testId;
+    private String type;
+    private String questionText;
 
-    public Question(String question, Answer answer, Boolean isOpen) {
-        this.questionText = question;
-        this.answer = answer;
-        this.isOpen = isOpen;
+    public Question(Long id, Long test_id, String type, String questionText) {
+        this.id = id;
+        this.testId = test_id;
+        this.type = type;
+        this.questionText = questionText;
     }
 
     public Question() {
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getTestId() {
+        return testId;
+    }
+
+    public void setTestId(Long testId) {
+        this.testId = testId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getQuestionText() {
         return questionText;
     }
 
-    public void setQuestionText(String question) {
-        this.questionText = question;
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
     }
-
-    public Answer getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(Answer answer) {
-        this.answer = answer;
-    }
-
-    public Boolean getOpen() {
-        return isOpen;
-    }
-
-    public void setOpen(Boolean open) {
-        isOpen = open;
-    }
-
 }

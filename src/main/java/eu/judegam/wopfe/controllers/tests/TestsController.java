@@ -20,9 +20,17 @@ public class TestsController {
     @Autowired
     private TestsService service;
 
+    @Autowired
+    private TestsService answerSe; //TODO class answerService
+
     @PostMapping("/addTest")
     public Test addTest(@RequestBody Test test) {
         return service.saveTest(test);
+    }
+
+    @GetMapping("/xxx")
+    public Test xxx() {
+        return service.saveTest(null);
     }
 
     @PostMapping("/addTests")

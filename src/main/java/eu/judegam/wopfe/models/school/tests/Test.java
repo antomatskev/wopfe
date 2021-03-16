@@ -1,6 +1,8 @@
 package eu.judegam.wopfe.models.school.tests;
 
 
+import eu.judegam.wopfe.models.tests.Question;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,8 +18,8 @@ public class Test {
     private String name;
     private String date;
     private int time;
-    @Transient
-    private List<Question> questions;
+//    @Transient
+//    private List<Question> questions;
 
 
 
@@ -29,13 +31,13 @@ public class Test {
         this.id = id;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
-    }
+//    public List<Question> getQuestions() {
+//        return questions;
+//    }
 
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-    }
+//    public void setQuestions(List<Question> questions) {
+//        this.questions = questions;
+//    }
 
     public String getName() {
         return name;

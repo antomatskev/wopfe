@@ -34,3 +34,5 @@ build/
 ### Props ###
 /src/main/resources/application.properties
 /.gtm/
+/src/main/resources/META-INF/
+/out/

@@ -28,10 +28,6 @@ public class TestsController {
         return service.saveTest(test);
     }
 
-    @GetMapping("/xxx")
-    public Test xxx() {
-        return service.saveTest(null);
-    }
 
     @PostMapping("/addTests")
     public List<Test> addTests(@RequestBody List<Test> tests) {
@@ -43,15 +39,15 @@ public class TestsController {
         return service.getTest();
     }
 
-    @PostMapping("/test/{id}")
+    @GetMapping("/test/{id}")
     public Test getTestById(@PathVariable Long id) {
         return service.getTestById(id);
     }
 
-    @PostMapping("/test/{name}")
-    public Test getTestByName(@PathVariable String name) {
-        return service.getTestByName(name);
-    }
+//    @PostMapping("/test/{name}")
+//    public Test getTestByName(@PathVariable String name) {
+//        return service.getTestByName(name);
+//    }
 
 
     @PutMapping("/test/{id}/update")

@@ -21,7 +21,7 @@ import java.util.List;
 @Entity
 public class Answer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long questionId;
     private String answerText;

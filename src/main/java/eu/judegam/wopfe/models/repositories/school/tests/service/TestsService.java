@@ -2,15 +2,19 @@ package eu.judegam.wopfe.models.repositories.school.tests.service;
 
 import eu.judegam.wopfe.models.school.tests.Test;
 import eu.judegam.wopfe.models.repositories.school.tests.repository.TestsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class TestsService {
-    @Autowired
-    private TestsRepository repository;
+
+    private final TestsRepository repository;
+
+    public TestsService(TestsRepository repository) {
+        this.repository = repository;
+    }
+
 
     public Test saveTest(Test test) {
         return repository.save(test);

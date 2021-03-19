@@ -4,10 +4,6 @@ package eu.judegam.wopfe.models.school.tests;
 //import eu.judegam.wopfe.models.tests.Question;
 
 import eu.judegam.wopfe.models.tests.Question;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.CascadeType;

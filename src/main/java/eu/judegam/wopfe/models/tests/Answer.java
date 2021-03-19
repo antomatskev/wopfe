@@ -20,7 +20,7 @@ public class Answer {
     @Transient
     // answers for question, where can be several answers,
     // we will check, if all answers are chosen and if yes, then answer is correct, if no, then student will get 0 points
-    private List<String> multipleChoiceAnswers;
+//    private List<String> multipleChoiceAnswers;
     private Long id;
 
     public void setId(Long id) {
@@ -33,7 +33,7 @@ public class Answer {
     }
 
     public Answer(List<String> multipleChoiceAnswers) {
-        this.multipleChoiceAnswers = multipleChoiceAnswers;
+//        this.multipleChoiceAnswers = multipleChoiceAnswers;
 
     }
 
@@ -66,12 +66,12 @@ public class Answer {
         this.theDichotomousAnswer = theDichotomousAnswer;
     }
 
-    public List<String> getMultipleChoiceAnswers() {
-        return multipleChoiceAnswers;
-    }
+//    public List<String> getMultipleChoiceAnswers() {
+//        return multipleChoiceAnswers;
+//    }
 
     public void setMultipleChoiceAnswers(List<String> multipleChoiceAnswers) {
-        this.multipleChoiceAnswers = multipleChoiceAnswers;
+//        this.multipleChoiceAnswers = multipleChoiceAnswers;
     }
 
 }

@@ -3,10 +3,7 @@ package eu.judegam.wopfe.models.repositories.timetable;
 import eu.judegam.wopfe.models.timetable.Timetable;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class TimetableService {
@@ -29,6 +26,19 @@ public class TimetableService {
 
     public Timetable getTtById(Long id) {
         return ttRepo.findById(id).get();
+    }
+
+    public Timetable updateTimetable(Long id, Timetable tt) {
+        Timetable existingProduct = ttRepo.findById(id).orElse(null);
+        assert existingProduct != null;
+        existingProduct.setName(tt.getName());
+        existingProduct.getEvents().addAll(tt.getEvents());
+        return ttRepo.save(existingProduct);
+    }
+
+    public String deleteTimetable(Long id) {
+        ttRepo.deleteById(id);
+        return id + " timetable has been removed";
     }
 
 }

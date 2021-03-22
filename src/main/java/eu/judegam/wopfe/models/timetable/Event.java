@@ -39,6 +39,13 @@ public class Event implements Serializable {
         this.timetable = timetable;
     }
 
+    public Event(String name, String place, String teacher, Long timetableId) {
+        this.name = name;
+        this.place = place;
+        this.teacher = teacher;
+        this.timetableId = timetableId;
+    }
+
     public Long getId() {
         return id;
     }

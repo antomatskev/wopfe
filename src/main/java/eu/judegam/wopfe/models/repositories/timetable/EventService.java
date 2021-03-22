@@ -21,8 +21,8 @@ public class EventService {
         return eRepo.save(ev);
     }
 
-    public Event saveEvent(Event ev, String ttName) {
-        Timetable tt = ttRepo.findByName(ttName);
+    public Event saveEvent(Event ev, Long ttId) {
+        Timetable tt = ttRepo.findById(ttId).get();
         ev.setTimetableId(tt.getId());
         ev.setTimetable(tt);
         tt.addEvent(ev);

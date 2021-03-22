@@ -25,27 +25,45 @@ public class TimetableController {
     @Autowired
     private EventService evService;
 
-    @RequestMapping(value = "/main/teacher/timetables", method = RequestMethod.GET)
+    @RequestMapping(value = "/main/timetables", method = RequestMethod.GET)
     public String getTimetables(Model model) {
         List<Timetable> tts = ttService.getAllTimetables();
         model.addAttribute("timetables", tts);
         model.addAttribute("timetable", new Timetable());
         model.addAttribute("event", new Event());
-        return "timetable/teacher_timetables";
+        return "timetable/timetables";
     }
 
-    @RequestMapping(path = "/main/teacher/addTimetable", method = RequestMethod.POST)
+    @RequestMapping(path = "/main/timetables/addTimetable", method = RequestMethod.POST)
     public RedirectView saveTimetable(RedirectAttributes redirectAttributes, @ModelAttribute Timetable tt) {
         ttService.saveTimetable(tt);
         final String msg = "Created timetable <b>" + tt.getName() + "</b> ✨.";
-        RedirectView view = new RedirectView("timetables", true);
+        RedirectView view = new RedirectView("", true);
         redirectAttributes.addFlashAttribute("ttMessage", msg);
         return view;
     }
 
-    @GetMapping("/main/teacher/timetable/{id}")
-    public Timetable showTimetableById(@PathVariable Long id) {
-        return ttService.getTtById(id);
+    @GetMapping("/main/timetables/{id}")
+    public String showTimetableById(Model model, @PathVariable("id") Long id) {
+        Timetable tt = ttService.getTtById(id);
+        model.addAttribute("timetable", tt);
+        model.addAttribute("event", new Event());
+        return "timetable/timetable_edit";
+    }
+
+    @RequestMapping(path = "/main/timetables/{id}/update", method = RequestMethod.POST)
+    public String updateTimetable(Model model, @PathVariable("id") Long id, @ModelAttribute Timetable timetable) {
+        ttService.updateTimetable(id, timetable);
+        model.addAttribute("timetable", timetable);
+        return "timetable/timetable_edit";
+    }
+
+    @RequestMapping(path = "/main/timetables/{id}/delete", method = RequestMethod.POST)
+    public RedirectView deleteTimetable(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Timetable timetable) {
+        RedirectView redirectView = new RedirectView("..", true);
+        redirectAttributes.addFlashAttribute("ttMessage", ttService.deleteTimetable(id));
+        return redirectView;
+//        return "redirect:timetable/timetables";
     }
 
 }

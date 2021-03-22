@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WOPFE</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="sidenav">
+    <a href="/main/timetables/timetables">Timetables</a>
+</div>
+
+<div class="main">
+    <h1 class="moreGreenText appName">WOPFE</h1>
+    <hr class="line">
+    <div class="content">
+        <h1>Timetables</h1>
+        <table>
+            <tr th:if="${#lists.isEmpty(timetables)}">
+                <td colspan="5">No timetable available yet.</td>
+            </tr>
+            <tr th:each="timetable : ${timetables}">
+                <td th:text="${timetable.name}"></td>
+                <td><a th:href="'/main/timetables/' + ${timetable.id}">-O-</a></td>
+                <td>
+                    <form method="post" th:action="'/main/timetables/' + ${timetable.id} + '/delete'" th:object="${timetable}">
+                        <input type="submit" value="X">
+                    </form>
+            </tr>
+        </table>
+        <form method="post" th:action="@{/main/timetables/addTimetable}" th:object="${timetable}">
+            <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
+            <input type="submit" value="Create Timetable">
+            <input type="reset" value="Reset">
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

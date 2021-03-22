@@ -1,12 +1,14 @@
 package eu.judegam.wopfe.models.timetable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Timetable implements Serializable {
@@ -15,13 +17,13 @@ public class Timetable implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "timetable")
-    private Set<Event> events;
+    @OneToMany(mappedBy = "timetable", cascade = CascadeType.ALL)
+    private List<Event> events = new ArrayList<>();
 
     public Timetable() {
     }
 
-    public Timetable(String name, Set<Event> events) {
+    public Timetable(String name, List<Event> events) {
         this.name = name;
         this.events = events;
     }
@@ -42,11 +44,11 @@ public class Timetable implements Serializable {
         this.name = name;
     }
 
-    public Set<Event> getEvents() {
+    public List<Event> getEvents() {
         return events;
     }
 
-    public void setEvents(Set<Event> events) {
+    public void setEvents(List<Event> events) {
         this.events = events;
     }
 

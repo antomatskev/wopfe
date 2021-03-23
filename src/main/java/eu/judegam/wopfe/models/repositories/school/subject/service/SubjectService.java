@@ -40,8 +40,8 @@ public class SubjectService {
         return "Subject was deleted.";
     }
 
-    public Subject updateSubject(Subject subject) {
-        Subject existingProduct = repository.findById(subject.getId()).orElse(null);
+    public Subject updateSubject(Long id, Subject subject) {
+        Subject existingProduct = repository.findById(id).orElse(null);
         assert existingProduct != null;
         existingProduct.setName(subject.getName());
         existingProduct.setSchool(subject.getSchool());

@@ -1,16 +1,27 @@
 package eu.judegam.wopfe.controllers.person;
 
 import eu.judegam.wopfe.models.repositories.person.principal.service.PrincipalService;
+import eu.judegam.wopfe.models.repositories.school.classs.service.ClassService;
+import eu.judegam.wopfe.models.repositories.school.subject.service.SubjectService;
+import eu.judegam.wopfe.models.school.Class;
+import eu.judegam.wopfe.models.school.Subject;
+import eu.judegam.wopfe.models.user.Admin;
 import eu.judegam.wopfe.models.user.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -19,13 +30,115 @@ import java.util.List;
  */
 @Controller
 public class PrincipalController {
+    private final ClassService classService;
+    private final SubjectService subjectService;
 
     @Autowired
     private PrincipalService service;
 
+    public PrincipalController(ClassService classService, SubjectService subjectService) {
+        this.classService = classService;
+        this.subjectService = subjectService;
+    }
+
     @PostMapping("/addPrincipal")
     public Principal addPrincipal(@RequestBody Principal principal) {
         return service.savePrincipal(principal);
+    }
+
+    /**
+     * Method for getting all classes from database.
+     */
+    @RequestMapping(path = "/main/principal/addClasses", method = RequestMethod.GET)
+    public String getClass(Model model) {
+        List<Class> classes = classService.getClasss();
+        model.addAttribute("classes", classes);
+        model.addAttribute("class", new Class());
+        return "principal/principal_add_class";
+    }
+
+    /**
+     * Method for successful class adding to database ang viewing a message after adding.
+     *
+     * @return redirect to the same page.
+     */
+    @PostMapping(path = "/main/principal/addClasses")
+    public RedirectView createClass(RedirectAttributes redirectAttributes, @RequestParam String name, @RequestParam String school,
+                                    @RequestParam String students, @RequestParam String timetable, Model model) {
+        Class classs = new Class(name, school, students, timetable);
+        classService.saveClass(classs);
+        final String msg = "Created class <b>" + String.format("%s", classs.getName()) + "</b>";
+        RedirectView view = new RedirectView("addClasses", true);
+        redirectAttributes.addFlashAttribute("classMessage", msg);
+        return view;
+    }
+
+    /**
+     * Method for getting all subjects from database.
+     */
+    @RequestMapping(path = "/main/principal/addSubject", method = RequestMethod.GET)
+    public String getSubject(Model model) {
+        List<Subject> subjects = subjectService.getSubject();
+        model.addAttribute("subjects", subjects);
+        model.addAttribute("subject", new Subject());
+        return "principal/principal_add_subjects";
+    }
+
+
+    /**
+     * Method for successful subject adding to database ang viewing a message after adding.
+     *
+     * @return redirect to the same page.
+     */
+    @PostMapping(path = "/main/principal/addSubject")
+    public RedirectView createSubject2(RedirectAttributes redirectAttributes, @ModelAttribute Subject subject) {
+        subjectService.saveSubject(subject);
+        final String msg = "Created class <b>" + String.format("%s", subject.getName()) + "</b>";
+        RedirectView view = new RedirectView("addSubject", true);
+        redirectAttributes.addFlashAttribute("subjectMessage", msg);
+        return view;
+    }
+
+    /**
+     * Mapping for delete subject page.
+     *
+     * @param model .
+     * @return .
+     */
+    @GetMapping("/main/principal/deleteSubject")
+    public String deleteEditPage(Model model) {
+        List<Subject> subjects = subjectService.getSubject();
+        model.addAttribute("subjects", subjects);
+        model.addAttribute("subject", new Subject());
+        return "principal/principal_delete_edit_subjects";
+    }
+
+    @GetMapping("/main/principal/deleteClasses")
+    public String deleteEditClass(Model model) {
+        List<Class> classes = classService.getClasss();
+        model.addAttribute("classes", classes);
+        model.addAttribute("class", new Subject());
+        return "principal/principal_delete_edit_class";
+    }
+
+    @RequestMapping(path = "/main/principal/subject/{id}", method = RequestMethod.GET)
+    public String getSubject(Model model, @PathVariable("id") Long id) {
+        Subject subject = subjectService.getSubjectById(id);
+        model.addAttribute("subject", subject);
+        return "principal/principal_delete_edit_subject_id";
+    }
+
+    @RequestMapping(path = "/main/principal/subject/{id}", method = RequestMethod.POST)
+    public RedirectView updateSubject(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Subject subject) {
+        if (subject.isActive()) {
+            subjectService.updateSubject(id, subject);
+        } else {
+            subjectService.deleteSubject(id);
+        }
+        String message = (subject.isActive() ? "Updated " : "Deleted ") + " subject <b>" + subject.getName() + "</b>";
+        RedirectView redirectView = new RedirectView("deleteSubject", true); //TODO ПРАВИЛЬНЫЙ РЕДИРЕКТИНГ
+        redirectAttributes.addFlashAttribute("subjectMessage", message);
+        return redirectView;
     }
 
     @PostMapping("/addPrincipals")

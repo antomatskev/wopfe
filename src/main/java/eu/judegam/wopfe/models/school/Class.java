@@ -58,11 +58,13 @@ public class Class {
         this.timetable = timetable;
     }
 
-    public Class() {
-    }
-
-    public Class(String name, String school) {
+    public Class(String name, String school, String students, String timetable) {
         this.name = name;
         this.school = school;
+        this.students = students;
+        this.timetable = timetable;
+    }
+
+    public Class() {
     }
 }

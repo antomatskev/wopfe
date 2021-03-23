@@ -21,17 +21,17 @@ public class SubjectController {
     private SubjectService service;
 
     @PostMapping("/addSubject")
-    public Subject addClass(@RequestBody Subject subject) {
+    public Subject addSubject(@RequestBody Subject subject) {
         return service.saveSubject(subject);
     }
 
     @PostMapping("/addSubjects")
-    public List<Subject> addClasses(@RequestBody List<Subject> subjects) {
+    public List<Subject> addSubjects(@RequestBody List<Subject> subjects) {
         return service.saveSubjects(subjects);
     }
 
     @PostMapping("/subjects")
-    public List<Subject> findAllClasses() {
+    public List<Subject> findAllSubjects() {
         return service.getSubject();
     }
 
@@ -45,10 +45,10 @@ public class SubjectController {
         return service.getSubjectByName(name);
     }
 
-    @PutMapping("/subject/{id}/update")
-    public Subject updateSubject(@RequestBody Subject subject) {
-        return service.updateSubject(subject);
-    }
+//    @PutMapping("/subject/{id}/update")
+//    public Subject updateSubject(@RequestBody Subject subject) {
+//        return service.updateSubject(subject);
+//    }
 
     @DeleteMapping("/subject/{id}/delete/{id}")
     public String deleteSubject(@PathVariable Long id) {

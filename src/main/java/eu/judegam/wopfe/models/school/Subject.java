@@ -19,6 +19,7 @@ public class Subject {
     private String school;
     private String teacher;
     private String period;
+    private boolean isActive = true;
 
     public String getName() {
         return name;
@@ -76,7 +77,23 @@ public class Subject {
         this.id = id;
     }
 
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
     public Subject() {
     }
 
+    public Subject(String name, String specialty, String classes, String school, String teacher, String period) {
+        this.name = name;
+        this.specialty = specialty;
+        this.classes = classes;
+        this.school = school;
+        this.teacher = teacher;
+        this.period = period;
+    }
 }

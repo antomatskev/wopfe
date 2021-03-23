@@ -1,6 +1,5 @@
 package eu.judegam.wopfe.controllers.timetable;
 
-import eu.judegam.wopfe.models.repositories.timetable.EventService;
 import eu.judegam.wopfe.models.repositories.timetable.TimetableService;
 import eu.judegam.wopfe.models.timetable.Event;
 import eu.judegam.wopfe.models.timetable.Timetable;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -22,12 +22,11 @@ public class TimetableController {
 
     @Autowired
     private TimetableService ttService;
-    @Autowired
-    private EventService evService;
 
     @RequestMapping(value = "/main/timetables", method = RequestMethod.GET)
     public String getTimetables(Model model) {
         List<Timetable> tts = ttService.getAllTimetables();
+        tts.sort(Comparator.comparing(Timetable::getName));
         model.addAttribute("timetables", tts);
         model.addAttribute("timetable", new Timetable());
         model.addAttribute("event", new Event());

@@ -2,7 +2,6 @@ package eu.judegam.wopfe.models.timetable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Converter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +20,8 @@ public class Event implements Serializable {
     private String name;
     private String place;
     private String teacher;
+    private String day;
+    private String time;
     @ManyToOne
     @JoinColumn(name = "timetable_id", nullable = false)
     @JsonIgnore
@@ -39,11 +40,13 @@ public class Event implements Serializable {
         this.timetable = timetable;
     }
 
-    public Event(String name, String place, String teacher, Long timetableId) {
+    public Event(String name, String place, String teacher, Long timetableId, String day, String time) {
         this.name = name;
         this.place = place;
         this.teacher = teacher;
         this.timetableId = timetableId;
+        this.day = day;
+        this.time = time;
     }
 
     public Long getId() {
@@ -93,4 +96,25 @@ public class Event implements Serializable {
     public void setTimetableId(Long timetableId) {
         this.timetableId = timetableId;
     }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String eventTime() {
+        return String.format("%s: %s", day, time);
+    }
+
 }

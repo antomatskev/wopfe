@@ -51,4 +51,7 @@ public class Timetable implements Serializable {
     public void setEvents(List<Event> events) {
         this.events = events;
     }
+
+    // TODO: implement comparator for sorting.
+
 }

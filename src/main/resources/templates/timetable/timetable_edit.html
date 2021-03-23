@@ -24,6 +24,7 @@
         </form>
         <table>
         <tr>
+            <th>Time</th>
             <th>Name</th>
             <th>Place</th>
             <th>Teacher</th>
@@ -32,6 +33,7 @@
             <td colspan="5">No events available yet.</td>
         </tr>
         <tr th:each="event : ${timetable.events}">
+            <td th:text="${event.day} + ': ' + ${event.time}"></td>
             <td th:text="${event.name}"></td>
             <td th:text="${event.place}"></td>
             <td th:text="${event.teacher}"></td>
@@ -46,6 +48,28 @@
             <input id="eventName" placeholder="Name" required th:field="*{name}" type="text"/>
             <input id="eventPlace" placeholder="Place" required th:field="*{place}" type="text"/>
             <input id="eventTeacher" placeholder="Teacher" required th:field="*{teacher}" type="text"/>
+            <select id="eventDay" required th:field="*{day}">
+                <option hidden value="">Select a day</option>
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+            </select>
+            <select id="eventTime" required th:field="*{time}">
+                <option hidden value="">Select time</option>
+                <option value="08:00">08:00</option>
+                <option value="09:00">09:00</option>
+                <option value="10:00">10:00</option>
+                <option value="11:00">11:00</option>
+                <option value="12:00">12:00</option>
+                <option value="13:00">13:00</option>
+                <option value="14:00">14:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+            </select>
             <input type="submit" value="Add Event">
             <input type="reset" value="Reset">
         </form>

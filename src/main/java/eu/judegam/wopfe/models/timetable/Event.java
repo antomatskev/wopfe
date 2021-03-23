@@ -93,7 +93,4 @@ public class Event implements Serializable {
     public void setTimetableId(Long timetableId) {
         this.timetableId = timetableId;
     }
-
-
-
 }

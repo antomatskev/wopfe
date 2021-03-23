@@ -53,8 +53,9 @@ public class TimetableController {
 
     @RequestMapping(path = "/main/timetables/{id}/update", method = RequestMethod.POST)
     public String updateTimetable(Model model, @PathVariable("id") Long id, @ModelAttribute Timetable timetable) {
-        ttService.updateTimetable(id, timetable);
-        model.addAttribute("timetable", timetable);
+        Timetable tt = ttService.updateTimetable(id, timetable);
+        model.addAttribute("timetable", tt);
+        model.addAttribute("event", new Event());
         return "timetable/timetable_edit";
     }
 
@@ -63,7 +64,6 @@ public class TimetableController {
         RedirectView redirectView = new RedirectView("..", true);
         redirectAttributes.addFlashAttribute("ttMessage", ttService.deleteTimetable(id));
         return redirectView;
-//        return "redirect:timetable/timetables";
     }
 
 }

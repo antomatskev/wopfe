@@ -15,19 +15,18 @@ public class EventService {
         this.eRepo = eRepo;
     }
 
-    public Event saveEvent(Event ev) {
-        Timetable tt = ttRepo.findById(ev.getTimetableId()).get();
-        ev.setTimetable(tt);
-        return eRepo.save(ev);
+    public String deleteEvent(Long id) {
+        eRepo.deleteById(id);
+        return id + " event removed.";
     }
 
     public Event saveEvent(Event ev, Long ttId) {
         Timetable tt = ttRepo.findById(ttId).get();
         ev.setTimetableId(tt.getId());
         ev.setTimetable(tt);
-        tt.addEvent(ev);
+        tt.getEvents().add(ev);
         ttRepo.save(tt);
-        return eRepo.save(ev);
+        return ev;
     }
 
 }

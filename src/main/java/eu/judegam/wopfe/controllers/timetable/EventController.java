@@ -27,4 +27,14 @@ public class EventController {
         return view;
     }
 
+    @RequestMapping(path = "/main/timetables/{id}/deleteEvent/{eId}", method = RequestMethod.POST)
+    public RedirectView deleteEvent(RedirectAttributes redirectAttributes, @ModelAttribute Event event,
+                                  @PathVariable("id") Long ttId, @PathVariable("eId") Long eId) {
+        service.deleteEvent(eId);
+        final String msg = "Created event <b>" + event.getName() + "</b> ✨.";
+        RedirectView view = new RedirectView("/main/timetables/{id}", true);
+        redirectAttributes.addFlashAttribute("evMessage", msg);
+        return view;
+    }
+
 }

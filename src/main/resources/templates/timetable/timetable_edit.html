@@ -37,7 +37,7 @@
             <td th:text="${event.teacher}"></td>
             <td><a th:href="'/main/events/' + ${event.id}">-O-</a></td>
             <td>
-                <form method="post" th:action="'/main/events/' + ${event.id} + '/delete'" th:object="${event}">
+                <form method="post" th:action="'/main/timetables/' + ${timetable.id} + '/deleteEvent/' + ${event.id}" th:object="${event}">
                     <input type="submit" value="X">
                 </form>
         </tr>

@@ -30,6 +30,12 @@ public class Question implements Serializable {
     @JsonIgnore
     private Long testId;
 
+    public Question(String name, String type, String questionText) {
+        this.name = name;
+        this.type = type;
+        this.questionText = questionText;
+    }
+
     public Question(String name, Test test) {
         this.name = name;
         this.test = test;

@@ -19,10 +19,13 @@ public class QuestionService {
     }
 
 
-    public Question saveQuestion(Question question) {
-        Test test = testsRepository.findById(question.getTestId()).get();
+    public Question saveQuestion(Question question, Long testId) {
+        Test test = testsRepository.findById(testId).get();
         question.setTest(test);
-        return repository.save(question);
+        question.setTestId(testId);
+        test.getQuestions().add(question);
+        testsRepository.save(test);
+        return question;
     }
 
 }

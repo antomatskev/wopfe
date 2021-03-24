@@ -1,19 +1,9 @@
 package eu.judegam.wopfe.models.tests;
 
-import ch.qos.logback.core.status.StatusListenerAsList;
-
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import java.util.List;
 
 /**
  * Represents Answers.

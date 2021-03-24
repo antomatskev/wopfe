@@ -1,11 +1,14 @@
 package eu.judegam.wopfe.controllers.tests;
 
+import eu.judegam.wopfe.models.tests.Question;
 import eu.judegam.wopfe.models.tests.Test;
 import eu.judegam.wopfe.models.repositories.school.tests.service.TestsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class TestsController {
 
     @Autowired
@@ -33,46 +36,73 @@ public class TestsController {
         return "tests/teacher_tests";
     }
 
-    @PostMapping("/addTest")
-    public Test addTest(@RequestBody Test test) {
-        return service.saveTest(test);
+    @RequestMapping(value = "/main/teacher/tests/{id}", method = RequestMethod.GET)
+    public String showTimetableById(Model model, @PathVariable("id") Long id) {
+        Test test = service.getTestById(id);
+        model.addAttribute("test", test);
+        model.addAttribute("question", new Question());
+        return "tests/edit_test";
     }
 
-
-    @PostMapping("/addTests")
-    public List<Test> addTests(@RequestBody List<Test> tests) {
-        return service.saveTests(tests);
+    @RequestMapping(path = "/main/teacher/tests/{id}/update", method = RequestMethod.POST)
+    public String updateTest(Model model, @PathVariable("id") Long id, @ModelAttribute Test test) {
+        Test dbTest = service.updateTest(id, test);
+        model.addAttribute("test", dbTest);
+        model.addAttribute("question", new Question());
+        return "tests/edit_test";
     }
 
-    @GetMapping("/test/{id}")
-    public Test getTestById(@PathVariable Long id) {
-        return service.getTestById(id);
+    @RequestMapping(path = "/main/teacher/tests/{id}", method = RequestMethod.POST)
+    public String updateTestQuestions(Model model, @PathVariable("id") Long id) {
+        Test test = service.getTestById(id);
+        model.addAttribute("test", test);
+        model.addAttribute("questions", test.getQuestions());
+        model.addAttribute("question", new Question());
+        return "tests/edit_test";
     }
 
-//    @PostMapping("/test/{name}")
-//    public Test getTestByName(@PathVariable String name) {
-//        return service.getTestByName(name);
-//    }
+//    TODO: remove for "'/main/teacher/question/' + ${test.id} + '/deleteQuestion/' + ${question.id}"
+
+//     @PostMapping("/addTest")
+//     public Test addTest(@RequestBody Test test) {
+//         return service.saveTest(test);
+//     }
 
 
-    @PutMapping("/test/{id}/update")
-    public Test updateTest(@RequestBody Test test) {
-        return service.updateTest(test);
-    }
+//     @PostMapping("/addTests")
+//     public List<Test> addTests(@RequestBody List<Test> tests) {
+//         return service.saveTests(tests);
+//     }
 
-    @DeleteMapping("/test/{id}/delete/{id}")
-    public String deleteProduct(@PathVariable Long id) {
-        return service.deleteTest(id);
-    }
+//     @GetMapping("/test/{id}")
+//     public Test getTestById(@PathVariable Long id) {
+//         return service.getTestById(id);
+//     }
 
-    @GetMapping("/tests/teacher")
-    public String home(Model model) {
-        return "/tests/teacher";
-    }
+// //    @PostMapping("/test/{name}")
+// //    public Test getTestByName(@PathVariable String name) {
+// //        return service.getTestByName(name);
+// //    }
 
-    @GetMapping("/tests/student")
-    public String login(Model model) {
-        return "/tests/student";
-    }
+
+//     @PutMapping("/test/{id}/update")
+//     public Test updateTest(@RequestBody Test test) {
+//         return service.updateTest(test);
+//     }
+
+//     @DeleteMapping("/test/{id}/delete/{id}")
+//     public String deleteProduct(@PathVariable Long id) {
+//         return service.deleteTest(id);
+//     }
+
+//     @GetMapping("/tests/teacher")
+//     public String home(Model model) {
+//         return "/tests/teacher";
+//     }
+
+//     @GetMapping("/tests/student")
+//     public String login(Model model) {
+//         return "/tests/student";
+//     }
 
 }

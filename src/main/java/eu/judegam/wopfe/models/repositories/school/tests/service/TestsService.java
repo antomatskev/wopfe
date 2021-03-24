@@ -41,8 +41,8 @@ public class TestsService {
         return "Test is not available!";
     }
 
-    public Test updateTest(Test test) {
-        Test existingProduct = repository.findById(test.getId()).orElse(null);
+    public Test updateTest(Long id, Test test) {
+        Test existingProduct = repository.findById(id).orElse(null);
         assert existingProduct != null;
         existingProduct.setName(test.getName());
         existingProduct.setDate(test.getDate());

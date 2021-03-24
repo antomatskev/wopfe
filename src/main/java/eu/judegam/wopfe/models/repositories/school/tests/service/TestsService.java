@@ -1,16 +1,20 @@
 package eu.judegam.wopfe.models.repositories.school.tests.service;
 
-import eu.judegam.wopfe.models.school.tests.Test;
+import eu.judegam.wopfe.models.tests.Test;
 import eu.judegam.wopfe.models.repositories.school.tests.repository.TestsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class TestsService {
-    @Autowired
-    private TestsRepository repository;
+
+    private final TestsRepository repository;
+
+    public TestsService(TestsRepository repository) {
+        this.repository = repository;
+    }
+
 
     public Test saveTest(Test test) {
         return repository.save(test);
@@ -20,7 +24,7 @@ public class TestsService {
         return (List<Test>) repository.saveAll(test);
     }
 
-    public List<Test> getTest() {
+    public List<Test> getTests() {
         return (List<Test>) repository.findAll();
     }
 
@@ -37,8 +41,8 @@ public class TestsService {
         return "Test is not available!";
     }
 
-    public Test updateTest(Test test) {
-        Test existingProduct = repository.findById(test.getId()).orElse(null);
+    public Test updateTest(Long id, Test test) {
+        Test existingProduct = repository.findById(id).orElse(null);
         assert existingProduct != null;
         existingProduct.setName(test.getName());
         existingProduct.setDate(test.getDate());

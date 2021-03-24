@@ -31,5 +31,4 @@ public class MainController {
         return "mains/student_main";
     }
 
-
 }

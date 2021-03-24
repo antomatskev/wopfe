@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WOPFE</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+
+    <div class="sidenav">
+            <a class="mainPage greenText" href="/main/teacher">Main</a>
+            <a class="myClassPage greenText" href="/main/teacher/class">My class</a>
+            <a class="gradesPage greenText" href="/main/teacher/grades">Grades</a>
+            <a class="tasksPage greenText" href="/main/teacher/tasks">Tasks</a>
+            <a class="testsPage greenText" href="/main/teacher/tests">Tests</a>
+            <a class="timetablePage greenText" href="/main/teacher/timetable">Timetable</a>
+    </div>
+
+<div class="main">
+    <h1 class="moreGreenText appName">WOPFE</h1>
+    <hr class="line">
+    <div class="content">
+        <h1>Tests</h1>
+        <table>
+            <tr th:if="${#lists.isEmpty(tests)}">
+                <td colspan="5">No created tests found.</td>
+            </tr>
+            <tr th:each="test : ${tests}">
+                <td th:text="${test.name}"></td>
+                <td><a th:href="'/main/teacher/tests/' + ${test.id}">-O-</a></td>
+                <td>
+                    <form method="post" th:action="'/main/teacher/test/' + ${test.id} + '/delete'" th:object="${test}">
+                        <input type="submit" value="X">
+                    </form>
+            </tr>
+        </table>
+        <form method="post" th:action="@{/main/teacher/test/addTest}" th:object="${test}">
+            <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
+            <input type="submit" value="Create Test">
+            <input type="reset" value="Reset">
+        </form>
+    </div>
+</div>
+
+
+</body>
+</html>

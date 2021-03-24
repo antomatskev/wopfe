@@ -32,26 +32,6 @@
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
     <div class="content">Add class
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Class name</th>
-                <th>School</th>
-                <th>Students</th>
-                <th>Timetable</th>
-            </tr>
-            <tr th:if="${#lists.isEmpty(classes)}">
-                <td colspan="7">No Records found. Add some...!</td>
-            </tr>
-            <tr th:each="class : ${classes}">
-                <td th:text="${class.id}"></td>
-                <td th:text="${class.name}"></td>
-                <td th:text="${class.school}"></td>
-                <td th:text="${class.students}"></td>
-                <td th:text="${class.timetable}"></td>
-<!--                <td><a th:href="'/main/principal/class/' + ${class.id}">✏</a></td>-->
-            </tr>
-        </table>
         <form method="post" th:action="@{/main/principal/addClasses}" th:object="${class}">
             <input name="name" placeholder="Class Name" required th:field="*{name}" type="text"/>
             <select name="school" required th:field="*{school}">
@@ -62,10 +42,35 @@
             </select>
             <input name="students" placeholder="Students" required th:field="*{students}" type="text"/>
             <input name="timetable" placeholder="Timetable" required th:field="*{timetable}" type="text"/>
-            <input type="submit" value="Create Class">
-            <input type="reset" value="Reset">
+<!--            <input type="submit" value="Create Class">-->
+            <button class="button button5" type="submit">Add Class</button>
+            <button class="button button5" type="reset">Reset</button>
+<!--            <input type="reset" value="Reset">-->
             <div th:if="${classMessage}" th:utext="${classMessage}"></div>
         </form>
+        <table class="greyGridTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Class name</th>
+                <th>School</th>
+                <th>Students</th>
+                <th>Timetable</th>
+            </tr>
+            <tr th:if="${#lists.isEmpty(classes)}">
+                <td colspan="7">No Records found. Add some...!</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="class : ${classes}">
+                <td th:text="${class.id}"></td>
+                <td th:text="${class.name}"></td>
+                <td th:text="${class.school}"></td>
+                <td th:text="${class.students}"></td>
+                <td th:text="${class.timetable}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 

@@ -12,8 +12,12 @@ import java.util.List;
  */
 @Service
 public class SubjectService {
-    @Autowired
     private SubjectRepository repository;
+
+    @Autowired
+    public SubjectService(SubjectRepository repository) {
+        this.repository = repository;
+    }
 
     public Subject saveSubject(Subject subject) {
         return repository.save(subject);

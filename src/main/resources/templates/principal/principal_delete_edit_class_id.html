@@ -24,7 +24,7 @@
         <a href="/main/principal/addClasses">Add</a>
         <a href="/main/principal/deleteClasses">Delete/Edit</a>
     </div>
-    <a href="#contact">Search</a>
+    <a href="#contact">Timetable</a>
 </div>
 
 
@@ -32,20 +32,18 @@
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
     <div class="content">Delete or edit class
-        <form method="post" action="/main/principal/addSubject" th:object="${subject}">
-            <input name="name" placeholder="Subject Name" required th:field="*{name}" type="text"/>
-            <input name="speciality" placeholder="Subject speciality" required th:field="*{specialty}" type="text"/>
-            <input name="classes" placeholder="Classes" required th:field="*{classes}" type="text"/>
+        <form method="post" th:action="'/main/principal/class/' + ${class.id} + '/update'" th:object="${class}">
+            <input name="name" placeholder="Class Name" required th:field="*{name}" type="text"/>
+            <input name="students" placeholder="Students" required th:field="*{students}" type="text"/>
+            <input name="timetable" placeholder="Timetable" required th:field="*{timetable}" type="text"/>
             <select name="school" required th:field="*{school}">
                 <option hidden value="">Select a school</option>
                 <option value="all">all</option>
                 <option value="TMRG">TMRG</option>
                 <option value="TVL">TVL</option>
             </select>
-            <input name="teacher" placeholder="Teacher" required th:field="*{teacher}" type="text"/>
-            <input name="period" placeholder="Period" required th:field="*{period}" type="text"/>
-            <input type="submit" value="Create Subject">
-            <input type="reset" value="Reset">
+<!--            <input type="submit" value="Edit">-->
+            <button class="button button5" type="submit">Edit</button>
             <div th:if="${classMessage}" th:utext="${classMessage}"></div>
         </form>
     </div>

@@ -5,7 +5,6 @@ import eu.judegam.wopfe.models.repositories.school.classs.service.ClassService;
 import eu.judegam.wopfe.models.repositories.school.subject.service.SubjectService;
 import eu.judegam.wopfe.models.school.Class;
 import eu.judegam.wopfe.models.school.Subject;
-import eu.judegam.wopfe.models.user.Admin;
 import eu.judegam.wopfe.models.user.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -100,10 +99,7 @@ public class PrincipalController {
     }
 
     /**
-     * Mapping for delete subject page.
-     *
-     * @param model .
-     * @return .
+     * Mapping for deleting and editing a subject.
      */
     @GetMapping("/main/principal/deleteSubject")
     public String deleteEditPage(Model model) {
@@ -113,14 +109,20 @@ public class PrincipalController {
         return "principal/principal_delete_edit_subjects";
     }
 
+    /**
+     * Mapping for deleting and editing a class.
+     */
     @GetMapping("/main/principal/deleteClasses")
     public String deleteEditClass(Model model) {
         List<Class> classes = classService.getClasss();
         model.addAttribute("classes", classes);
-        model.addAttribute("class", new Subject());
+        model.addAttribute("class", new Class());
         return "principal/principal_delete_edit_class";
     }
 
+    /**
+     * Method for viewing a subject with current ID.
+     */
     @RequestMapping(path = "/main/principal/subject/{id}", method = RequestMethod.GET)
     public String getSubject(Model model, @PathVariable("id") Long id) {
         Subject subject = subjectService.getSubjectById(id);
@@ -128,16 +130,55 @@ public class PrincipalController {
         return "principal/principal_delete_edit_subject_id";
     }
 
-    @RequestMapping(path = "/main/principal/subject/{id}", method = RequestMethod.POST)
+    /**
+     * Method for viewing a class with current ID.
+     */
+    @RequestMapping(path = "/main/principal/class/{id}", method = RequestMethod.GET)
+    public String getClass(Model model, @PathVariable("id") Long id) {
+        Class classs = classService.getClassById(id);
+        model.addAttribute("class", classs);
+        return "principal/principal_delete_edit_class_id";
+    }
+
+    /**
+     * Method for editing and updating a subject
+     */
+    @RequestMapping(path = "/main/principal/subject/{id}/delete", method = RequestMethod.POST)
+    public RedirectView deleteSubject(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Subject subject) {
+        subjectService.deleteSubject(id);
+//        String message = (subject.isActive() ? "Updated " : "Deleted ") + " subject <b>" + subject.getName() + "</b>";
+        RedirectView redirectView = new RedirectView("/main/principal/deleteSubject", true);
+//        redirectAttributes.addFlashAttribute("subjectMessage", message);
+        return redirectView;
+    }
+
+    @RequestMapping(path = "/main/principal/subject/{id}/update", method = RequestMethod.POST)
     public RedirectView updateSubject(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Subject subject) {
-        if (subject.isActive()) {
-            subjectService.updateSubject(id, subject);
-        } else {
-            subjectService.deleteSubject(id);
-        }
-        String message = (subject.isActive() ? "Updated " : "Deleted ") + " subject <b>" + subject.getName() + "</b>";
-        RedirectView redirectView = new RedirectView("deleteSubject", true); //TODO ПРАВИЛЬНЫЙ РЕДИРЕКТИНГ
-        redirectAttributes.addFlashAttribute("subjectMessage", message);
+        subjectService.updateSubject(id, subject);
+//        String message = (subject.isActive() ? "Updated " : "Deleted ") + " subject <b>" + subject.getName() + "</b>";
+        RedirectView redirectView = new RedirectView("/main/principal/deleteSubject", true);
+//        redirectAttributes.addFlashAttribute("subjectMessage", message);
+        return redirectView;
+    }
+
+    /**
+     * Method for editing and updating a class
+     */
+    @RequestMapping(path = "/main/principal/class/{id}/delete", method = RequestMethod.POST)
+    public RedirectView deleteClass(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Class classs) {
+        classService.deleteClass(id);
+        // String message = (classs.isActive() ? "Updated " : "Deleted ") + " subject <b>" + classs.getName() + "</b>";
+        RedirectView redirectView = new RedirectView("/main/principal/deleteClasses", true);
+        // redirectAttributes.addFlashAttribute("classMessage", message);
+        return redirectView;
+    }
+
+    @RequestMapping(path = "/main/principal/class/{id}/update", method = RequestMethod.POST)
+    public RedirectView updateClass(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Class classs) {
+        classService.updateClass(classs);
+        // String message = (classs.isActive() ? "Updated " : "Deleted ") + " subject <b>" + classs.getName() + "</b>";
+        RedirectView redirectView = new RedirectView("/main/principal/deleteClasses", true);
+        // redirectAttributes.addFlashAttribute("classMessage", message);
         return redirectView;
     }
 

@@ -32,7 +32,8 @@
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
     <div class="content">Delete or edit subject
-        <table>
+        <table class="greyGridTable">
+            <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -41,11 +42,14 @@
                 <th>School</th>
                 <th>Teacher</th>
                 <th>Period</th>
-                <th>Delete/Edit</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
             <tr th:if="${#lists.isEmpty(subjects)}">
-                <td colspan="7">No Records found.</td>
+                <td colspan="7">No Records found. Add some...!</td>
             </tr>
+            </thead>
+            <tbody>
             <tr th:each="subject : ${subjects}">
                 <td th:text="${subject.id}"></td>
                 <td th:text="${subject.name}"></td>
@@ -55,7 +59,14 @@
                 <td th:text="${subject.teacher}"></td>
                 <td th:text="${subject.period}"></td>
                 <td><a th:href="'/main/principal/subject/' + ${subject.id}">✎</a></td>
+                <td>
+                    <form method="post" th:action="'/main/principal/subject/'+${subject.id} + '/delete'" th:object="${subject}">
+                        <input type="submit" value="✕">
+<!--                        <button class="button button5" type="submit">✕</button>-->
+                    </form>
+                </td>
             </tr>
+            </tbody>
         </table>
     </div>
 </div>

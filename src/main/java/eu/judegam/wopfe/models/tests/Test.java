@@ -1,23 +1,13 @@
-package eu.judegam.wopfe.models.school.tests;
-
-
-//import eu.judegam.wopfe.models.tests.Question;
-
-import eu.judegam.wopfe.models.tests.Question;
-import org.springframework.context.annotation.Primary;
+package eu.judegam.wopfe.models.tests;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
@@ -29,14 +19,11 @@ public class Test implements Serializable {
     private String name;
     private String date;
     private String time;
-    @OneToMany(mappedBy="test")
-    private Set<Question> questions;
+    @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
+    private List<Question> questions;
 
-    public Set<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(Set<Question> questions) {
+    public Test(String name, List<Question> questions) {
+        this.name = name;
         this.questions = questions;
     }
 
@@ -46,6 +33,7 @@ public class Test implements Serializable {
         this.date = date;
         this.time = time;
     }
+
     public Test(String name, String date, String time) {
         this.name = name;
         this.date = date;
@@ -86,6 +74,14 @@ public class Test implements Serializable {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
     }
 
 }

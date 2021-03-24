@@ -1,7 +1,6 @@
 package eu.judegam.wopfe.models.tests;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import eu.judegam.wopfe.models.school.tests.Test;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +19,7 @@ public class Question implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String name;
     private String type;
     private String questionText;
     @ManyToOne
@@ -31,6 +30,17 @@ public class Question implements Serializable {
     @JsonIgnore
     private Long testId;
 
+    public Question(String name, Test test) {
+        this.name = name;
+        this.test = test;
+    }
+
+    public Question(String type, String questionText, Long testId) {
+        this.type = type;
+        this.questionText = questionText;
+        this.testId = testId;
+    }
+
     public Question(Long id, String type, String questionText, Test test) {
         this.id = id;
         this.type = type;
@@ -39,6 +49,38 @@ public class Question implements Serializable {
     }
 
     public Question() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getQuestionText() {
+        return questionText;
+    }
+
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
     }
 
     public Test getTest() {
@@ -55,31 +97,5 @@ public class Question implements Serializable {
 
     public void setTestId(Long testId) {
         this.testId = testId;
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getQuestionText() {
-        return questionText;
-    }
-
-    public void setQuestionText(String questionText) {
-        this.questionText = questionText;
     }
 }

@@ -3,7 +3,7 @@ package eu.judegam.wopfe.models.repositories.school.tests.service;
 
 import eu.judegam.wopfe.models.repositories.school.tests.repository.QuestionRepository;
 import eu.judegam.wopfe.models.repositories.school.tests.repository.TestsRepository;
-import eu.judegam.wopfe.models.school.tests.Test;
+import eu.judegam.wopfe.models.tests.Test;
 import eu.judegam.wopfe.models.tests.Question;
 import org.springframework.stereotype.Service;
 

@@ -24,7 +24,7 @@ public class TestsService {
         return (List<Test>) repository.saveAll(test);
     }
 
-    public List<Test> getTest() {
+    public List<Test> getTests() {
         return (List<Test>) repository.findAll();
     }
 

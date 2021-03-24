@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -23,6 +25,14 @@ public class TestsController {
     @Autowired
     private TestsService answerSe; //TODO class answerService
 
+    @RequestMapping(value = "/main/teacher/tests", method = RequestMethod.GET)
+    public String getTests(Model model) {
+        List<Test> tests = service.getTests();
+        model.addAttribute("tests", tests);
+        model.addAttribute("test", new Test());
+        return "tests/teacher_tests";
+    }
+
     @PostMapping("/addTest")
     public Test addTest(@RequestBody Test test) {
         return service.saveTest(test);
@@ -32,11 +42,6 @@ public class TestsController {
     @PostMapping("/addTests")
     public List<Test> addTests(@RequestBody List<Test> tests) {
         return service.saveTests(tests);
-    }
-
-    @PostMapping("/tests")
-    public List<Test> findAllProducts() {
-        return service.getTest();
     }
 
     @GetMapping("/test/{id}")

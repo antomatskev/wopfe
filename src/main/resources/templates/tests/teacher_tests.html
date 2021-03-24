@@ -21,6 +21,27 @@
     </div>
     <hr class="line">
     <div class="addLater">Under construction</div>
+    <div class="content">
+        <h1>Tests</h1>
+        <table>
+            <tr th:if="${#lists.isEmpty(tests)}">
+                <td colspan="5">No created tests found.</td>
+            </tr>
+            <tr th:each="test : ${tests}">
+                <td th:text="${test.name}"></td>
+                <td><a th:href="'/main/teacher/tests/' + ${test.id}">-O-</a></td>
+                <td>
+                    <form method="post" th:action="'/main/teacher/test/' + ${test.id} + '/delete'" th:object="${test}">
+                        <input type="submit" value="X">
+                    </form>
+            </tr>
+        </table>
+        <form method="post" th:action="@{/main/teacher/test/addTest}" th:object="${test}">
+            <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
+            <input type="submit" value="Create Test">
+            <input type="reset" value="Reset">
+        </form>
+    </div>
 </div>
 
 

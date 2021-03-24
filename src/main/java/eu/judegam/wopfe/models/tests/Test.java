@@ -24,6 +24,10 @@ public class Test implements Serializable {
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
     private List<Question> questions;
 
+    public Test(String name) {
+        this.name = name;
+    }
+
     public Test(String name, List<Question> questions) {
         this.name = name;
         this.questions = questions;

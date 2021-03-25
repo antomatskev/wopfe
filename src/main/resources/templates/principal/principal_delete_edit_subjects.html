@@ -60,9 +60,10 @@
                 <td th:text="${subject.period}"></td>
                 <td><a th:href="'/main/principal/subject/' + ${subject.id}">✎</a></td>
                 <td>
-                    <form method="post" th:action="'/main/principal/subject/'+${subject.id} + '/delete'" th:object="${subject}">
+                    <form method="get" th:action="'/main/principal/subject/'+${subject.id} + '/delete'"
+                          th:object="${subject}">
                         <input type="submit" value="✕">
-<!--                        <button class="button button5" type="submit">✕</button>-->
+                        <!--                        <button class="button button5" type="submit">✕</button>-->
                     </form>
                 </td>
             </tr>

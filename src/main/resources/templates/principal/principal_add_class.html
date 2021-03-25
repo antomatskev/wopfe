@@ -42,10 +42,10 @@
             </select>
             <input name="students" placeholder="Students" required th:field="*{students}" type="text"/>
             <input name="timetable" placeholder="Timetable" required th:field="*{timetable}" type="text"/>
-<!--            <input type="submit" value="Create Class">-->
+            <!--            <input type="submit" value="Create Class">-->
             <button class="button button5" type="submit">Add Class</button>
             <button class="button button5" type="reset">Reset</button>
-<!--            <input type="reset" value="Reset">-->
+            <!--            <input type="reset" value="Reset">-->
             <div th:if="${classMessage}" th:utext="${classMessage}"></div>
         </form>
         <table class="greyGridTable">

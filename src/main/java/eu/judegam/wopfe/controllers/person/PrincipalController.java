@@ -141,7 +141,7 @@ public class PrincipalController {
     }
 
     /**
-     * Method for editing and updating a subject
+     * Method for deleting a subject
      */
     @RequestMapping(path = "/main/principal/subject/{id}/delete", method = RequestMethod.POST)
     public RedirectView deleteSubject(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Subject subject) {
@@ -152,6 +152,9 @@ public class PrincipalController {
         return redirectView;
     }
 
+    /**
+     * Method for editing a class
+     */
     @RequestMapping(path = "/main/principal/subject/{id}/update", method = RequestMethod.POST)
     public RedirectView updateSubject(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Subject subject) {
         subjectService.updateSubject(id, subject);
@@ -162,7 +165,7 @@ public class PrincipalController {
     }
 
     /**
-     * Method for editing and updating a class
+     * Method for deleting a subject
      */
     @RequestMapping(path = "/main/principal/class/{id}/delete", method = RequestMethod.POST)
     public RedirectView deleteClass(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Class classs) {
@@ -173,6 +176,9 @@ public class PrincipalController {
         return redirectView;
     }
 
+    /**
+     * Method for editing a class
+     */
     @RequestMapping(path = "/main/principal/class/{id}/update", method = RequestMethod.POST)
     public RedirectView updateClass(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Class classs) {
         classService.updateClass(classs);

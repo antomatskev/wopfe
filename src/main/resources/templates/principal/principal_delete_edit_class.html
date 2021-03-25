@@ -56,9 +56,10 @@
                 <td th:text="${class.timetable}"></td>
                 <td><a th:href="'/main/principal/class/'+ ${class.id}">✎</a></td>
                 <td>
-                    <form method="post" th:action="'/main/principal/class/'+${class.id} + '/delete'" th:object="${class}">
+                    <form method="get" th:action="'/main/principal/class/'+${class.id} + '/delete'"
+                          th:object="${class}">
                         <input type="submit" value="✕">
-<!--                        <button class="button button5" type="submit">✕</button>-->
+                        <!--                        <button class="button button5" type="submit">✕</button>-->
                     </form>
                 </td>
 

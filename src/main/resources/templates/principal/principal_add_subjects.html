@@ -44,8 +44,8 @@
             </select>
             <input name="teacher" placeholder="Teacher" required th:field="*{teacher}" type="text"/>
             <input name="period" placeholder="Period" required th:field="*{period}" type="text"/>
-<!--            <input type="submit" value="Create Subject">-->
-<!--            <input type="reset" value="Reset">-->
+            <!--            <input type="submit" value="Create Subject">-->
+            <!--            <input type="reset" value="Reset">-->
             <button class="button button5" type="submit">Add Subject</button>
             <button class="button button5" type="reset">Reset</button>
             <div th:if="${subjectMessage}" th:utext="${subjectMessage}"></div>

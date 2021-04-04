@@ -17,6 +17,7 @@ public class Class {
     private String school;
     private String students;
     private String timetable;
+    // private boolean isActive;
 
     public Long getId() {
         return id;
@@ -58,11 +59,23 @@ public class Class {
         this.timetable = timetable;
     }
 
+    // public void setActive(boolean active) {
+        // isActive = active;
+    // }
+
+    // public boolean isActive() {
+        // return isActive;
+    // }
+
+    public Class(String name, String school, String students, String timetable) {
+        this.name = name;
+        this.school = school;
+        this.students = students;
+        this.timetable = timetable;
+        // this.isActive = true;
+    }
+
     public Class() {
     }
 
-    public Class(String name, String school) {
-        this.name = name;
-        this.school = school;
-    }
 }

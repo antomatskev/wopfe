@@ -12,8 +12,12 @@ import java.util.List;
  */
 @Service
 public class SubjectService {
-    @Autowired
     private SubjectRepository repository;
+
+    @Autowired
+    public SubjectService(SubjectRepository repository) {
+        this.repository = repository;
+    }
 
     public Subject saveSubject(Subject subject) {
         return repository.save(subject);
@@ -40,8 +44,8 @@ public class SubjectService {
         return "Subject was deleted.";
     }
 
-    public Subject updateSubject(Subject subject) {
-        Subject existingProduct = repository.findById(subject.getId()).orElse(null);
+    public Subject updateSubject(Long id, Subject subject) {
+        Subject existingProduct = repository.findById(id).orElse(null);
         assert existingProduct != null;
         existingProduct.setName(subject.getName());
         existingProduct.setSchool(subject.getSchool());

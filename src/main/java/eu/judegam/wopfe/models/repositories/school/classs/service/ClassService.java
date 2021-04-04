@@ -13,8 +13,12 @@ import java.util.List;
 @Service
 public class ClassService {
 
-    @Autowired
     private ClassRepository repository;
+
+    @Autowired
+    public ClassService(ClassRepository repo) {
+        this.repository = repo;
+    }
 
     public Class saveClass(Class classs) {
         return repository.save(classs);

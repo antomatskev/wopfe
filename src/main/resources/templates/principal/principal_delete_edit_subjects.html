@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>WOPFE</title>
+    <link rel="stylesheet" th:href="@{/css/principal_menu2.css}">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+<div class="sidenav">
+    <a href="/main/principal">Main</a>
+    <button class="dropdown-btn">Subjects
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="/main/principal/addSubject">Add</a>
+        <a href="/main/principal/deleteSubject">Delete/Edit</a>
+    </div>
+    <button class="dropdown-btn">Classes
+        <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container">
+        <a href="/main/principal/addClasses">Add</a>
+        <a href="/main/principal/deleteClasses">Delete/Edit</a>
+    </div>
+    <a href="#contact">Search</a>
+</div>
+
+
+<div class="main">
+    <h1 class="moreGreenText appName">WOPFE</h1>
+    <hr class="line">
+    <div class="content">Delete or edit subject
+        <table class="greyGridTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Speciality</th>
+                <th>Classes</th>
+                <th>School</th>
+                <th>Teacher</th>
+                <th>Period</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:if="${#lists.isEmpty(subjects)}">
+                <td colspan="7">No Records found. Add some...!</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="subject : ${subjects}">
+                <td th:text="${subject.id}"></td>
+                <td th:text="${subject.name}"></td>
+                <td th:text="${subject.specialty}"></td>
+                <td th:text="${subject.classes}"></td>
+                <td th:text="${subject.school}"></td>
+                <td th:text="${subject.teacher}"></td>
+                <td th:text="${subject.period}"></td>
+                <td><a th:href="'/main/principal/subject/' + ${subject.id}">✎</a></td>
+                <td>
+                    <form method="get" th:action="'/main/principal/subject/'+${subject.id} + '/delete'"
+                          th:object="${subject}">
+                        <input type="submit" value="✕">
+                        <!--                        <button class="button button5" type="submit">✕</button>-->
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

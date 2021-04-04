@@ -143,7 +143,7 @@ public class PrincipalController {
     /**
      * Method for deleting a subject
      */
-    @RequestMapping(path = "/main/principal/subject/{id}/delete", method = RequestMethod.POST)
+    @RequestMapping(path = "/main/principal/subject/{id}/delete")
     public RedirectView deleteSubject(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Subject subject) {
         subjectService.deleteSubject(id);
 //        String message = (subject.isActive() ? "Updated " : "Deleted ") + " subject <b>" + subject.getName() + "</b>";
@@ -167,7 +167,7 @@ public class PrincipalController {
     /**
      * Method for deleting a subject
      */
-    @RequestMapping(path = "/main/principal/class/{id}/delete", method = RequestMethod.POST)
+    @RequestMapping(path = "/main/principal/class/{id}/delete")
     public RedirectView deleteClass(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Class classs) {
         classService.deleteClass(id);
         // String message = (classs.isActive() ? "Updated " : "Deleted ") + " subject <b>" + classs.getName() + "</b>";

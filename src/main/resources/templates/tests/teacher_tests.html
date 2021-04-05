@@ -34,9 +34,9 @@
                     </form>
             </tr>
         </table>
-        <form method="post" th:action="@{/main/teacher/test/addTest}" th:object="${test}">
+        <form method="post" th:action="@{/main/teacher/addTest}" th:object="${test}">
             <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
-            <input type="submit" value="Create Test">
+            <button type="submit" class="btn-btn-success" >Create Test</button>
             <input type="reset" value="Reset">
         </form>
     </div>

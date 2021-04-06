@@ -23,41 +23,37 @@
             Question
             [[${question.name}]]
         </h1>
-        <form method="post" th:action="'/main/teacher/questions/' + ${question.id} + '/update'" th:object="${question}">
-            <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
-<!--            <input id="date" placeholder="Question Text" required th:field="*{QuestionText}" type="text"/>-->
-            <input type="submit" value="Update" th:onclick="'/main/teacher/questions/'+${question.id}+'/update'">
-        </form>
+        <h1 th:inline="text">
+            [[${question.questionText}]]
+        </h1>
         <table>
             <tr>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Questions</th>
+                <th>Answer Text</th>
+                <th>True/False</th>
             </tr>
-            <tr th:if="${#lists.isEmpty(test.questions)}">
-                <td colspan="5">No created questions found.</td>
+            <tr th:if="${#lists.isEmpty(question.answers)}">
+                <td colspan="5">No created answers found.</td>
             </tr>
-            <tr th:each="question : ${test.questions}">
-                <td th:text="${question.name}"></td>
-                <td th:text="${question.type}"></td>
-                <td th:text="${question.questionText}"></td>
-                <td><a th:href="'/main/teacher/question/' + ${question.id}">-O-</a></td>
+            <tr th:each="answer : ${question.answers}">
+                <td th:text="${answer.answerText}"></td>
+                <td th:text="${answer.isTrue}"></td>
+                <td><a th:href="'/main/teacher/questions/' + ${question.id}">-O-</a></td>
                 <td>
-                    <form method="post"
-                          th:action="'/main/teacher/question/' + ${test.id} + '/deleteQuestion/' + ${question.id}" th:object="${question}">
-                        <input type="submit" value="X">
-                    </form>
+                    todo delete answers
+<!--                    <form method="post"-->
+<!--                          th:action="'/main/teacher/question/' + ${test.id} + '/deleteQuestion/' + ${question.id}" th:object="${question}">-->
+<!--                        <input type="submit" value="X">-->
+<!--                    </form>-->
             </tr>
         </table>
-        <form method="post" th:action="'/main/teacher/question/' + ${test.id} + '/addQuestion'" th:object="${question}">
-            <input id="questionName" placeholder="Name" required th:field="*{name}" type="text"/>
-            <select id="questionType" required th:field="*{type}">
+        <form method="post" th:action="'/main/teacher/questionsAnswer/' + ${question.id} + '/addAnswer'" th:object="${question}">
+            <input id="AnswerText" placeholder="answerText" required th:field="*{answerText}" type="text" th:object="${answer}"/>
+            <select id="trueOrFalse" required th:field="*{type}">
                 <option hidden value="">Select a type</option>
-                <option value="Options">Options</option>
-                <option value="Text">Text</option>
+                <option value="Options">True</option>
+                <option value="Text">False</option>
             </select>
-            <input id="questionText" placeholder="Text" required th:field="*{questionText}" type="text"/>
-            <input type="submit" value="Add Question">
+            <input type="submit" value="Add Answer">
             <input type="reset" value="Reset">
         </form>
     </div>

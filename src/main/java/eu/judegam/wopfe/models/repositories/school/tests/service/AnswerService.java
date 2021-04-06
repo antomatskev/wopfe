@@ -26,8 +26,10 @@ public class AnswerService {
         answer.setQuestionId(questionId);
         question.getAnswers().add(answer);
         questionRepository.save(question);
+//        repository.save(answer);
         return answer;
     }
+
     public String deleteAnswer(Long id) {
         repository.deleteById(id);
         return "Answer is not available!";

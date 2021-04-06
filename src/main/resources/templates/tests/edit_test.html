@@ -42,7 +42,7 @@
                 <td th:text="${question.name}"></td>
                 <td th:text="${question.type}"></td>
                 <td th:text="${question.questionText}"></td>
-                <td><a th:href="'/main/teacher/questions/' + ${question.id}">-O-</a></td>
+                <td><a th:href="'/main/teacher/questions/' + ${question.id}">Add answers</a></td>
                 <td>
                     <form method="post"
                           th:action="'/main/teacher/question/' + ${test.id} + '/deleteQuestion/' + ${question.id}" th:object="${question}">

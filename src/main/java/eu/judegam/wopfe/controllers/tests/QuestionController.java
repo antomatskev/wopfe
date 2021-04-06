@@ -33,18 +33,19 @@ public class QuestionController {
                                   @PathVariable("id") Long testId) {
         service.saveQuestion(question, testId);
         final String msg = "Created event <b>" + question.getName() + "</b> ✨.";
-        RedirectView view = new RedirectView("/main/teacher/questions/{id}", true);
+        RedirectView view = new RedirectView("/main/teacher/tests/{id}", true);
         redirectAttributes.addFlashAttribute("qMessage", msg);
-        redirectAttributes.addAttribute("id", question.getId());
+//        redirectAttributes.addAttribute("id", question.getId());
         return view;
     }
+
 
     @RequestMapping(path = "/main/teacher/question/{id}/deleteQuestion/{eId}", method = RequestMethod.POST)
     public RedirectView deleteQuestion(RedirectAttributes redirectAttributes, @ModelAttribute Question question,
                                     @PathVariable("id") Long ttId, @PathVariable("eId") Long eId) {
         service.deleteQuestion(eId);
         final String msg = "Created event <b>" + question.getName() + "</b> ✨.";
-        RedirectView view = new RedirectView("/main/teacher/questions/{id}", true);
+        RedirectView view = new RedirectView("/main/teacher/tests/{id}", true);
         redirectAttributes.addFlashAttribute("evMessage", msg);
         return view;
     }
@@ -61,10 +62,10 @@ public class QuestionController {
     public String showQuestionById(Model model, @PathVariable("id") Long id) {
         Question question = service.getQuestionById(id);
         model.addAttribute("question", question);
-        model.addAttribute("test", question.getTest());
-        model.addAttribute("questions", new Question());
+        model.addAttribute("answer", new Answer());
         return "tests/edit_questions";
     }
+
 
     @RequestMapping(path = "/main/teacher/questions/{id}/update", method = RequestMethod.POST)
     public String updateQuestion(Model model, @PathVariable("id") Long id, @ModelAttribute Question question) {

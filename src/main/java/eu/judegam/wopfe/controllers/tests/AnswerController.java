@@ -23,12 +23,12 @@ public class AnswerController {
     @Autowired
     private AnswerService service;
 
-    @RequestMapping(path = "/main/teacher/questionAnswer/{id}/addQuestion", method = RequestMethod.POST)
+    @RequestMapping(path = "/main/teacher/questionsAnswer/{id}/addAnswer", method = RequestMethod.POST)
     public RedirectView saveAnswer(RedirectAttributes redirectAttributes, @ModelAttribute Answer answer,
                                      @PathVariable("id") Long questionId) {
         service.saveAnswer(answer, questionId);
         final String msg = "Created answer <b>" + answer.getName() + "</b> ✨.";
-        RedirectView view = new RedirectView("/main/teacher/answer/{id}", true);
+        RedirectView view = new RedirectView("/main/teacher/questions/{id}", true);
         redirectAttributes.addFlashAttribute("qMessage", msg);
         return view;
     }
@@ -38,21 +38,20 @@ public class AnswerController {
                                        @PathVariable("id") Long ttId, @PathVariable("eId") Long eId) {
         service.deleteAnswer(eId);
         final String msg = "Created event <b>" + answer.getName() + "</b> ✨.";
-        RedirectView view = new RedirectView("/main/teacher/question/{id}", true);
+        RedirectView view = new RedirectView("/main/teacher/questions/{id}", true);
         redirectAttributes.addFlashAttribute("evMessage", msg);
         return view;
     }
 
 
 
-    @GetMapping(value = "/main/teacher/answers/{id}")
-    public String showAnswerById(Model model, @PathVariable("id") Long id) {
-        Answer answer = service.getAnswerById(id);
-        model.addAttribute("answer", answer);
-        model.addAttribute("answer", new Answer());
-        return "edit_questions";
-    }
-
+//    @GetMapping(value = "/main/teacher/questions/{id}/answers")
+//    public String showAnswerById(Model model, @PathVariable("id") Long id) {
+//        Answer answer = service.getAnswerById(id);
+//        model.addAttribute("answer", answer);
+//        model.addAttribute("question", answer.getQuestion());
+//        return "edit_questions";
+//    }
 
     // TODO: 4/5/2021
     @RequestMapping(path = "/main/teacher/answers/{id}/update", method = RequestMethod.POST)

@@ -27,7 +27,7 @@
             </tr>
             <tr th:each="test : ${tests}">
                 <td th:text="${test.name}"></td>
-                <td><a th:href="'/main/teacher/tests/' + ${test.id}">-O-</a></td>
+                <td><a th:href="'/main/teacher/tests/' + ${test.id}">Add questions</a></td>
                 <td>
                     <form method="post" th:action="'/main/teacher/test/' + ${test.id} + '/delete'" th:object="${test}">
                         <input type="submit" value="X">

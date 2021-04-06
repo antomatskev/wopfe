@@ -57,7 +57,7 @@ public class TestsController {
         Test test = service.getTestById(id);
         model.addAttribute("test", test);
         model.addAttribute("questions", test.getQuestions());
-        model.addAttribute("question", new Question());
+//        model.addAttribute("question", new Question());
         return "tests/edit_test";
     }
 

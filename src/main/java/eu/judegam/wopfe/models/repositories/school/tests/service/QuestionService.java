@@ -29,7 +29,7 @@ public class QuestionService {
         question.setTestId(testId);
         test.getQuestions().add(question);
         testsRepository.save(test);
-        repository.save(question);
+//        repository.save(question);
         return question;
     }
 
@@ -54,5 +54,6 @@ public class QuestionService {
         return repository.save(existingProduct);
 
     }
+
 
 }

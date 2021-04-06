@@ -8,6 +8,7 @@ import eu.judegam.wopfe.models.tests.Test;
 import eu.judegam.wopfe.models.timetable.Event;
 import eu.judegam.wopfe.models.timetable.Timetable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -22,7 +23,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class QuestionController {
     @Autowired
     private QuestionService service;
@@ -34,6 +35,7 @@ public class QuestionController {
         final String msg = "Created event <b>" + question.getName() + "</b> ✨.";
         RedirectView view = new RedirectView("/main/teacher/questions/{id}", true);
         redirectAttributes.addFlashAttribute("qMessage", msg);
+        redirectAttributes.addAttribute("id", question.getId());
         return view;
     }
 
@@ -59,7 +61,8 @@ public class QuestionController {
     public String showQuestionById(Model model, @PathVariable("id") Long id) {
         Question question = service.getQuestionById(id);
         model.addAttribute("question", question);
-        model.addAttribute("question", new Question());
+        model.addAttribute("test", question.getTest());
+        model.addAttribute("questions", new Question());
         return "tests/edit_questions";
     }
 

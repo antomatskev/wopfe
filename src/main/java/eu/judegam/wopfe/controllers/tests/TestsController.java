@@ -62,7 +62,7 @@ public class TestsController {
     }
 
     @RequestMapping(path = "/main/teacher/addTest", method = RequestMethod.POST)
-    public RedirectView saveTimetable(RedirectAttributes redirectAttributes, @ModelAttribute Test test) {
+    public RedirectView saveTest(RedirectAttributes redirectAttributes, @ModelAttribute Test test) {
         service.saveTest(test);
         final String msg = "Created test <b>" + test.getName() + "</b> ✨.";
         RedirectView view = new RedirectView("tests", true);

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>WOPFE</title>
-    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/principal_menu2.css}">
 </head>
 <body>
 <div class="sidenav">
@@ -14,8 +14,21 @@
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
     <div class="content">
-        <h1>Timetables</h1>
-        <table>
+        <h3>Timetables</h3>
+        <form method="post" th:action="@{/main/timetables/addTimetable}" th:object="${timetable}">
+            <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
+            <button class="button button5" type="submit">Create Timetable</button>
+            <button class="button button5" type="reset">Reset</button>
+        </form>
+        <table class="greyGridTable">
+            <thead>
+            <tr>
+                <th>Class</th>
+                <th>Actions</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
             <tr th:if="${#lists.isEmpty(timetables)}">
                 <td colspan="5">No timetable available yet.</td>
             </tr>
@@ -27,12 +40,8 @@
                         <input type="submit" value="X">
                     </form>
             </tr>
+            </tbody>
         </table>
-        <form method="post" th:action="@{/main/timetables/addTimetable}" th:object="${timetable}">
-            <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
-            <input type="submit" value="Create Timetable">
-            <input type="reset" value="Reset">
-        </form>
     </div>
 </div>
 

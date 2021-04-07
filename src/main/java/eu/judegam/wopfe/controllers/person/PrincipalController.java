@@ -66,7 +66,7 @@ public class PrincipalController {
                                     @RequestParam String students, @RequestParam String timetable, Model model) {
         Class classs = new Class(name, school, students, timetable);
         classService.saveClass(classs);
-        final String msg = "Created class <b>" + String.format("%s", classs.getName()) + "</b>";
+        final String msg = "Created class <b>" + String.format("%s", classs.getName()) + "</b> .";
         RedirectView view = new RedirectView("addClasses", true);
         redirectAttributes.addFlashAttribute("classMessage", msg);
         return view;
@@ -92,7 +92,7 @@ public class PrincipalController {
     @PostMapping(path = "/main/principal/addSubject")
     public RedirectView createSubject2(RedirectAttributes redirectAttributes, @ModelAttribute Subject subject) {
         subjectService.saveSubject(subject);
-        final String msg = "Created class <b>" + String.format("%s", subject.getName()) + "</b>";
+        final String msg = "Created class <b>" + String.format("%s", subject.getName()) + "</b> .";
         RedirectView view = new RedirectView("addSubject", true);
         redirectAttributes.addFlashAttribute("subjectMessage", msg);
         return view;
@@ -141,50 +141,51 @@ public class PrincipalController {
     }
 
     /**
-     * Method for deleting a subject
+     * Method for deleting a subject.
      */
     @RequestMapping(path = "/main/principal/subject/{id}/delete")
     public RedirectView deleteSubject(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Subject subject) {
+        String name = subject.getName();
         subjectService.deleteSubject(id);
-//        String message = (subject.isActive() ? "Updated " : "Deleted ") + " subject <b>" + subject.getName() + "</b>";
-        RedirectView redirectView = new RedirectView("/main/principal/deleteSubject", true);
-//        redirectAttributes.addFlashAttribute("subjectMessage", message);
+        final String msg = "Deleted subject <b>" + String.format("%s", name) + "</b> .";
+        RedirectView redirectView = new RedirectView("/main/principal/addSubject", true);
+//        redirectAttributes.addFlashAttribute("subjectMessage", msg);
         return redirectView;
     }
 
     /**
-     * Method for editing a class
+     * Method for editing a subject.
      */
     @RequestMapping(path = "/main/principal/subject/{id}/update", method = RequestMethod.POST)
     public RedirectView updateSubject(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Subject subject) {
         subjectService.updateSubject(id, subject);
-//        String message = (subject.isActive() ? "Updated " : "Deleted ") + " subject <b>" + subject.getName() + "</b>";
-        RedirectView redirectView = new RedirectView("/main/principal/deleteSubject", true);
-//        redirectAttributes.addFlashAttribute("subjectMessage", message);
+        final String msg = "Updated subject <b>" + String.format("%s", subject.getName()) + "</b> .";
+        RedirectView redirectView = new RedirectView("/main/principal/addSubject", true);
+        redirectAttributes.addFlashAttribute("subjectMessage", msg);
         return redirectView;
     }
 
     /**
-     * Method for deleting a subject
+     * Method for deleting a class.
      */
     @RequestMapping(path = "/main/principal/class/{id}/delete")
     public RedirectView deleteClass(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Class classs) {
         classService.deleteClass(id);
-        // String message = (classs.isActive() ? "Updated " : "Deleted ") + " subject <b>" + classs.getName() + "</b>";
-        RedirectView redirectView = new RedirectView("/main/principal/deleteClasses", true);
-        // redirectAttributes.addFlashAttribute("classMessage", message);
+        final String msg = "Deleted class <b>" + String.format("%s", classs.getName()) + "</b> .";
+        RedirectView redirectView = new RedirectView("/main/principal/addClasses", true);
+//        redirectAttributes.addFlashAttribute("classMessage", msg);
         return redirectView;
     }
 
     /**
-     * Method for editing a class
+     * Method for editing a class.
      */
     @RequestMapping(path = "/main/principal/class/{id}/update", method = RequestMethod.POST)
     public RedirectView updateClass(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Class classs) {
         classService.updateClass(classs);
-        // String message = (classs.isActive() ? "Updated " : "Deleted ") + " subject <b>" + classs.getName() + "</b>";
-        RedirectView redirectView = new RedirectView("/main/principal/deleteClasses", true);
-        // redirectAttributes.addFlashAttribute("classMessage", message);
+        final String msg = "Updated class <b>" + String.format("%s", classs.getName()) + "</b> .";
+        RedirectView redirectView = new RedirectView("/main/principal/addClasses", true);
+        redirectAttributes.addFlashAttribute("classMessage", msg);
         return redirectView;
     }
 

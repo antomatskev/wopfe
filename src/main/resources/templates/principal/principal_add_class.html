@@ -10,20 +10,8 @@
 <body>
 <div class="sidenav">
     <a href="/main/principal">Main</a>
-    <button class="dropdown-btn">Subjects
-        <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-container">
-        <a href="/main/principal/addSubject">Add</a>
-        <a href="/main/principal/deleteSubject">Delete/Edit</a>
-    </div>
-    <button class="dropdown-btn">Classes
-        <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-container">
-        <a href="/main/principal/addClasses">Add</a>
-        <a href="/main/principal/deleteClasses">Delete/Edit</a>
-    </div>
+    <a href="/main/principal/addSubject">Subjects</a>
+    <a href="/main/principal/addClasses">Classes</a>
     <a href="#contact">Search</a>
 </div>
 
@@ -31,7 +19,8 @@
 <div class="main">
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
-    <div class="content">Add class
+    <div class="content">
+        <h3>Schools' classes</h3>
         <form method="post" th:action="@{/main/principal/addClasses}" th:object="${class}">
             <input name="name" placeholder="Class Name" required th:field="*{name}" type="text"/>
             <select name="school" required th:field="*{school}">
@@ -42,10 +31,8 @@
             </select>
             <input name="students" placeholder="Students" required th:field="*{students}" type="text"/>
             <input name="timetable" placeholder="Timetable" required th:field="*{timetable}" type="text"/>
-            <!--            <input type="submit" value="Create Class">-->
             <button class="button button5" type="submit">Add Class</button>
             <button class="button button5" type="reset">Reset</button>
-            <!--            <input type="reset" value="Reset">-->
             <div th:if="${classMessage}" th:utext="${classMessage}"></div>
         </form>
         <table class="greyGridTable">
@@ -56,40 +43,27 @@
                 <th>School</th>
                 <th>Students</th>
                 <th>Timetable</th>
-            </tr>
-            <tr th:if="${#lists.isEmpty(classes)}">
-                <td colspan="7">No Records found. Add some...!</td>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
+            <tr th:if="${#lists.isEmpty(classes)}">
+                <td colspan="7">No Records found. Add some...!</td>
+            </tr>
             <tr th:each="class : ${classes}">
                 <td th:text="${class.id}"></td>
                 <td th:text="${class.name}"></td>
                 <td th:text="${class.school}"></td>
                 <td th:text="${class.students}"></td>
                 <td th:text="${class.timetable}"></td>
+                <td><a th:href="'/main/principal/class/'+ ${class.id}">✎</a></td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
 
-<script>
-    var dropdown = document.getElementsByClassName("dropdown-btn");
-    var i;
 
-    for (i = 0; i < dropdown.length; i++) {
-        dropdown[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var dropdownContent = this.nextElementSibling;
-            if (dropdownContent.style.display === "block") {
-                dropdownContent.style.display = "none";
-            } else {
-                dropdownContent.style.display = "block";
-            }
-        });
-    }
-</script>
 
 </body>
 </html>

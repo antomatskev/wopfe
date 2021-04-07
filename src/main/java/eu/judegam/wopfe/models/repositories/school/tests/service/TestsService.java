@@ -2,6 +2,7 @@ package eu.judegam.wopfe.models.repositories.school.tests.service;
 
 import eu.judegam.wopfe.models.tests.Test;
 import eu.judegam.wopfe.models.repositories.school.tests.repository.TestsRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +26,8 @@ public class TestsService {
     }
 
     public List<Test> getTests() {
-        return (List<Test>) repository.findAll();
+
+        return (List<Test>) repository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public Test getTestById(Long id) {

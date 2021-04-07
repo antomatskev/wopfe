@@ -1,8 +1,6 @@
 package eu.judegam.wopfe.models.tests;
 
 import javax.persistence.CascadeType;
-import eu.judegam.wopfe.models.tests.Question;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

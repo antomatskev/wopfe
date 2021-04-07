@@ -8,6 +8,7 @@ import eu.judegam.wopfe.models.tests.Test;
 import eu.judegam.wopfe.models.timetable.Event;
 import eu.judegam.wopfe.models.timetable.Timetable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,19 +31,18 @@ public class QuestionController {
 
     @RequestMapping(path = "/main/teacher/question/{id}/addQuestion", method = RequestMethod.POST)
     public RedirectView saveQuestion(RedirectAttributes redirectAttributes, @ModelAttribute Question question,
-                                  @PathVariable("id") Long testId) {
+                                     @PathVariable("id") Long testId) {
         service.saveQuestion(question, testId);
         final String msg = "Created event <b>" + question.getName() + "</b> ✨.";
         RedirectView view = new RedirectView("/main/teacher/tests/{id}", true);
         redirectAttributes.addFlashAttribute("qMessage", msg);
-//        redirectAttributes.addAttribute("id", question.getId());
         return view;
     }
 
 
     @RequestMapping(path = "/main/teacher/question/{id}/deleteQuestion/{eId}", method = RequestMethod.POST)
     public RedirectView deleteQuestion(RedirectAttributes redirectAttributes, @ModelAttribute Question question,
-                                    @PathVariable("id") Long ttId, @PathVariable("eId") Long eId) {
+                                       @PathVariable("id") Long ttId, @PathVariable("eId") Long eId) {
         service.deleteQuestion(eId);
         final String msg = "Created event <b>" + question.getName() + "</b> ✨.";
         RedirectView view = new RedirectView("/main/teacher/tests/{id}", true);
@@ -83,7 +83,6 @@ public class QuestionController {
         model.addAttribute("answer", new Answer());
         return "tests/edit_questions";
     }
-
 
 
 }

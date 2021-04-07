@@ -20,11 +20,18 @@
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
     <div class="content">
-        <h1>Tests</h1>
-        <table>
+        <h3>Tests</h3>
+        <table class="greyGridTable">
+            <thead>
+            <tr>
+                <th>Test name</th>
+                <th>Add questions</th>
+                <th>Delete</th>
+            </thead>
             <tr th:if="${#lists.isEmpty(tests)}">
                 <td colspan="5">No created tests found.</td>
             </tr>
+            <tbody>
             <tr th:each="test : ${tests}">
                 <td th:text="${test.name}"></td>
                 <td><a th:href="'/main/teacher/tests/' + ${test.id}">Add questions</a></td>
@@ -33,11 +40,12 @@
                         <input type="submit" value="X">
                     </form>
             </tr>
+            </tbody>
         </table>
         <form method="post" th:action="@{/main/teacher/addTest}" th:object="${test}">
             <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
-            <button type="submit" class="btn-btn-success" >Create Test</button>
-            <input type="reset" value="Reset">
+            <button class="button button5" type="submit"  >Create Test</button>
+            <input class="button button5" type="reset" value="Reset">
         </form>
     </div>
 </div>

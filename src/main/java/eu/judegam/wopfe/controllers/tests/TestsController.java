@@ -3,8 +3,6 @@ package eu.judegam.wopfe.controllers.tests;
 import eu.judegam.wopfe.models.repositories.school.tests.service.TestsService;
 import eu.judegam.wopfe.models.tests.Question;
 import eu.judegam.wopfe.models.tests.Test;
-import eu.judegam.wopfe.models.timetable.Event;
-import eu.judegam.wopfe.models.timetable.Timetable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -39,6 +36,7 @@ public class TestsController {
     @GetMapping(value = "/main/teacher/tests/{id}")
     public String showTestById(Model model, @PathVariable("id") Long id) {
         Test test = service.getTestById(id);
+
         model.addAttribute("test", test);
         model.addAttribute("question", new Question());
         return "tests/edit_test";
@@ -57,7 +55,6 @@ public class TestsController {
         Test test = service.getTestById(id);
         model.addAttribute("test", test);
         model.addAttribute("questions", test.getQuestions());
-//        model.addAttribute("question", new Question());
         return "tests/edit_test";
     }
 

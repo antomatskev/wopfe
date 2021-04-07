@@ -3,12 +3,9 @@ package eu.judegam.wopfe.models.repositories.school.tests.service;
 
 import eu.judegam.wopfe.models.repositories.school.tests.repository.QuestionRepository;
 import eu.judegam.wopfe.models.repositories.school.tests.repository.TestsRepository;
-import eu.judegam.wopfe.models.tests.Test;
 import eu.judegam.wopfe.models.tests.Question;
+import eu.judegam.wopfe.models.tests.Test;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 

@@ -19,33 +19,39 @@
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
     <div class="content">
-        <h1 th:inline="text">
+        <h3 th:inline="text">
             Question
             [[${question.name}]]
-        </h1>
-        <h1 th:inline="text">
+        </h3>
+        <h2 th:inline="text">
             [[${question.questionText}]]
-        </h1>
-        <table>
+        </h2>
+        <table class="greyGridTable">
+            <thead>
             <tr>
                 <th>Answer Text</th>
                 <th>True/False</th>
             </tr>
+            </thead>
             <tr th:if="${#lists.isEmpty(question.answers)}">
                 <td colspan="5">No created answers found.</td>
             </tr>
+            <tbody>
             <tr th:each="answer : ${question.answers}">
                 <td th:text="${answer.answerText}"></td>
                 <td th:text="${answer.isTrue}"></td>
-                <td><a th:href="'/main/teacher/questions/' + ${question.id}">-O-</a></td>
+<!--                <form method="post" th:action="'/main/teacher/Answer/change/boolean/' + ${answer.id}" th:object="${answer}">-->
+<!--                    <input type="submit" value="True">-->
+<!--                </form>-->
                 <td>
-                    todo delete answers
-<!--                    <form method="post"-->
-<!--                          th:action="'/main/teacher/question/' + ${test.id} + '/deleteQuestion/' + ${question.id}" th:object="${question}">-->
-<!--                        <input type="submit" value="X">-->
-<!--                    </form>-->
+
+                    <form method="post"
+                          th:action="'/main/teacher/question/' + ${question.id} + '/deleteAnswer/' + ${answer.id}" th:object="${answer}">
+                        <input type="submit" value="X">
+                    </form>
             </tr>
-        </table>
+            </tbody>
+        </table >
         <form method="post" th:action="'/main/teacher/questionsAnswer/' + ${question.id} + '/addAnswer'" th:object="${question}">
             <input id="AnswerText" placeholder="answerText" required th:field="*{answerText}" type="text" th:object="${answer}"/>
             <select id="trueOrFalse" required th:field="*{type}">
@@ -53,8 +59,8 @@
                 <option value="Options">True</option>
                 <option value="Text">False</option>
             </select>
-            <input type="submit" value="Add Answer">
-            <input type="reset" value="Reset">
+            <input class="button button5" type="submit" value="Add Answer">
+            <input class="button button5" type="reset" value="Reset">
         </form>
     </div>
 </div>

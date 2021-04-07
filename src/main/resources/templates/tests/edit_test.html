@@ -19,25 +19,28 @@
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
     <div class="content">
-        <h1 th:inline="text">
+        <h3 th:inline="text">
             Test
             [[${test.name}]]
-        </h1>
+        </h3>
         <form method="post" th:action="'/main/teacher/tests/' + ${test.id} + '/update'" th:object="${test}">
             <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
             <input id="date" placeholder="Date" required th:field="*{date}" type="text"/>
             <input id="time" placeholder="Time" required th:field="*{time}" type="text"/>
-            <input type="submit" value="Update" th:onclick="'/main/teacher/tests/'+${test.id}+'/update'">
+            <input class="button button5" type="submit" value="Update" th:onclick="'/main/teacher/tests/'+${test.id}+'/update'">
         </form>
-        <table>
+        <table class="greyGridTable">
+            <thead>
             <tr>
                 <th>Name</th>
                 <th>Type</th>
                 <th>Questions</th>
             </tr>
+            </thead>
             <tr th:if="${#lists.isEmpty(test.questions)}">
                 <td colspan="5">No created questions found.</td>
             </tr>
+            <tbody>
             <tr th:each="question : ${test.questions}">
                 <td th:text="${question.name}"></td>
                 <td th:text="${question.type}"></td>
@@ -49,6 +52,7 @@
                         <input type="submit" value="X">
                     </form>
             </tr>
+            </tbody>
         </table>
         <form method="post" th:action="'/main/teacher/question/' + ${test.id} + '/addQuestion'" th:object="${question}">
             <input id="questionName" placeholder="Name" required th:field="*{name}" type="text"/>
@@ -58,8 +62,8 @@
                 <option value="Text">Text</option>
             </select>
             <input id="questionText" placeholder="Text" required th:field="*{questionText}" type="text"/>
-            <input type="submit" value="Add Question">
-            <input type="reset" value="Reset">
+            <input class="button button5" type="submit" value="Add Question">
+            <input class="button button5" type="reset" value="Reset">
         </form>
     </div>
 </div>

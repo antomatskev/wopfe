@@ -26,7 +26,7 @@ public class Question implements Serializable {
     private String type;
     private String questionText;
     @ManyToOne
-    @JoinColumn(name="test_id", nullable=false)
+    @JoinColumn(name = "test_id", nullable = false)
     @JsonIgnore
     private Test test;
     @Transient

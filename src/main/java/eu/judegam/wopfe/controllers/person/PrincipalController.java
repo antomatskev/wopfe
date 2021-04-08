@@ -99,28 +99,6 @@ public class PrincipalController {
     }
 
     /**
-     * Mapping for deleting and editing a subject.
-     */
-    @GetMapping("/main/principal/deleteSubject")
-    public String deleteEditPage(Model model) {
-        List<Subject> subjects = subjectService.getSubject();
-        model.addAttribute("subjects", subjects);
-        model.addAttribute("subject", new Subject());
-        return "principal/principal_delete_edit_subjects";
-    }
-
-    /**
-     * Mapping for deleting and editing a class.
-     */
-    @GetMapping("/main/principal/deleteClasses")
-    public String deleteEditClass(Model model) {
-        List<Class> classes = classService.getClasss();
-        model.addAttribute("classes", classes);
-        model.addAttribute("class", new Class());
-        return "principal/principal_delete_edit_class";
-    }
-
-    /**
      * Method for viewing a subject with current ID.
      */
     @RequestMapping(path = "/main/principal/subject/{id}", method = RequestMethod.GET)

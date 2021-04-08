@@ -10,20 +10,8 @@
 <body>
 <div class="sidenav">
     <a href="/main/principal">Main</a>
-    <button class="dropdown-btn">Subjects
-        <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-container">
-        <a href="/main/principal/addSubject">Add</a>
-        <a href="/main/principal/deleteSubject">Delete/Edit</a>
-    </div>
-    <button class="dropdown-btn">Classes
-        <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-container">
-        <a href="/main/principal/addClasses">Add</a>
-        <a href="/main/principal/deleteClasses">Delete/Edit</a>
-    </div>
+    <a href="/main/principal/addSubject">Subjects</a>
+    <a href="/main/principal/addClasses">Classes</a>
     <a href="#contact">Search</a>
 </div>
 
@@ -31,7 +19,8 @@
 <div class="main">
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
-    <div class="content">Add subject
+    <div class="content">
+        <h3>Schools' subjects</h3>
         <form method="post" action="/main/principal/addSubject" th:object="${subject}">
             <input name="name" placeholder="Subject Name" required th:field="*{name}" type="text"/>
             <input name="speciality" placeholder="Subject speciality" required th:field="*{specialty}" type="text"/>
@@ -44,8 +33,6 @@
             </select>
             <input name="teacher" placeholder="Teacher" required th:field="*{teacher}" type="text"/>
             <input name="period" placeholder="Period" required th:field="*{period}" type="text"/>
-            <!--            <input type="submit" value="Create Subject">-->
-            <!--            <input type="reset" value="Reset">-->
             <button class="button button5" type="submit">Add Subject</button>
             <button class="button button5" type="reset">Reset</button>
             <div th:if="${subjectMessage}" th:utext="${subjectMessage}"></div>
@@ -60,12 +47,13 @@
                 <th>School</th>
                 <th>Teacher</th>
                 <th>Period</th>
-            </tr>
-            <tr th:if="${#lists.isEmpty(subjects)}">
-                <td colspan="7">No Records found. Add some...!</td>
+                <th>Actions</th>
             </tr>
             </thead>
             <tbody>
+            <tr th:if="${#lists.isEmpty(subjects)}">
+                <td colspan="7">No Records found. Add some...!</td>
+            </tr>
             <tr th:each="subject : ${subjects}">
                 <td th:text="${subject.id}"></td>
                 <td th:text="${subject.name}"></td>
@@ -74,28 +62,13 @@
                 <td th:text="${subject.school}"></td>
                 <td th:text="${subject.teacher}"></td>
                 <td th:text="${subject.period}"></td>
+                <td><a th:href="'/main/principal/subject/' + ${subject.id}">✎</a></td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
 
-<script>
-    var dropdown = document.getElementsByClassName("dropdown-btn");
-    var i;
-
-    for (i = 0; i < dropdown.length; i++) {
-        dropdown[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var dropdownContent = this.nextElementSibling;
-            if (dropdownContent.style.display === "block") {
-                dropdownContent.style.display = "none";
-            } else {
-                dropdownContent.style.display = "block";
-            }
-        });
-    }
-</script>
 
 </body>
 </html>

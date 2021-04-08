@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>WOPFE</title>
-    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/principal_menu2.css}">
 </head>
 <body>
 <div class="sidenav">
@@ -14,8 +14,9 @@
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
     <div class="content">
-        <h1>Schools' list</h1>
-        <table>
+        <h3>Schools' list</h3>
+        <table class="greyGridTable">
+            <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -23,6 +24,8 @@
                 <th>Principals</th>
                 <th>Info</th>
             </tr>
+            </thead>
+            <tbody>
             <tr th:if="${#lists.isEmpty(schools)}">
                 <td colspan="7">No Records found. Add some...!</td>
             </tr>
@@ -31,8 +34,9 @@
                 <td th:text="${school.name}"></td>
                 <td th:text="${school.location}"></td>
                 <td th:text="${school.principals}"></td>
-                <td><a th:href="'/main/admin/schools/' + ${school.id}">📃</a></td>
+                <td><a th:href="'/main/admin/schools/' + ${school.id}">ℹ</a></td>
             </tr>
+            </tbody>
         </table>
     </div>
 </div>

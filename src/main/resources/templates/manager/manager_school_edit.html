@@ -2,8 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
     <title>WOPFE</title>
-    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <link rel="stylesheet" th:href="@{/css/principal_menu2.css}">
 </head>
 <body>
 <div class="sidenav">
@@ -16,16 +17,14 @@
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
     <div class="content">
-        <h1>School</h1>
+        <h3>School</h3>
         <form method="post" th:action="'/main/manager/schools/'+${school.id}" th:object="${school}">
             <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
             <input id="location" placeholder="Location" required th:field="*{location}" type="text"/>
             <input id="principals" placeholder="Principals" required th:field="*{principals}" type="text"/>
             <input id="activeFlag" type="hidden" th:field="*{active}" value='true'>
-            <input type="submit" value="Update"
-                   onclick="document.getElementById('activeFlag').value='true'">
-            <input type="submit" value="Delete"
-                   onclick="document.getElementById('activeFlag').value='false'">
+            <button class="button button5" type="submit" onclick="document.getElementById('activeFlag').value='true'">Update</button>
+            <button class="button button5" type="submit" onclick="document.getElementById('activeFlag').value='false'">Delete</button>
         </form>
     </div>
 </div>

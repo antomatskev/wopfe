@@ -50,7 +50,7 @@ public class ManagerController {
     @RequestMapping(path = "/main/manager/admins", method = RequestMethod.POST)
     public RedirectView createAdmin(RedirectAttributes redirectAttributes, @ModelAttribute Admin admin) {
         adminService.saveAdmin(admin);
-        final String msg = "Created admin <b>" + String.format("%s %s", admin.getName(), admin.getLastName()) + "</b> ✨.";
+        final String msg = "Created admin <b>" + String.format("%s %s", admin.getName(), admin.getLastName()) + "</b> .";
         RedirectView view = new RedirectView("admins", true);
         redirectAttributes.addFlashAttribute("adminMessage", msg);
         return view;
@@ -63,7 +63,7 @@ public class ManagerController {
         } else {
             adminService.deleteAdmin(id);
         }
-        String message = (admin.isActive() ? "Updated " : "Deleted ") + " admin <b>" + admin.getName() + " " + admin.getLastName() + "</b> ✨.";
+        String message = (admin.isActive() ? "Updated " : "Deleted ") + " admin <b>" + admin.getName() + " " + admin.getLastName() + "</b> .";
         RedirectView redirectView = new RedirectView("/main/manager/admins", true);
         redirectAttributes.addFlashAttribute("adminMessage", message);
         return redirectView;
@@ -87,7 +87,7 @@ public class ManagerController {
     @RequestMapping(path = "/main/manager/schools", method = RequestMethod.POST)
     public RedirectView createSchool(RedirectAttributes redirectAttributes, @ModelAttribute School school) {
         schoolService.saveSchool(school);
-        final String msg = "Created school <b>" + school.getName() + "</b> ✨.";
+        final String msg = "Created school <b>" + school.getName() + "</b> .";
         RedirectView view = new RedirectView("schools", true);
         redirectAttributes.addFlashAttribute("schoolMessage", msg);
         return view;
@@ -100,7 +100,7 @@ public class ManagerController {
         } else {
             schoolService.deleteSchool(id);
         }
-        String message = (school.isActive() ? "Updated " : "Deleted ") + " school <b>" + school.getName() + "</b> ✨.";
+        String message = (school.isActive() ? "Updated " : "Deleted ") + " school <b>" + school.getName() + "</b> .";
         RedirectView redirectView = new RedirectView("/main/manager/schools", true);
         redirectAttributes.addFlashAttribute("schoolMessage", message);
         return redirectView;

@@ -36,3 +36,5 @@ build/
 /.gtm/
 /src/main/resources/META-INF/
 /out/
+/.gradle/
+/.mvn/

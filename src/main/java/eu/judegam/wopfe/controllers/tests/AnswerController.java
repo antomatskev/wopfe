@@ -3,6 +3,7 @@ package eu.judegam.wopfe.controllers.tests;
 import eu.judegam.wopfe.models.repositories.school.tests.service.AnswerService;
 import eu.judegam.wopfe.models.tests.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -19,6 +20,7 @@ public class AnswerController {
     private AnswerService service;
 
     @RequestMapping(path = "/main/teacher/questionsAnswer/{id}/addAnswer", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public RedirectView saveAnswer(RedirectAttributes redirectAttributes, @ModelAttribute Answer answer,
                                    @PathVariable("id") Long questionId) {
         service.saveAnswer(answer, questionId);
@@ -29,6 +31,7 @@ public class AnswerController {
     }
 
     @RequestMapping(path = "/main/teacher/question/{id}/deleteAnswer/{eId}", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public RedirectView deleteAnswer(RedirectAttributes redirectAttributes, @ModelAttribute Answer answer,
                                      @PathVariable("id") Long ttId, @PathVariable("eId") Long eId) {
         service.deleteAnswer(eId);
@@ -41,6 +44,7 @@ public class AnswerController {
 
     // TODO: dont think that it is a good idea to update answers, you can just delete old one and create a new one.
     @RequestMapping(path = "/main/teacher/answers/{id}/update", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public String updateAnswers(Model model, @PathVariable("id") Long id, @ModelAttribute Answer answer) {
         Answer dbAnswer = service.updateAnswer(id, answer);
         model.addAttribute("answer", dbAnswer);

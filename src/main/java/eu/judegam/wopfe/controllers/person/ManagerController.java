@@ -4,6 +4,7 @@ import eu.judegam.wopfe.models.repositories.person.admin.AdminService;
 import eu.judegam.wopfe.models.repositories.school.school.SchoolService;
 import eu.judegam.wopfe.models.school.School;
 import eu.judegam.wopfe.models.user.Admin;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,11 +29,13 @@ public class ManagerController {
     }
 
     @GetMapping("/main/manager")
+    @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public String managerHome(Model model) {
         return "manager/manager_main";
     }
 
     @RequestMapping(path = "/main/manager/admins", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public String getAdmins(Model model) {
         List<Admin> admins = adminService.getAdmins();
         model.addAttribute("admins", admins);
@@ -41,6 +44,7 @@ public class ManagerController {
     }
 
     @RequestMapping(path = "/main/manager/admins/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public String getAdmin(Model model, @PathVariable("id") Long id) {
         Admin admin = adminService.getAdminById(id);
         model.addAttribute("admin", admin);
@@ -48,6 +52,7 @@ public class ManagerController {
     }
 
     @RequestMapping(path = "/main/manager/admins", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public RedirectView createAdmin(RedirectAttributes redirectAttributes, @ModelAttribute Admin admin) {
         adminService.saveAdmin(admin);
         final String msg = "Created admin <b>" + String.format("%s %s", admin.getName(), admin.getLastName()) + "</b> .";
@@ -57,6 +62,7 @@ public class ManagerController {
     }
 
     @RequestMapping(path = "/main/manager/admins/{id}", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public RedirectView updateAdmin(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Admin admin) {
         if (admin.isActive()) {
             adminService.updateAdmin(id, admin);
@@ -70,6 +76,7 @@ public class ManagerController {
     }
 
     @RequestMapping(path = "/main/manager/schools", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public String getSchools(Model model) {
         List<School> schools = schoolService.getSchools();
         model.addAttribute("schools", schools);
@@ -78,6 +85,7 @@ public class ManagerController {
     }
 
     @RequestMapping(path = "/main/manager/schools/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public String getSchool(Model model, @PathVariable("id") Long id) {
         School school = schoolService.getSchoolById(id);
         model.addAttribute("school", school);
@@ -85,6 +93,7 @@ public class ManagerController {
     }
 
     @RequestMapping(path = "/main/manager/schools", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public RedirectView createSchool(RedirectAttributes redirectAttributes, @ModelAttribute School school) {
         schoolService.saveSchool(school);
         final String msg = "Created school <b>" + school.getName() + "</b> .";
@@ -94,6 +103,7 @@ public class ManagerController {
     }
 
     @RequestMapping(path = "/main/manager/schools/{id}", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public RedirectView updateSchool(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute School school) {
         if (school.isActive()) {
             schoolService.updateSchool(id, school);

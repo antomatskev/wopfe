@@ -26,7 +26,34 @@ public class FakeAppUserServiceDao implements AppUserDao {
     }
 
     private List<AppUser> getAppUsers() {
-        List<AppUser> appUsers = Lists.newArrayList(
+        return Lists.newArrayList(
+                new AppUser(
+                    "anton",
+                        passwordEncoder.encode("matskevich"),
+                        ALL.getGrantedAuthority(),
+                        true,
+                        true,
+                        true,
+                        true
+                ),
+                new AppUser(
+                    "ellina",
+                        passwordEncoder.encode("gedrojets"),
+                        ALL.getGrantedAuthority(),
+                        true,
+                        true,
+                        true,
+                        true
+                ),
+                new AppUser(
+                    "julia",
+                        passwordEncoder.encode("djomina"),
+                        ALL.getGrantedAuthority(),
+                        true,
+                        true,
+                        true,
+                        true
+                ),
                 new AppUser(
                     "annasmith",
                         passwordEncoder.encode("password"),
@@ -55,7 +82,6 @@ public class FakeAppUserServiceDao implements AppUserDao {
                         true
                 )
         );
-        return appUsers;
     }
 
 }

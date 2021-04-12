@@ -27,7 +27,7 @@ public class TestsController {
     private TestsService answerSe; //TODO class answerService
 
     @RequestMapping(value = "/main/teacher/tests", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMIN_TRAINEE')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN', 'ROLE_ADMIN_TRAINEE')")
     public String getTests(Model model) {
         List<Test> tests = service.getTests();
         model.addAttribute("tests", tests);
@@ -36,7 +36,7 @@ public class TestsController {
     }
 
     @GetMapping(value = "/main/teacher/tests/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN, ROLE_ADMIN_TRAINEE')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN', 'ROLE_ADMIN_TRAINEE')")
     public String showTestById(Model model, @PathVariable("id") Long id) {
         Test test = service.getTestById(id);
 
@@ -46,7 +46,7 @@ public class TestsController {
     }
 
     @RequestMapping(path = "/main/teacher/tests/{id}/update", method = RequestMethod.POST)
-    @PreAuthorize("hasAuthority('student:write')")
+    @PreAuthorize("hasAnyAuthority('all', 'student:write')")
     public String updateTest(Model model, @PathVariable("id") Long id, @ModelAttribute Test test) {
         Test dbTest = service.updateTest(id, test);
         model.addAttribute("test", dbTest);
@@ -55,7 +55,7 @@ public class TestsController {
     }
 
     @RequestMapping(path = "/main/teacher/tests/{id}", method = RequestMethod.POST)
-    @PreAuthorize("hasAuthority('student:write')")
+    @PreAuthorize("hasAnyAuthority('all', 'student:write')")
     public String updateTestQuestions(Model model, @PathVariable("id") Long id) {
         Test test = service.getTestById(id);
         model.addAttribute("test", test);
@@ -64,7 +64,7 @@ public class TestsController {
     }
 
     @RequestMapping(path = "/main/teacher/addTest", method = RequestMethod.POST)
-    @PreAuthorize("hasAuthority('student:write')")
+    @PreAuthorize("hasAnyAuthority('all', 'student:write')")
     public RedirectView saveTest(RedirectAttributes redirectAttributes, @ModelAttribute Test test) {
         service.saveTest(test);
         final String msg = "Created test <b>" + test.getName() + "</b> ✨.";
@@ -75,7 +75,7 @@ public class TestsController {
 
 
     @RequestMapping(path = "/main/teacher/test/{id}/delete", method = RequestMethod.POST)
-    @PreAuthorize("hasAuthority('student:write')")
+    @PreAuthorize("hasAnyAuthority('all', 'student:write')")
     public RedirectView deleteTest(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Test test) {
         RedirectView redirectView = new RedirectView("/main/teacher/tests", true);
         redirectAttributes.addFlashAttribute("ttMessage", service.deleteTest(id));

@@ -1,5 +1,6 @@
 package eu.judegam.wopfe.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,11 +23,13 @@ public class MainController {
         return "mains/main";
     }
     @GetMapping("/main/teacher")
+    @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public String teachermain(Model model){
         return "mains/teacher_main";
     }
 
     @GetMapping("/main/student")
+    @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public String student(Model model) {
         return "mains/student_main";
     }

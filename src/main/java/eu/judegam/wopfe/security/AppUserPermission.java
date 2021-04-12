@@ -1,6 +1,7 @@
 package eu.judegam.wopfe.security;
 
 public enum AppUserPermission {
+    ALL("all"),
     STUDENT_READ("student:read"),
     STUDENT_WRITE("student:write"),
     COURSE_READ("course:read"),

@@ -21,7 +21,7 @@ public class AdminController {
     }
 
     @RequestMapping(path = "/main/admin/schools", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN')")
     public String getSchools(Model model) {
         List<School> schools = schoolService.getSchools();
         model.addAttribute("schools", schools);
@@ -30,7 +30,7 @@ public class AdminController {
     }
 
     @RequestMapping(path = "/main/admin/schools/{id}", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN')")
     public String getSchool(Model model, @PathVariable("id") Long id) {
         School school = schoolService.getSchoolById(id);
         model.addAttribute("school", school);

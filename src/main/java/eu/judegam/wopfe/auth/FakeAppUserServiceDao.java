@@ -1,6 +1,7 @@
 package eu.judegam.wopfe.auth;
 
 import com.google.common.collect.Lists;
+import eu.judegam.wopfe.models.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -21,61 +22,79 @@ public class FakeAppUserServiceDao implements AppUserDao {
     }
 
     @Override
-    public Optional<AppUser> selectAppUserByUsername(String username) {
+    public Optional<User> selectAppUserByUsername(String username) {
         return getAppUsers().stream().filter(u -> username.equals(u.getUsername())).findFirst();
     }
 
-    private List<AppUser> getAppUsers() {
+    private List<User> getAppUsers() {
         return Lists.newArrayList(
-                new AppUser(
+                new User(
                     "anton",
                         passwordEncoder.encode("matskevich"),
-                        ALL.getGrantedAuthority(),
+                        ALL,
                         true,
                         true,
                         true,
                         true
                 ),
-                new AppUser(
+                new User(
                     "ellina",
                         passwordEncoder.encode("gedrojets"),
-                        ALL.getGrantedAuthority(),
+                        ALL,
                         true,
                         true,
                         true,
                         true
                 ),
-                new AppUser(
+                new User(
                     "julia",
                         passwordEncoder.encode("djomina"),
-                        ALL.getGrantedAuthority(),
+                        ALL,
                         true,
                         true,
                         true,
                         true
                 ),
-                new AppUser(
-                    "annasmith",
+                new User(
+                    "manager",
                         passwordEncoder.encode("password"),
-                        STUDENT.getGrantedAuthority(),
+                        MANAGER,
                         true,
                         true,
                         true,
                         true
                 ),
-                new AppUser(
-                    "linda",
-                        passwordEncoder.encode("password123"),
-                        ADMIN.getGrantedAuthority(),
+                new User(
+                    "admin",
+                        passwordEncoder.encode("password"),
+                        ADMIN,
                         true,
                         true,
                         true,
                         true
                 ),
-                new AppUser(
-                    "tom",
-                        passwordEncoder.encode("password123"),
-                        ADMIN_TRAINEE.getGrantedAuthority(),
+                new User(
+                    "principal",
+                        passwordEncoder.encode("password"),
+                        PRINCIPAL,
+                        true,
+                        true,
+                        true,
+                        true
+                ),
+                new User(
+                    "teacher",
+                        passwordEncoder.encode("password"),
+                        TEACHER,
+                        true,
+                        true,
+                        true,
+                        true
+                ),
+                new User(
+                    "student",
+                        passwordEncoder.encode("password"),
+                        STUDENT,
                         true,
                         true,
                         true,

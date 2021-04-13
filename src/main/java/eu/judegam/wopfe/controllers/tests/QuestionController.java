@@ -31,7 +31,7 @@ public class QuestionController {
     private QuestionService service;
 
     @RequestMapping(path = "/main/teacher/question/{id}/addQuestion", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public RedirectView saveQuestion(RedirectAttributes redirectAttributes, @ModelAttribute Question question,
                                      @PathVariable("id") Long testId) {
         service.saveQuestion(question, testId);
@@ -43,7 +43,7 @@ public class QuestionController {
 
 
     @RequestMapping(path = "/main/teacher/question/{id}/deleteQuestion/{eId}", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public RedirectView deleteQuestion(RedirectAttributes redirectAttributes, @ModelAttribute Question question,
                                        @PathVariable("id") Long ttId, @PathVariable("eId") Long eId) {
         service.deleteQuestion(eId);
@@ -54,7 +54,7 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/main/teacher/questions", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String getQuestions(Model model) {
         List<Question> questions = service.getQuestions();
         model.addAttribute("questions", questions);
@@ -63,7 +63,7 @@ public class QuestionController {
     }
 
     @GetMapping(value = "/main/teacher/questions/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String showQuestionById(Model model, @PathVariable("id") Long id) {
         Question question = service.getQuestionById(id);
         model.addAttribute("question", question);
@@ -73,7 +73,7 @@ public class QuestionController {
 
 
     @RequestMapping(path = "/main/teacher/questions/{id}/update", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String updateQuestion(Model model, @PathVariable("id") Long id, @ModelAttribute Question question) {
         Question dbQuestion = service.updateQuestion(id, question);
         model.addAttribute("question", dbQuestion);
@@ -82,7 +82,7 @@ public class QuestionController {
     }
 
     @RequestMapping(path = "/main/teacher/questionsAnswer/{id}", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String updateQuestionAnswers(Model model, @PathVariable("id") Long id) {
         Question question = service.getQuestionById(id);
         model.addAttribute("question", question);

@@ -9,10 +9,11 @@ import java.util.stream.Collectors;
 
 public enum AppUserRole {
     ALL(Sets.newHashSet(AppUserPermission.ALL)),
-    STUDENT(Sets.newHashSet()),
-    ADMIN(Sets.newHashSet(AppUserPermission.COURSE_READ, AppUserPermission.COURSE_WRITE, AppUserPermission.STUDENT_READ,
-            AppUserPermission.STUDENT_WRITE)),
-    ADMIN_TRAINEE(Sets.newHashSet(AppUserPermission.COURSE_READ, AppUserPermission.STUDENT_READ));
+    MANAGER(Sets.newHashSet(AppUserPermission.MANAGER)),
+    ADMIN(Sets.newHashSet(AppUserPermission.ADMIN)),
+    PRINCIPAL(Sets.newHashSet(AppUserPermission.PRINCIPAL)),
+    TEACHER(Sets.newHashSet(AppUserPermission.TEACHER)),
+    STUDENT(Sets.newHashSet(AppUserPermission.STUDENT));
 
     private final Set<AppUserPermission> permissions;
 

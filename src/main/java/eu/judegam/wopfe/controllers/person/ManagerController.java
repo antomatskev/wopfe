@@ -29,13 +29,13 @@ public class ManagerController {
     }
 
     @GetMapping("/main/manager")
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
     public String managerHome(Model model) {
         return "manager/manager_main";
     }
 
     @RequestMapping(path = "/main/manager/admins", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
     public String getAdmins(Model model) {
         List<Admin> admins = adminService.getAdmins();
         model.addAttribute("admins", admins);
@@ -44,7 +44,7 @@ public class ManagerController {
     }
 
     @RequestMapping(path = "/main/manager/admins/{id}", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
     public String getAdmin(Model model, @PathVariable("id") Long id) {
         Admin admin = adminService.getAdminById(id);
         model.addAttribute("admin", admin);
@@ -52,7 +52,7 @@ public class ManagerController {
     }
 
     @RequestMapping(path = "/main/manager/admins", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
     public RedirectView createAdmin(RedirectAttributes redirectAttributes, @ModelAttribute Admin admin) {
         adminService.saveAdmin(admin);
         final String msg = "Created admin <b>" + String.format("%s %s", admin.getName(), admin.getLastName()) + "</b> .";
@@ -62,7 +62,7 @@ public class ManagerController {
     }
 
     @RequestMapping(path = "/main/manager/admins/{id}", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
     public RedirectView updateAdmin(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Admin admin) {
         if (admin.isActive()) {
             adminService.updateAdmin(id, admin);
@@ -76,7 +76,7 @@ public class ManagerController {
     }
 
     @RequestMapping(path = "/main/manager/schools", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
     public String getSchools(Model model) {
         List<School> schools = schoolService.getSchools();
         model.addAttribute("schools", schools);
@@ -85,7 +85,7 @@ public class ManagerController {
     }
 
     @RequestMapping(path = "/main/manager/schools/{id}", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
     public String getSchool(Model model, @PathVariable("id") Long id) {
         School school = schoolService.getSchoolById(id);
         model.addAttribute("school", school);
@@ -93,7 +93,7 @@ public class ManagerController {
     }
 
     @RequestMapping(path = "/main/manager/schools", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
     public RedirectView createSchool(RedirectAttributes redirectAttributes, @ModelAttribute School school) {
         schoolService.saveSchool(school);
         final String msg = "Created school <b>" + school.getName() + "</b> .";
@@ -103,7 +103,7 @@ public class ManagerController {
     }
 
     @RequestMapping(path = "/main/manager/schools/{id}", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ROLE_ALL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
     public RedirectView updateSchool(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute School school) {
         if (school.isActive()) {
             schoolService.updateSchool(id, school);

@@ -8,12 +8,15 @@ body {
     background-size: cover;
     background-attachment: fixed;
     overflow: hidden;
+    border: none;
+
 }
 
 .login-box p {
     color: grey;
-    font-size: 45px;
+    font-size: 30px;
     left: 50%;
+    height: auto;
 }
 
 .login-box {
@@ -24,19 +27,24 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     color: grey;
+    height: auto;
 }
 
 .login-box h1 {
     float: inside;
-    font-size: 39px;
+    font-size: 20px;
     border-bottom: 4px solid #4caf50;
     margin-bottom: 10px;
-    padding: 13px 0;
+    padding: 5px 0;
+    height: auto;
+    margin-left: 5em;
+    margin-right: 6em;
 }
 
 .h2 {
     top: 50%;
     left: 50%;
+    height: auto;
 }
 
 .textbox {
@@ -45,6 +53,7 @@ body {
     font-size: 20px;
     padding: 8px 0;
     border-bottom: 1px solid #4caf50;
+    height: auto;
 }
 
 .textbox input {
@@ -56,6 +65,7 @@ body {
     width: 80px;
     float: left;
     margin: 10px;
+    height: auto;
 }
 
 .btn {
@@ -67,18 +77,17 @@ body {
     font-size: 20px;
     cursor: pointer;
     margin: 12px 0;
+    height: auto;
 }
 
 .btnNoAccount {
     width: 30%;
-    background: none;
     border: none;
     color: grey;
-    padding: 5px;
-    font-size: 12px;
+    background: none;
     cursor: pointer;
-    margin: 12px 0;
     float: right;
+    height: auto;
 }
 
 .footer {
@@ -89,8 +98,26 @@ body {
     left: 42%;
     color: grey;
     margin: auto;
-
     word-spacing: 10px;
+}
+
+p.rememberMe {
+    font-size: small;
+    position: relative;
+    color: grey;
+    margin-left: 2em;
 
 }
 
+.wopfe{
+    color: grey;
+    right: auto;
+    margin-bottom: 1em;
+    margin-left: 2em;
+    margin-top: 1em;
+    font-size: 35px;
+}
+.footer{
+    font-size: 10px;
+    margin-left: 4em;
+}

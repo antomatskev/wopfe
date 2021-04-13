@@ -1,9 +1,11 @@
 package eu.judegam.wopfe.auth;
 
+import eu.judegam.wopfe.models.user.User;
+
 import java.util.Optional;
 
 public interface AppUserDao {
 
-    Optional<AppUser> selectAppUserByUsername(String username);
+    Optional<User> selectAppUserByUsername(String username);
 
 }

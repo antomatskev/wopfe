@@ -36,29 +36,29 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and()
                 .csrf().disable()
                 .authorizeRequests()
-                // NB! Order of matchers is important!!!
-                .antMatchers("/", "/resources/**", "/css/*", "/js/*").permitAll()
-                .anyRequest()
-                .authenticated()
+                    // NB! Order of matchers is important!!!
+                    .antMatchers("/", "/resources/**", "/css/*", "/js/*").permitAll()
+                    .anyRequest()
+                    .authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/main", true)
-                .passwordParameter("password")
-                .usernameParameter("username")
+                    .loginPage("/login").permitAll()
+                    .defaultSuccessUrl("/main", true)
+                    .passwordParameter("password")
+                    .usernameParameter("username")
                 .and()
                 .rememberMe() // Defaults session id expiration to 2 weeks.
-                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)) // Extend for 21 days.
-                .key("123somethingverysecured!")
-                .rememberMeParameter("remember-me")
+                    .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21)) // Extend for 21 days.
+                    .key("123somethingverysecured!")
+                    .rememberMeParameter("remember-me")
                 .and()
                 .logout()
-                .logoutUrl("/logout")
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) // Remove this after enabling csrf. LOGOUT MUST BE POST!
-                .clearAuthentication(true)
-                .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONIND", "remember-me")
-                .logoutSuccessUrl("/login");
+                    .logoutUrl("/logout")
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) // Remove this after enabling csrf. LOGOUT MUST BE POST!
+                    .clearAuthentication(true)
+                    .invalidateHttpSession(true)
+                    .deleteCookies("JSESSIONIND", "remember-me")
+                    .logoutSuccessUrl("/login");
     }
 
     @Override

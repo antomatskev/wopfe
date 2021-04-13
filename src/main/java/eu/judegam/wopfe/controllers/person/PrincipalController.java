@@ -1,8 +1,8 @@
 package eu.judegam.wopfe.controllers.person;
 
-import eu.judegam.wopfe.models.repositories.person.principal.service.PrincipalService;
-import eu.judegam.wopfe.models.repositories.school.classs.service.ClassService;
-import eu.judegam.wopfe.models.repositories.school.subject.service.SubjectService;
+import eu.judegam.wopfe.services.PrincipalService;
+import eu.judegam.wopfe.services.ClassService;
+import eu.judegam.wopfe.services.SubjectService;
 import eu.judegam.wopfe.models.school.Class;
 import eu.judegam.wopfe.models.school.Subject;
 import eu.judegam.wopfe.models.user.Principal;

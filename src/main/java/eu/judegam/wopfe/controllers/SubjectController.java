@@ -1,13 +1,12 @@
 package eu.judegam.wopfe.controllers;
 
 import eu.judegam.wopfe.models.school.Subject;
-import eu.judegam.wopfe.models.repositories.school.subject.service.SubjectService;
+import eu.judegam.wopfe.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 

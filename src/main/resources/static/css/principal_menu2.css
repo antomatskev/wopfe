@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     user-select: none;
+    text-decoration: none;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif; /*стиль текста. выглядит лучше*/
 }
@@ -18,7 +19,9 @@
     left: 0;
     background-color: #0a9471;
     overflow-x: hidden;
-    padding-top: 200px;
+    /*padding-top: 200px;*/
+    padding: 280px 0;
+    overflow-y: hidden;
 }
 
 .sidenav a {
@@ -56,7 +59,7 @@
 .main {
     margin-left: 200px; /* Same as the width of the sidenav */
     font-size: 20px; /* Increased text to enable scrolling */
-    padding: 0px 10px;
+    padding: 0 10px;
 }
 
 /* Add an active class to the active dropdown button */
@@ -101,6 +104,11 @@
     top: 50%;
     width: 100%;
     font-size: 50px;
+}
+
+body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .content {
@@ -170,6 +178,7 @@ input[type=text] {
 
 input[type=text]:focus {
     border: 3px solid #555;
+
 }
 
 select {
@@ -192,4 +201,83 @@ select {
     margin: 4px 2px;
     cursor: pointer;
     padding: 10px 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
+@media (max-width: 1024px) {
+    .sidenav {
+        width: 200px; /* Set the width of the sidebar */
+        padding: 250px 0;
+    }
+
+    .sidenav a {
+        padding: 5px;
+        font-size: 20px;
+        top: 100px;
+    }
+
+    .main {
+        margin-left: 200px; /* Same as the width of the sidebar */
+    }
+
+    input[type=text] {
+        width: 20%;
+    }
+
+    .button {
+        width: 20%;
+    }
+
+    select {
+        width: 20%;
+    }
+
+    @media (max-width: 414px) {
+        .sidenav {
+            width: 150px; /* Set the width of the sidebar */
+        }
+
+        .sidenav a {
+            padding: 18px;
+            font-size: 20px;
+            top: 150px;
+        }
+
+        .main {
+            margin-left: 150px; /* Same as the width of the sidebar */
+            padding: 10px 10px;
+        }
+
+        .appName {
+            margin-bottom: -60px;
+            padding-left: 5px;
+            font-size: 18px;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .sidenav {
+            width: 100px; /* Set the width of the sidebar */
+        }
+
+        .sidenav a {
+            padding: 18px;
+            font-size: 20px;
+            top: 100px;
+        }
+
+        .main {
+            margin-left: 100px; /* Same as the width of the sidebar */
+            padding: 10px 10px;
+        }
+
+        .appName {
+            margin-bottom: -60px;
+            padding-left: 5px;
+            font-size: 18px;
+        }
+    }
+
 }

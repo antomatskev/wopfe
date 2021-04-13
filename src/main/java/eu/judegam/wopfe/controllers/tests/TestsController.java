@@ -1,6 +1,6 @@
 package eu.judegam.wopfe.controllers.tests;
 
-import eu.judegam.wopfe.models.repositories.school.tests.service.TestsService;
+import eu.judegam.wopfe.services.TestsService;
 import eu.judegam.wopfe.models.tests.Question;
 import eu.judegam.wopfe.models.tests.Test;
 import org.springframework.beans.factory.annotation.Autowired;

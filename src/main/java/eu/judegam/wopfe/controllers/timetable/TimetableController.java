@@ -1,6 +1,6 @@
 package eu.judegam.wopfe.controllers.timetable;
 
-import eu.judegam.wopfe.models.repositories.timetable.TimetableService;
+import eu.judegam.wopfe.services.TimetableService;
 import eu.judegam.wopfe.models.timetable.Event;
 import eu.judegam.wopfe.models.timetable.Timetable;
 import org.springframework.beans.factory.annotation.Autowired;

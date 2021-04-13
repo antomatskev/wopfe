@@ -1,6 +1,6 @@
 package eu.judegam.wopfe.controllers.person;
 
-import eu.judegam.wopfe.models.repositories.school.school.SchoolService;
+import eu.judegam.wopfe.services.SchoolService;
 import eu.judegam.wopfe.models.school.School;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

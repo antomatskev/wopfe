@@ -1,7 +1,7 @@
 package eu.judegam.wopfe.controllers.person;
 
-import eu.judegam.wopfe.models.repositories.person.admin.AdminService;
-import eu.judegam.wopfe.models.repositories.school.school.SchoolService;
+import eu.judegam.wopfe.services.AdminService;
+import eu.judegam.wopfe.services.SchoolService;
 import eu.judegam.wopfe.models.school.School;
 import eu.judegam.wopfe.models.user.Admin;
 import org.springframework.security.access.prepost.PreAuthorize;

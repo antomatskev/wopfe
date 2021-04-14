@@ -15,7 +15,7 @@ public class MainController {
 
     @GetMapping("/")
     public String home(Model model) {
-        return "home";
+        return "homepage";
     }
 
     @GetMapping("/login")
@@ -40,9 +40,10 @@ public class MainController {
         }
         return "mains/main";
     }
+
     @GetMapping("/main/teacher")
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
-    public String teacher(Model model){
+    public String teacher(Model model) {
         return "mains/teacher_main";
     }
 

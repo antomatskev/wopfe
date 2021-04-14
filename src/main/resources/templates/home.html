@@ -1,67 +1,25 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title> WOPFE </title>-->
-<!--    <link rel="stylesheet" th:href="@{/css/home.css}">-->
-<!--<body>-->
-<!--<div class="login-box">-->
-<!--    <p>WOPFE</p>-->
-<!--    <h1>Log In</h1>-->
-<!--    <div class="textbox">-->
-<!--        <input type="text" placeholder="Username" name="" value="">-->
-<!--    </div>-->
-<!--    <div class="textbox">-->
-
-<!--        <input type="password" placeholder="Password" name="" value="">-->
-<!--    </div>-->
-<!--    <input class="btn" type="button" name="" value="Sign in">-->
-<!--    <input class="btnNoAccount" type="button" name="" value="No account?">-->
-
-<!--</div>-->
-<!--<div class="footer" th:insert="blocks/footer :: footer"></div>-->
-<!--</body>-->
-
-<!--</html>-->
-
 <!DOCTYPE html>
-<html>
-<title>Homepage</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" th:href="@{/css/home.css}">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title> WOPFE </title>
+    <link rel="stylesheet" th:href="@{/css/home.css}">
 <body>
+<div class="login-box">
+    <p>WOPFE</p>
+    <h1>Log In</h1>
+    <div class="textbox">
+        <input type="text" placeholder="Username" name="" value="">
+    </div>
+    <div class="textbox">
 
-<!-- Navbar (sit on top) -->
-<div class="banner">
-    <div class="navbar">
-        <img src="" class="logo">
-        <ul>
-            <li><a href="#"> Home</a></li>
-            <li><a href="#"> Bedroom</a></li>
-            <li><a href="#"> Dining</a></li>
-            <li><a href="#"> Kitchen</a></li>
-            <li><a href="#"> Backyard</a></li>
-        </ul>
+        <input type="password" placeholder="Password" name="" value="">
     </div>
-    <div>
-        <div class="content">
-            <h1>Designh your house</h1>
-            <p>Subcribe easy tutorials youtube channel to watch more videos,<br> press subscribe</p>
-            <div>
-                <button type="button"><span></span>LogIn</button>
-                <button type="button"><span></span>SingUp</button>
-            </div>
-        </div>
-    </div>
+    <input class="btn" type="button" name="" value="Sign in">
+    <input class="btnNoAccount" type="button" name="" value="No account?">
+
 </div>
-
-
-<!--    &lt;!&ndash; Footer &ndash;&gt;-->
-<!--    <footer class="w3-center w3-black w3-padding-16">-->
-<!--        <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank"-->
-<!--                         class="w3-hover-text-green">w3.css</a></p>-->
-<!--    </footer>-->
-
+<div class="footer" th:insert="blocks/footer :: footer"></div>
 </body>
+
 </html>

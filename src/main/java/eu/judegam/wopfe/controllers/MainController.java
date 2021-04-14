@@ -1,7 +1,7 @@
 package eu.judegam.wopfe.controllers;
 
 import eu.judegam.wopfe.models.user.User;
-import eu.judegam.wopfe.security.AppUserRole;
+import eu.judegam.wopfe.security.UserRole;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -29,7 +29,7 @@ public class MainController {
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             Object user = auth.getPrincipal();
             if (user instanceof User) {
-                AppUserRole userRole = ((User) user).getRole();
+                UserRole userRole = ((User) user).getUserRole();
                 model.addAttribute("role", userRole);
                 model.addAttribute("username", ((User) user).getUsername());
             } else {

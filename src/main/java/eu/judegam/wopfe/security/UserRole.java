@@ -7,7 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public enum AppUserRole {
+public enum UserRole {
     ALL(Sets.newHashSet(AppUserPermission.ALL)),
     MANAGER(Sets.newHashSet(AppUserPermission.MANAGER)),
     ADMIN(Sets.newHashSet(AppUserPermission.ADMIN)),
@@ -17,7 +17,7 @@ public enum AppUserRole {
 
     private final Set<AppUserPermission> permissions;
 
-    AppUserRole(Set<AppUserPermission> permissions) {
+    UserRole(Set<AppUserPermission> permissions) {
         this.permissions = permissions;
     }
 

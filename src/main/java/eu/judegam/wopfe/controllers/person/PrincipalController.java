@@ -68,7 +68,7 @@ public class PrincipalController {
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public RedirectView createClass(RedirectAttributes redirectAttributes, @RequestParam String name, @RequestParam String school,
                                     @RequestParam String students, @RequestParam String timetable, Model model) {
-        Class classs = new Class(name, school, students, timetable);
+        Class classs = new Class(name, timetable);
         classService.saveClass(classs);
         final String msg = "Created class <b>" + String.format("%s", classs.getName()) + "</b> .";
         RedirectView view = new RedirectView("addClasses", true);

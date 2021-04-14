@@ -104,13 +104,17 @@ p.rememberMe {
     color: grey;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-}
+/*!*CSS for homepage*!*/
+/** {*/
 
-.banner {
+
+/** {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    font-family: sans-serif;*/
+/*}*/
+
+.homepage_banner {
     width: 100%;
     height: 100vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("homepage_backround.jpg");
@@ -118,7 +122,7 @@ p.rememberMe {
     background-position: center;
 }
 
-.navbar {
+.homepage_navbar {
     width: 85%;
     margin: auto;
     padding: 35px 0;
@@ -133,20 +137,20 @@ p.rememberMe {
     cursor: pointer;
 }
 
-.navbar ul li {
+.homepage_navbar ul li {
     list-style: none;
     display: inline-block;
     margin: 0 20px;
     position: relative;
 }
 
-.navbar ul li a {
+.homepage_navbar ul li a {
     text-decoration: none;
     text-transform: uppercase;
     color: black;
 }
 
-.navbar ul li ::after {
+.homepage_navbar ul li ::after {
     content: '';
     height: 3px;
     width: 0;
@@ -157,26 +161,28 @@ p.rememberMe {
     transition: 0.5s;
 }
 
-.navbar ul li :hover::after {
+.homepage_navbar ul li :hover::after {
     width: 100%;
 
 }
 
-.content {
+.homepage_content {
     width: 100%;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     text-align: center;
     color: black;
+    margin: 0;
+    padding: 0;
 }
 
-.content h1 {
+.homepage_content h1 {
     font-size: 70px;
     margin-top: 80px;
 }
 
-.content p {
+.homepage_content p {
     margin: 20px auto;
     font-weight: 100;
     line-height: 25px;

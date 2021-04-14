@@ -32,12 +32,13 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("Username %s wasn't found!", username)));
     }
 
-    public User saveUser(User admin) {
-        return repo.save(admin);
+    public User saveUser(User user, UserRole role) {
+        user.setUserRole(role);
+        return repo.save(user);
     }
 
-    public List<User> saveAdmins(List<User> admins) {
-        return (List<User>) repo.saveAll(admins);
+    public User saveUser(User user) {
+        return saveUser(user, UserRole.STUDENT);
     }
 
     public List<User> getUsers(UserRole role) {
@@ -50,21 +51,16 @@ public class UserService implements UserDetailsService {
         return repo.findById(id).orElse(null);
     }
 
-    public User getAdminByName(String name) {
-        // TODO: here will be first and last names in the play.
-        return repo.findByName(name);
-    }
-
     public String deleteUser(Long id) {
         repo.deleteById(id);
         return "User was deleted.";
     }
 
-    public User updateUser(Long id, User admin) {
+    public User updateUser(Long id, User user) {
         User existingProduct = repo.findById(id).orElse(null);
         assert existingProduct != null;
-        existingProduct.setName(admin.getName());
-        existingProduct.setLastName(admin.getLastName());
+        existingProduct.setName(user.getName());
+        existingProduct.setLastName(user.getLastName());
         return repo.save(existingProduct);
     }
 

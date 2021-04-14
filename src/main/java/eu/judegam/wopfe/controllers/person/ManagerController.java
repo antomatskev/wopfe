@@ -45,8 +45,7 @@ public class ManagerController {
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
     public RedirectView createAdmin(RedirectAttributes redirectAttributes,
                                     @ModelAttribute User admin) {
-        admin.setUserRole(UserRole.ADMIN);
-        service.saveUser(admin);
+        service.saveUser(admin, UserRole.ADMIN);
         final String msg = "Created admin <b>" + String.format("%s %s", admin.getName(), admin.getLastName()) + "</b> .";
         RedirectView view = new RedirectView("admins", true);
         redirectAttributes.addFlashAttribute("adminMessage", msg);

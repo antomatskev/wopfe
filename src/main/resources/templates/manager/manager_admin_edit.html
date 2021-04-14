@@ -20,14 +20,7 @@
         <form method="post" th:action="'/main/admins/'+${admin.id}" th:object="${admin}">
             <input id="name" placeholder="First Name" required th:field="*{name}" type="text"/>
             <input id="lastName" placeholder="Last Name" required th:field="*{lastName}" type="text"/>
-            <button class="button button5" type="submit" onclick="document.getElementById('activeFlag').value='true'">
-                Update
-            </button>
-                <form method="post"
-                      th:action="'/main/admins/' + ${admin.id} + '/delete'"
-                      th:object="${admin}">
-                    <input type="submit" value="X">
-                </form>
+            <input class="button button5" type="submit" value="Update">
         </form>
     </div>
 </div>

@@ -1,7 +1,6 @@
 package eu.judegam.wopfe.controllers.person;
 
 import eu.judegam.wopfe.auth.UserService;
-import eu.judegam.wopfe.models.school.Class;
 import eu.judegam.wopfe.models.user.User;
 import eu.judegam.wopfe.security.UserRole;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -46,8 +45,8 @@ public class ManagerController {
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
     public RedirectView createAdmin(RedirectAttributes redirectAttributes,
                                     @ModelAttribute User admin) {
-        service.saveUser(admin); // TODO: find out if role is needed here as
-        // well.
+        admin.setUserRole(UserRole.ADMIN);
+        service.saveUser(admin);
         final String msg = "Created admin <b>" + String.format("%s %s", admin.getName(), admin.getLastName()) + "</b> .";
         RedirectView view = new RedirectView("admins", true);
         redirectAttributes.addFlashAttribute("adminMessage", msg);

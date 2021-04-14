@@ -16,7 +16,7 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private UserRole userRole;
+    private UserRole userRole = UserRole.STUDENT;
     private String password;
     private String username;
     private String name;

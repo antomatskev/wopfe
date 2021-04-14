@@ -1,25 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
 <head>
+    <title>Homepage</title>
     <meta charset="UTF-8">
-    <title> WOPFE </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
 <body>
-<div class="login-box">
-    <p>WOPFE</p>
-    <h1>Log In</h1>
-    <div class="textbox">
-        <input type="text" placeholder="Username" name="" value="">
-    </div>
-    <div class="textbox">
 
-        <input type="password" placeholder="Password" name="" value="">
+<div class="banner">
+    <div class="navbar">
+        <img th:src="@{/css/logo.png}" class="logo">
+        <ul>
+            <li><a href="#"> About</a></li>
+            <li><a href="#"> Info</a></li>
+            <li><a href="#"> Info</a></li>
+            <li><a href="#"> Info</a></li>
+            <li><a href="#"> Info</a></li>
+            <li><a href="#"> Info</a></li>
+        </ul>
     </div>
-    <input class="btn" type="button" name="" value="Sign in">
-    <input class="btnNoAccount" type="button" name="" value="No account?">
+    <div>
+        <div class="content">
+            <h1>A better learning future starts here.</h1>
+            <p>– WOPFE.<br></p>
+            <div>
+                <button type="button" onclick="window.location.href='/login.html';"><span></span>Log In</button>
+                <button type="button" onclick="window.location.href='/login.html';"><span></span>Sing Up</button>
 
+            </div>
+        </div>
+    </div>
 </div>
-<div class="footer" th:insert="blocks/footer :: footer"></div>
-</body>
 
+</body>
 </html>

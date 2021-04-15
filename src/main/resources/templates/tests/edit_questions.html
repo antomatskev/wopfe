@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WOPFE</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="sidenav">
+    <a class="mainPage greenText" href="/main/teacher">Main</a>
+    <a class="myClassPage greenText" href="/main/teacher/class">My class</a>
+    <a class="gradesPage greenText" href="/main/teacher/grades">Grades</a>
+    <a class="tasksPage greenText" href="/main/teacher/tasks">Tasks</a>
+    <a class="testsPage greenText" href="/main/teacher/tests">Tests</a>
+    <a class="timetablePage greenText" href="/main/teacher/timetable">Timetable</a>
+</div>
+
+<div class="main">
+    <h1 class="moreGreenText appName">WOPFE</h1>
+    <hr class="line">
+    <div class="content">
+        <h3 th:inline="text">
+            Question
+            [[${question.name}]]
+        </h3>
+        <h2 th:inline="text">
+            [[${question.questionText}]]
+        </h2>
+        <table class="greyGridTable">
+            <thead>
+            <tr>
+                <th>Answer Text</th>
+                <th>True/False</th>
+            </tr>
+            </thead>
+            <tr th:if="${#lists.isEmpty(question.answers)}">
+                <td colspan="5">No created answers found.</td>
+            </tr>
+            <tbody>
+            <tr th:each="answer : ${question.answers}">
+                <td th:text="${answer.answerText}"></td>
+                <td th:text="${answer.isTrue}"></td>
+<!--                <form method="post" th:action="'/main/teacher/Answer/change/boolean/' + ${answer.id}" th:object="${answer}">-->
+<!--                    <input type="submit" value="True">-->
+<!--                </form>-->
+                <td>
+
+                    <form method="post"
+                          th:action="'/main/teacher/question/' + ${question.id} + '/deleteAnswer/' + ${answer.id}" th:object="${answer}">
+                        <input type="submit" value="X">
+                    </form>
+            </tr>
+            </tbody>
+        </table >
+        <form method="post" th:action="'/main/teacher/questionsAnswer/' + ${question.id} + '/addAnswer'" th:object="${question}">
+            <input id="AnswerText" placeholder="answerText" required th:field="*{answerText}" type="text" th:object="${answer}"/>
+            <select id="trueOrFalse" required th:field="*{type}">
+                <option hidden value="">Select a type</option>
+                <option value="Options">True</option>
+                <option value="Text">False</option>
+            </select>
+            <input class="button button5" type="submit" value="Add Answer">
+            <input class="button button5" type="reset" value="Reset">
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,12 +1,13 @@
 package eu.judegam.wopfe.controllers.person;
 
-import eu.judegam.wopfe.models.repositories.person.principal.service.PrincipalService;
-import eu.judegam.wopfe.models.repositories.school.classs.service.ClassService;
-import eu.judegam.wopfe.models.repositories.school.subject.service.SubjectService;
+import eu.judegam.wopfe.services.PrincipalService;
+import eu.judegam.wopfe.services.ClassService;
+import eu.judegam.wopfe.services.SubjectService;
 import eu.judegam.wopfe.models.school.Class;
 import eu.judegam.wopfe.models.school.Subject;
 import eu.judegam.wopfe.models.user.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,6 +42,7 @@ public class PrincipalController {
     }
 
     @PostMapping("/addPrincipal")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public Principal addPrincipal(@RequestBody Principal principal) {
         return service.savePrincipal(principal);
     }
@@ -49,6 +51,7 @@ public class PrincipalController {
      * Method for getting all classes from database.
      */
     @RequestMapping(path = "/main/principal/addClasses", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public String getClass(Model model) {
         List<Class> classes = classService.getClasss();
         model.addAttribute("classes", classes);
@@ -62,6 +65,7 @@ public class PrincipalController {
      * @return redirect to the same page.
      */
     @PostMapping(path = "/main/principal/addClasses")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public RedirectView createClass(RedirectAttributes redirectAttributes, @RequestParam String name, @RequestParam String school,
                                     @RequestParam String students, @RequestParam String timetable, Model model) {
         Class classs = new Class(name, school, students, timetable);
@@ -76,6 +80,7 @@ public class PrincipalController {
      * Method for getting all subjects from database.
      */
     @RequestMapping(path = "/main/principal/addSubject", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public String getSubject(Model model) {
         List<Subject> subjects = subjectService.getSubject();
         model.addAttribute("subjects", subjects);
@@ -90,6 +95,7 @@ public class PrincipalController {
      * @return redirect to the same page.
      */
     @PostMapping(path = "/main/principal/addSubject")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public RedirectView createSubject2(RedirectAttributes redirectAttributes, @ModelAttribute Subject subject) {
         subjectService.saveSubject(subject);
         final String msg = "Created class <b>" + String.format("%s", subject.getName()) + "</b> .";
@@ -99,31 +105,10 @@ public class PrincipalController {
     }
 
     /**
-     * Mapping for deleting and editing a subject.
-     */
-    @GetMapping("/main/principal/deleteSubject")
-    public String deleteEditPage(Model model) {
-        List<Subject> subjects = subjectService.getSubject();
-        model.addAttribute("subjects", subjects);
-        model.addAttribute("subject", new Subject());
-        return "principal/principal_delete_edit_subjects";
-    }
-
-    /**
-     * Mapping for deleting and editing a class.
-     */
-    @GetMapping("/main/principal/deleteClasses")
-    public String deleteEditClass(Model model) {
-        List<Class> classes = classService.getClasss();
-        model.addAttribute("classes", classes);
-        model.addAttribute("class", new Class());
-        return "principal/principal_delete_edit_class";
-    }
-
-    /**
      * Method for viewing a subject with current ID.
      */
     @RequestMapping(path = "/main/principal/subject/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public String getSubject(Model model, @PathVariable("id") Long id) {
         Subject subject = subjectService.getSubjectById(id);
         model.addAttribute("subject", subject);
@@ -134,6 +119,7 @@ public class PrincipalController {
      * Method for viewing a class with current ID.
      */
     @RequestMapping(path = "/main/principal/class/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public String getClass(Model model, @PathVariable("id") Long id) {
         Class classs = classService.getClassById(id);
         model.addAttribute("class", classs);
@@ -144,6 +130,7 @@ public class PrincipalController {
      * Method for deleting a subject.
      */
     @RequestMapping(path = "/main/principal/subject/{id}/delete")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public RedirectView deleteSubject(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Subject subject) {
         String name = subject.getName();
         subjectService.deleteSubject(id);
@@ -157,6 +144,7 @@ public class PrincipalController {
      * Method for editing a subject.
      */
     @RequestMapping(path = "/main/principal/subject/{id}/update", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public RedirectView updateSubject(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Subject subject) {
         subjectService.updateSubject(id, subject);
         final String msg = "Updated subject <b>" + String.format("%s", subject.getName()) + "</b> .";
@@ -169,6 +157,7 @@ public class PrincipalController {
      * Method for deleting a class.
      */
     @RequestMapping(path = "/main/principal/class/{id}/delete")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public RedirectView deleteClass(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Class classs) {
         classService.deleteClass(id);
         final String msg = "Deleted class <b>" + String.format("%s", classs.getName()) + "</b> .";
@@ -181,6 +170,7 @@ public class PrincipalController {
      * Method for editing a class.
      */
     @RequestMapping(path = "/main/principal/class/{id}/update", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public RedirectView updateClass(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Class classs) {
         classService.updateClass(classs);
         final String msg = "Updated class <b>" + String.format("%s", classs.getName()) + "</b> .";
@@ -190,36 +180,43 @@ public class PrincipalController {
     }
 
     @PostMapping("/addPrincipals")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public List<Principal> addTests(@RequestBody List<Principal> principals) {
         return service.savePrincipals(principals);
     }
 
     @PostMapping("/principals")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public List<Principal> findAllPrincipals() {
         return service.getPrincipal();
     }
 
     @PostMapping("/principal/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public Principal getPrincipalById(@PathVariable Long id) {
         return service.getPrincipalById(id);
     }
 
     @PostMapping("/principal/{name}")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public Principal getPrincipalByName(@PathVariable String name) {
         return service.getPrincipalByName(name);
     }
 
     @PutMapping("/principal/{id}/update")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public Principal updatePrincipal(@RequestBody Principal principal) {
         return service.updatePrincipal(principal);
     }
 
     @DeleteMapping("/principal/{id}/delete/{id}")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public String deletePrincipal(@PathVariable Long id) {
         return service.deletePrincipal(id);
     }
 
     @GetMapping("/main/principal")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
     public String principal(Model model) {
         return "mains/principal_main";
     }

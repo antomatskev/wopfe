@@ -1,9 +1,14 @@
 package eu.judegam.wopfe.models.tests;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 /**
  * Represents Answers.
@@ -13,9 +18,16 @@ public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long questionId;
     private String answerText;
     private boolean isTrue;
+    @ManyToOne
+    @JoinColumn(name = "question_id", nullable = false)
+    @JsonIgnore
+    private Question question;
+    @Transient
+    @JsonIgnore
+    private Long questionId;
+
 
     public Answer(Long id, Long questionId, String answerText, boolean isTrue) {
         this.id = id;
@@ -35,14 +47,6 @@ public class Answer {
         this.id = id;
     }
 
-    public Long getQuestionId() {
-        return questionId;
-    }
-
-    public void setQuestionId(Long questionId) {
-        this.questionId = questionId;
-    }
-
     public String getAnswerText() {
         return answerText;
     }
@@ -58,4 +62,25 @@ public class Answer {
     public void setTrue(boolean aTrue) {
         isTrue = aTrue;
     }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public Long getQuestionId() {
+        return questionId;
+    }
+
+    public void setQuestionId(Long questionId) {
+        this.questionId = questionId;
+    }
+
+    public String getName() {
+        return answerText;
+    }
+
 }

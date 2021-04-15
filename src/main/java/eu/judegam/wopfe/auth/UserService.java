@@ -1,6 +1,5 @@
 package eu.judegam.wopfe.auth;
 
-import eu.judegam.wopfe.models.school.Class;
 import eu.judegam.wopfe.models.user.User;
 import eu.judegam.wopfe.repositories.UserRepo;
 import eu.judegam.wopfe.security.UserRole;
@@ -41,10 +40,14 @@ public class UserService implements UserDetailsService {
         return saveUser(user, UserRole.STUDENT);
     }
 
-    public List<User> getUsers(UserRole role) {
+    public List<User> getUsersWithRole(UserRole role) {
         return ((List<User>) repo.findAll()).stream()
                 .filter(u -> u.getUserRole() == role)
                 .collect(Collectors.toList());
+    }
+
+    public List<User> getAllUsers() {
+        return (List<User>) repo.findAll();
     }
 
     public User getUserById(Long id) {
@@ -57,11 +60,21 @@ public class UserService implements UserDetailsService {
     }
 
     public User updateUser(Long id, User user) {
-        User existingProduct = repo.findById(id).orElse(null);
-        assert existingProduct != null;
-        existingProduct.setName(user.getName());
-        existingProduct.setLastName(user.getLastName());
-        return repo.save(existingProduct);
+        User oldUser = repo.findById(id).orElse(null);
+        assert oldUser != null;
+        if (user.getFullName() != null) {
+            oldUser.setFirstName(user.getFirstName());
+        }
+        if (user.getLastName() != null) {
+            oldUser.setLastName(user.getLastName());
+        }
+        if (user.getClazz() != null) {
+            oldUser.setClazz(user.getClazz());
+        }
+        if (user.getUserRole() != null) {
+            oldUser.setUserRole(user.getUserRole());
+        }
+        return repo.save(oldUser);
     }
 
 }

@@ -19,7 +19,7 @@ public class User implements UserDetails {
     private UserRole userRole;
     private String password;
     private String username;
-    private String name;
+    private String firstName;
     private String lastName;
     private String clazz;
     private boolean isAccountNonExpired;
@@ -51,7 +51,7 @@ public class User implements UserDetails {
         this.userRole = appUserRole;
         this.password = password;
         this.username = username;
-        this.name = name;
+        this.firstName = name;
         this.lastName = lastName;
         this.clazz = clazz;
         this.isAccountNonExpired = isAccountNonExpired;
@@ -119,12 +119,12 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        this.firstName = name;
     }
 
     public String getLastName() {
@@ -133,6 +133,10 @@ public class User implements UserDetails {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getFullName() {
+        return String.format("%s %s", firstName, lastName);
     }
 
     public String getClazz() {

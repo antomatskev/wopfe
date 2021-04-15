@@ -18,32 +18,28 @@
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
     <div class="content">
-        <h3>Schools' list</h3>
+        <h3>Classes</h3>
         <table class="greyGridTable">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Location</th>
-                <th>Principals</th>
+                <th>Class</th>
                 <th>Info</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:if="${#lists.isEmpty(schools)}">
-                <td colspan="7">No Records found. Add some...!</td>
+            <tr th:if="${#lists.isEmpty(classes)}">
+                <td colspan="5">No classes available yet.</td>
             </tr>
-            <tr th:each="school : ${schools}">
-                <td th:text="${school.id}"></td>
-                <td th:text="${school.name}"></td>
-                <td th:text="${school.location}"></td>
-                <td th:text="${school.principals}"></td>
-                <td><a th:href="'/main/admin/schools/' + ${school.id}">ℹ</a></td>
+            <tr th:each="class : ${classes}">
+                <td th:if="${class != null}" th:text="${class}"></td>
+                <td th:if="${class != null}"><a
+                        th:href="'/main/classes/' + ${class}">-i-</a></td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
+
 
 </body>
 </html>

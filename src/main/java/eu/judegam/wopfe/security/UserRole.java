@@ -33,4 +33,8 @@ public enum UserRole {
         return ret;
     }
 
+    public String getName() {
+        return name();
+    }
+
 }

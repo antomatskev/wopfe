@@ -28,7 +28,7 @@ public class ClassService {
         return (List<Class>) repository.saveAll(classes);
     }
 
-    public List<Class> getClasss() {
+    public List<Class> getClasses() {
         return (List<Class>) repository.findAll();
     }
 

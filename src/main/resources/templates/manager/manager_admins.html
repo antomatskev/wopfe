@@ -18,7 +18,7 @@
     <div class="content">
         <h3>Schools' administrators</h3>
         <form method="post" th:action="@{/main/admins}" th:object="${admin}">
-            <input id="name" placeholder="First Name" required th:field="*{name}" type="text"/>
+            <input id="name" placeholder="First Name" required th:field="*{firstName}" type="text"/>
             <input id="lastName" placeholder="Last Name" required th:field="*{lastName}" type="text"/>
             <button class="button button5" type="submit">Add Admin</button>
             <button class="button button5" type="reset">Reset</button>
@@ -40,7 +40,7 @@
             <tbody>
             <tr th:each="admin : ${admins}">
                 <td th:text="${admin.id}"></td>
-                <td th:text="${admin.name}"></td>
+                <td th:text="${admin.firstName}"></td>
                 <td th:text="${admin.lastName}"></td>
                 <td><a th:href="'/main/admins/' + ${admin.id}">✏</a></td>
                 <td>

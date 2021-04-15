@@ -27,7 +27,7 @@ public class ManagerController {
     @RequestMapping(path = "/main/admins", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
     public String getAdmins(Model model) {
-        List<User> admins = service.getUsers(UserRole.ADMIN);
+        List<User> admins = service.getUsersWithRole(UserRole.ADMIN);
         model.addAttribute("admins", admins);
         model.addAttribute("admin", new User());
         return "manager/manager_admins";
@@ -46,7 +46,7 @@ public class ManagerController {
     public RedirectView createAdmin(RedirectAttributes redirectAttributes,
                                     @ModelAttribute User admin) {
         service.saveUser(admin, UserRole.ADMIN);
-        final String msg = "Created admin <b>" + String.format("%s %s", admin.getName(), admin.getLastName()) + "</b> .";
+        final String msg = "Created admin <b>" + String.format("%s %s", admin.getFirstName(), admin.getLastName()) + "</b> .";
         RedirectView view = new RedirectView("admins", true);
         redirectAttributes.addFlashAttribute("adminMessage", msg);
         return view;

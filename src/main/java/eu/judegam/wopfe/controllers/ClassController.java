@@ -37,7 +37,7 @@ public class ClassController {
     @PostMapping("/classes")
     @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public List<Class> findAllClasses() {
-        return service.getClasss();
+        return service.getClasses();
     }
 
     @PostMapping("/class/{id}")

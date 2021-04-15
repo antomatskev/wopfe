@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title> WOPFE </title>
-    <link rel="stylesheet" th:href="@{/css/home.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
 </head>
 <body>
+<p class="wopfe">WOPFE</p>
 <div class="login-box">
-    <p>WOPFE</p>
-    <h1>Log In</h1>
+    <h1 class="login">Log In</h1>
     <form class="form-signin" method="post" action="/login">
         <div class="textbox">
         <p>
@@ -20,8 +20,8 @@
             <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
         </p>
         </div>
-        <p>
-            Remember me?
+        <p class="rememberMe">
+            Remember me
             <input type="checkbox" id="remember-me" name="remember-me" class="form-control">
         </p>
         <input class="btn" type="submit" name="" value="Sign in">

@@ -1,3 +1,119 @@
+/*!*CSS for homepage*!*/
+/** {*/
+
+
+/** {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    font-family: sans-serif;*/
+/*}*/
+
+.homepage_banner {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("homepage_backround.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.homepage_navbar {
+    width: 85%;
+    margin: auto;
+    padding: 35px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.logo {
+    width: 120px;
+    cursor: pointer;
+}
+
+.homepage_navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+
+.homepage_navbar ul li a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+}
+
+.homepage_navbar ul li ::after {
+    content: '';
+    height: 3px;
+    width: 0;
+    background: #0a9471;
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    transition: 0.5s;
+}
+
+.homepage_navbar ul li :hover::after {
+    width: 100%;
+
+}
+
+.homepage_content {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+
+.homepage_content h1 {
+    font-size: 70px;
+    margin-top: 80px;
+}
+
+.homepage_content p {
+    margin: 20px auto;
+    font-weight: 100;
+    line-height: 25px;
+}
+
+button {
+    width: 200px;
+    padding: 15px 0;
+    margin: 20px 10px;
+    border-radius: 25px;
+    font-weight: bold;
+    border: 2px solid #0a9471;
+    background: transparent;
+    color: black;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+span {
+    background: #0a9471;
+    height: 100%;
+    width: 0;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+
+button:hover span {
+    width: 100%;
+}
+button:hover {
+    border: none;
+}
 
 body {
     margin: 0;
@@ -10,8 +126,6 @@ body {
     overflow: hidden;
     height: auto;
     width: auto;
-    border: none;
-
 }
 
 .login-box p {
@@ -34,13 +148,11 @@ body {
 
 .login-box h1 {
     float: inside;
-    font-size: 20px;
+    font-size: 39px;
     border-bottom: 4px solid #4caf50;
     margin-bottom: 10px;
-    padding: 5px 0;
+    padding: 13px 0;
     height: auto;
-    margin-left: 5em;
-    margin-right: 6em;
 }
 
 .h2 {
@@ -107,19 +219,4 @@ p.rememberMe {
     font-size: small;
     position: relative;
     color: grey;
-    margin-left: 2em;
-}
-
-.wopfe {
-    color: grey;
-    right: auto;
-    margin-bottom: 1em;
-    margin-left: 2em;
-    margin-top: 1em;
-    font-size: 35px;
-}
-
-.footer {
-    font-size: 10px;
-    margin-left: 4em;
 }

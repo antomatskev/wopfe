@@ -1,9 +1,9 @@
 package eu.judegam.wopfe.controllers.person;
 
 import eu.judegam.wopfe.auth.UserService;
-import eu.judegam.wopfe.controllers.MainController;
 import eu.judegam.wopfe.models.user.User;
 import eu.judegam.wopfe.security.UserRole;
+import eu.judegam.wopfe.utils.Utils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +34,7 @@ public class AdminController {
         List<User> students = usrService.getUsersWithRole(UserRole.STUDENT);
         model.addAttribute("students", students);
         model.addAttribute("student", new User());
-        return MainController.addUsrAttrToModel(model, "school/students");
+        return Utils.addUsrAttrToModel(model, "school/students");
     }
 
     @RequestMapping(path = "/main/students/{id}", method = RequestMethod.GET)

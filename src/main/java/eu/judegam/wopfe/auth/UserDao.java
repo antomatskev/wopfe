@@ -1,6 +1,6 @@
 package eu.judegam.wopfe.auth;
 
-import eu.judegam.wopfe.models.user.User;
+import eu.judegam.wopfe.models.User;
 
 import java.util.Optional;
 

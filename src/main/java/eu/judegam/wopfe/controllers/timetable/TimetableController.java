@@ -3,6 +3,7 @@ package eu.judegam.wopfe.controllers.timetable;
 import eu.judegam.wopfe.services.TimetableService;
 import eu.judegam.wopfe.models.timetable.Event;
 import eu.judegam.wopfe.models.timetable.Timetable;
+import eu.judegam.wopfe.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,7 @@ public class TimetableController {
         model.addAttribute("timetables", tts);
         model.addAttribute("timetable", new Timetable());
         model.addAttribute("event", new Event());
-        return "timetable/timetables";
+        return Utils.addUsrAttrToModel(model, "timetable/timetables");
     }
 
     @RequestMapping(path = "/main/timetables/addTimetable", method = RequestMethod.POST)
@@ -51,7 +52,7 @@ public class TimetableController {
         Timetable tt = ttService.getTtById(id);
         model.addAttribute("timetable", tt);
         model.addAttribute("event", new Event());
-        return "timetable/timetable_edit";
+        return Utils.addUsrAttrToModel(model, "timetable/timetable_edit");
     }
 
     @RequestMapping(path = "/main/timetables/{id}/update", method = RequestMethod.POST)
@@ -60,7 +61,7 @@ public class TimetableController {
         Timetable tt = ttService.updateTimetable(id, timetable);
         model.addAttribute("timetable", tt);
         model.addAttribute("event", new Event());
-        return "timetable/timetable_edit";
+        return Utils.addUsrAttrToModel(model, "timetable/timetable_edit");
     }
 
     @RequestMapping(path = "/main/timetables/{id}/delete", method = RequestMethod.POST)

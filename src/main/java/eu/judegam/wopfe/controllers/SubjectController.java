@@ -1,6 +1,6 @@
 package eu.judegam.wopfe.controllers;
 
-import eu.judegam.wopfe.models.school.Subject;
+import eu.judegam.wopfe.models.Subject;
 import eu.judegam.wopfe.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

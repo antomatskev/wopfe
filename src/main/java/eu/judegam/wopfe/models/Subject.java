@@ -1,4 +1,4 @@
-package eu.judegam.wopfe.models.school;
+package eu.judegam.wopfe.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -8,20 +8,20 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public enum UserRole {
-    ALL(Sets.newHashSet(AppUserPermission.ALL)),
-    MANAGER(Sets.newHashSet(AppUserPermission.MANAGER)),
-    ADMIN(Sets.newHashSet(AppUserPermission.ADMIN)),
-    PRINCIPAL(Sets.newHashSet(AppUserPermission.PRINCIPAL)),
-    TEACHER(Sets.newHashSet(AppUserPermission.TEACHER)),
-    STUDENT(Sets.newHashSet(AppUserPermission.STUDENT));
+    ALL(Sets.newHashSet(UserPermission.ALL)),
+    MANAGER(Sets.newHashSet(UserPermission.MANAGER)),
+    ADMIN(Sets.newHashSet(UserPermission.ADMIN)),
+    PRINCIPAL(Sets.newHashSet(UserPermission.PRINCIPAL)),
+    TEACHER(Sets.newHashSet(UserPermission.TEACHER)),
+    STUDENT(Sets.newHashSet(UserPermission.STUDENT));
 
-    private final Set<AppUserPermission> permissions;
+    private final Set<UserPermission> permissions;
 
-    UserRole(Set<AppUserPermission> permissions) {
+    UserRole(Set<UserPermission> permissions) {
         this.permissions = permissions;
     }
 
-    public Set<AppUserPermission> getPermissions() {
+    public Set<UserPermission> getPermissions() {
         return permissions;
     }
 

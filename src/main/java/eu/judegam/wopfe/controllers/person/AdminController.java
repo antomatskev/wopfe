@@ -1,10 +1,9 @@
 package eu.judegam.wopfe.controllers.person;
 
 import eu.judegam.wopfe.auth.UserService;
-import eu.judegam.wopfe.models.school.Class;
+import eu.judegam.wopfe.controllers.MainController;
 import eu.judegam.wopfe.models.user.User;
 import eu.judegam.wopfe.security.UserRole;
-import eu.judegam.wopfe.services.ClassService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +23,9 @@ import java.util.stream.Collectors;
 public class AdminController {
 
     private final UserService usrService;
-    private final ClassService clsService;
 
-    public AdminController(UserService usrService, ClassService clsService) {
+    public AdminController(UserService usrService) {
         this.usrService = usrService;
-        this.clsService = clsService;
     }
 
     @RequestMapping(path = "/main/students", method = RequestMethod.GET)
@@ -37,7 +34,7 @@ public class AdminController {
         List<User> students = usrService.getUsersWithRole(UserRole.STUDENT);
         model.addAttribute("students", students);
         model.addAttribute("student", new User());
-        return "school/students";
+        return MainController.addUsrAttrToModel(model, "school/students");
     }
 
     @RequestMapping(path = "/main/students/{id}", method = RequestMethod.GET)
@@ -135,8 +132,8 @@ public class AdminController {
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN')")
     public String getClasses(Model model) {
         Set<String> classes = usrService.getAllUsers().stream()
-                        .map(User::getClazz)
-                        .collect(Collectors.toSet());
+                .map(User::getClazz)
+                .collect(Collectors.toSet());
         model.addAttribute("classes", classes);
         return "school/classes";
     }
@@ -145,23 +142,11 @@ public class AdminController {
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN')")
     public String getClass(Model model, @PathVariable("name") String name) {
         List<User> users = usrService.getAllUsers().stream()
-                        .filter(u -> Objects.equals(u.getClazz(), name))
-                        .collect(Collectors.toList());
+                .filter(u -> Objects.equals(u.getClazz(), name))
+                .collect(Collectors.toList());
         model.addAttribute("class", name);
         model.addAttribute("users", users);
         return "school/class_info";
-    }
-
-    @RequestMapping(path = "/main/classes", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN')")
-    public RedirectView createClass(RedirectAttributes redirectAttributes,
-                                    @ModelAttribute Class clazz) {
-        clsService.saveClass(clazz);
-        final String msg = String.format("Created student <b>%s</b>.",
-                clazz.getName());
-        RedirectView view = new RedirectView("classes", true);
-        redirectAttributes.addFlashAttribute("classMessage", msg);
-        return view;
     }
 
 }

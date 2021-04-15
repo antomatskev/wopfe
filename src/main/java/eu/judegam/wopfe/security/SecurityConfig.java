@@ -18,13 +18,13 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
     private final UserService appUserService;
 
     @Autowired
-    public AppSecurityConfig(PasswordEncoder passwordEncoder, UserService appUserService) {
+    public SecurityConfig(PasswordEncoder passwordEncoder, UserService appUserService) {
         this.passwordEncoder = passwordEncoder;
         this.appUserService = appUserService;
     }

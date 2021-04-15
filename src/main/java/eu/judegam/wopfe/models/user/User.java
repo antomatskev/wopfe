@@ -162,4 +162,12 @@ public class User implements UserDetails {
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
     }
+
+    public void enableAll() {
+        isEnabled = true;
+        isAccountNonExpired = true;
+        isAccountNonLocked = true;
+        isCredentialsNonExpired = true;
+    }
+
 }

@@ -25,6 +25,11 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(Model model) {
+        return addUsrAttrToModel(model, "/mains/main");
+    }
+
+    public static String addUsrAttrToModel(Model model, String defPath) {
+        final String ret;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             Object user = auth.getPrincipal();
@@ -32,14 +37,16 @@ public class MainController {
                 UserRole userRole = ((User) user).getUserRole();
                 model.addAttribute("role", userRole);
                 model.addAttribute("username", ((User) user).getUsername());
+                ret = defPath;
             } else {
-                return "error";
+                ret = "error";
             }
         } else {
-            return "error";
+            ret = "error";
         }
-        return "mains/main";
+        return ret;
     }
+
     @GetMapping("/main/teacher")
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String teacher(Model model){

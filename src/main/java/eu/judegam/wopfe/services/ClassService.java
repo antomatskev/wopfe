@@ -28,7 +28,7 @@ public class ClassService {
         return (List<Class>) repository.saveAll(classes);
     }
 
-    public List<Class> getClasss() {
+    public List<Class> getClasses() {
         return (List<Class>) repository.findAll();
     }
 
@@ -49,8 +49,6 @@ public class ClassService {
         Class existingProduct = repository.findById(classs.getId()).orElse(null);
         assert existingProduct != null;
         existingProduct.setName(classs.getName());
-        existingProduct.setSchool(classs.getSchool());
-        existingProduct.setStudents(classs.getStudents());
         existingProduct.setTimetable(classs.getTimetable());
         return repository.save(existingProduct);
 

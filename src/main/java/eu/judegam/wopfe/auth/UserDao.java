@@ -4,8 +4,8 @@ import eu.judegam.wopfe.models.user.User;
 
 import java.util.Optional;
 
-public interface AppUserDao {
+public interface UserDao {
 
-    Optional<User> selectAppUserByUsername(String username);
+    Optional<User> selectUserByUsername(String username);
 
 }

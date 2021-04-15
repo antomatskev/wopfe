@@ -1,6 +1,6 @@
 package eu.judegam.wopfe.models.user;
 
-import eu.judegam.wopfe.security.AppUserRole;
+import eu.judegam.wopfe.security.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Collection;
-import java.util.Set;
 
 @Entity
 public class User implements UserDetails {
@@ -17,27 +16,26 @@ public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    //    private Set<? extends GrantedAuthority> grantedAuthorities;
-    private AppUserRole appUserRole;
+    private UserRole userRole;
     private String password;
     private String username;
-    private String name;
+    private String firstName;
     private String lastName;
+    private String clazz;
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
     private boolean isEnabled;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String username,
                 String password,
-//                   Set<? extends GrantedAuthority> grantedAuthorities,
-                AppUserRole appUserRole,
+                UserRole appUserRole,
                 boolean isAccountNonExpired, boolean isAccountNonLocked,
                 boolean isCredentialsNonExpired, boolean isEnabled) {
-//        this.grantedAuthorities = grantedAuthorities;
-        this.appUserRole = appUserRole;
+        this.userRole = appUserRole;
         this.password = password;
         this.username = username;
         this.isAccountNonExpired = isAccountNonExpired;
@@ -46,10 +44,25 @@ public class User implements UserDetails {
         this.isEnabled = isEnabled;
     }
 
+    public User(UserRole appUserRole, String password, String username,
+                String name, String lastName, String clazz,
+                boolean isAccountNonExpired, boolean isAccountNonLocked,
+                boolean isCredentialsNonExpired, boolean isEnabled) {
+        this.userRole = appUserRole;
+        this.password = password;
+        this.username = username;
+        this.firstName = name;
+        this.lastName = lastName;
+        this.clazz = clazz;
+        this.isAccountNonExpired = isAccountNonExpired;
+        this.isAccountNonLocked = isAccountNonLocked;
+        this.isCredentialsNonExpired = isCredentialsNonExpired;
+        this.isEnabled = isEnabled;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return grantedAuthorities;
-        return appUserRole.getGrantedAuthority();
+        return userRole.getGrantedAuthority();
     }
 
     @Override
@@ -82,11 +95,79 @@ public class User implements UserDetails {
         return isEnabled;
     }
 
-    public AppUserRole getRole() {
-        return appUserRole;
+    public Long getId() {
+        return id;
     }
 
-    public void setRole(AppUserRole appUserRole) {
-        this.appUserRole = appUserRole;
+    public void setId(Long id) {
+        this.id = id;
     }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole appUserRole) {
+        this.userRole = appUserRole;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String name) {
+        this.firstName = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFullName() {
+        return String.format("%s %s", firstName, lastName);
+    }
+
+    public String getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(String clazz) {
+        this.clazz = clazz;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        isAccountNonExpired = accountNonExpired;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        isAccountNonLocked = accountNonLocked;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        isCredentialsNonExpired = credentialsNonExpired;
+    }
+
+    public void setEnabled(boolean enabled) {
+        isEnabled = enabled;
+    }
+
+    public void enableAll() {
+        isEnabled = true;
+        isAccountNonExpired = true;
+        isAccountNonLocked = true;
+        isCredentialsNonExpired = true;
+    }
+
 }

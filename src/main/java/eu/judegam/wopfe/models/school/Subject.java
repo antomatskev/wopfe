@@ -19,7 +19,6 @@ public class Subject {
     private String school;
     private String teacher;
     private String period;
-    private boolean isActive = true;
 
     public String getName() {
         return name;
@@ -75,14 +74,6 @@ public class Subject {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
-    public boolean isActive() {
-        return isActive;
     }
 
     public Subject() {

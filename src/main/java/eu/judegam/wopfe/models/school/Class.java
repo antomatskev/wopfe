@@ -1,9 +1,12 @@
 package eu.judegam.wopfe.models.school;
 
+import eu.judegam.wopfe.models.user.User;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.List;
 
 /**
  * Class of a student where he/she is studying(
@@ -14,10 +17,20 @@ public class Class {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String school;
-    private String students;
     private String timetable;
-    // private boolean isActive;
+
+    public Class(String name, String timetable) {
+        this.name = name;
+        this.timetable = timetable;
+    }
+
+    public Class(String name, List<User> users, String timetable) {
+        this.name = name;
+        this.timetable = timetable;
+    }
+
+    public Class() {
+    }
 
     public Long getId() {
         return id;
@@ -35,22 +48,6 @@ public class Class {
         this.name = name;
     }
 
-    public String getSchool() {
-        return school;
-    }
-
-    public void setSchool(String school) {
-        this.school = school;
-    }
-
-    public String getStudents() {
-        return students;
-    }
-
-    public void setStudents(String students) {
-        this.students = students;
-    }
-
     public String getTimetable() {
         return timetable;
     }
@@ -58,24 +55,4 @@ public class Class {
     public void setTimetable(String timetable) {
         this.timetable = timetable;
     }
-
-    // public void setActive(boolean active) {
-        // isActive = active;
-    // }
-
-    // public boolean isActive() {
-        // return isActive;
-    // }
-
-    public Class(String name, String school, String students, String timetable) {
-        this.name = name;
-        this.school = school;
-        this.students = students;
-        this.timetable = timetable;
-        // this.isActive = true;
-    }
-
-    public Class() {
-    }
-
 }

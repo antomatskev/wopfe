@@ -1,6 +1,6 @@
 package eu.judegam.wopfe.security;
 
-public enum AppUserPermission {
+public enum UserPermission {
     ALL("all"),
     MANAGER("manager"),
     ADMIN("admin"),
@@ -10,7 +10,7 @@ public enum AppUserPermission {
 
     private final String permission;
 
-    AppUserPermission(String permission) {
+    UserPermission(String permission) {
         this.permission = permission;
     }
 

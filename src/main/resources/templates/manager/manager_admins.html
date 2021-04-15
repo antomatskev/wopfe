@@ -8,9 +8,8 @@
 </head>
 <body>
 <div class="sidenav">
-    <a href="/main/manager">Main</a>
-    <a href="/main/manager/admins">Admins</a>
-    <a href="/main/manager/schools">Schools</a>
+    <a href="/main">Main</a>
+    <a href="/main/admins">Admins</a>
 </div>
 
 <div class="main">
@@ -18,16 +17,9 @@
     <hr class="line">
     <div class="content">
         <h3>Schools' administrators</h3>
-        <form method="post" th:action="@{/main/manager/admins}" th:object="${admin}">
-            <input id="name" placeholder="First Name" required th:field="*{name}" type="text"/>
+        <form method="post" th:action="@{/main/admins}" th:object="${admin}">
+            <input id="name" placeholder="First Name" required th:field="*{firstName}" type="text"/>
             <input id="lastName" placeholder="Last Name" required th:field="*{lastName}" type="text"/>
-            <select id="schools" required th:field="*{schools}">
-                <option hidden value="">Select a school</option>
-                <option value="all">all</option>
-                <option value="TMRG">TMRG</option>
-                <option value="TVL">TVL</option>
-            </select>
-            <input id="manager" placeholder="manager" required th:field="*{manager}" type="text"/>
             <button class="button button5" type="submit">Add Admin</button>
             <button class="button button5" type="reset">Reset</button>
             <div th:if="${adminMessage}" th:utext="${adminMessage}"></div>
@@ -38,9 +30,8 @@
                 <th>ID</th>
                 <th>First Name</th>
                 <th>Last Name</th>
-                <th>Schools</th>
-                <th>Manager</th>
-                <th>Actions</th>
+                <th>Update</th>
+                <th>Delete</th>
             </tr>
             <tr th:if="${#lists.isEmpty(admins)}">
                 <td colspan="7">No Records found. Add some...!</td>
@@ -49,11 +40,16 @@
             <tbody>
             <tr th:each="admin : ${admins}">
                 <td th:text="${admin.id}"></td>
-                <td th:text="${admin.name}"></td>
+                <td th:text="${admin.firstName}"></td>
                 <td th:text="${admin.lastName}"></td>
-                <td th:text="${admin.schools}"></td>
-                <td th:text="${admin.manager}"></td>
-                <td><a th:href="'/main/manager/admins/' + ${admin.id}">✏</a></td>
+                <td><a th:href="'/main/admins/' + ${admin.id}">✏</a></td>
+                <td>
+                    <form method="post"
+                           th:action="'/main/admins/' + ${admin.id} + '/delete'"
+                           th:object="${admin}">
+                    <input type="submit" value="X">
+                    </form>
+                </td>
             </tr>
             <tbody>
         </table>

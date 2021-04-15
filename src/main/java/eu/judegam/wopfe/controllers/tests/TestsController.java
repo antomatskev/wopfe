@@ -39,7 +39,6 @@ public class TestsController {
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String showTestById(Model model, @PathVariable("id") Long id) {
         Test test = service.getTestById(id);
-
         model.addAttribute("test", test);
         model.addAttribute("question", new Question());
         return "tests/edit_test";

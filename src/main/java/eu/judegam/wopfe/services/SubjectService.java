@@ -3,6 +3,7 @@ package eu.judegam.wopfe.services;
 import eu.judegam.wopfe.models.school.Subject;
 import eu.judegam.wopfe.repositories.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class SubjectService {
     }
 
     public List<Subject> getSubject() {
-        return (List<Subject>) repository.findAll();
+        return (List<Subject>) repository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public Subject getSubjectById(Long id) {

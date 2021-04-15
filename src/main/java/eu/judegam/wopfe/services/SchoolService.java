@@ -2,6 +2,7 @@ package eu.judegam.wopfe.services;
 
 import eu.judegam.wopfe.models.school.School;
 import eu.judegam.wopfe.repositories.SchoolRepo;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class SchoolService {
     }
 
     public List<School> getSchools() {
-        return (List<School>) repo.findAll();
+        return (List<School>) repo.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public School getSchoolById(Long id) {

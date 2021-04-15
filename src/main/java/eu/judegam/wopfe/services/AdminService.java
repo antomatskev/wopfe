@@ -2,6 +2,7 @@ package eu.judegam.wopfe.services;
 
 import eu.judegam.wopfe.models.user.Admin;
 import eu.judegam.wopfe.repositories.AdminRepo;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class AdminService {
     }
 
     public List<Admin> getAdmins() {
-        return (List<Admin>) repo.findAll();
+        return (List<Admin>) repo.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public Admin getAdminById(Long id) {

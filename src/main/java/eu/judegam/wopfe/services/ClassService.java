@@ -3,6 +3,7 @@ package eu.judegam.wopfe.services;
 import eu.judegam.wopfe.repositories.ClassRepository;
 import eu.judegam.wopfe.models.school.Class;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class ClassService {
     }
 
     public List<Class> getClasss() {
-        return (List<Class>) repository.findAll();
+        return (List<Class>) repository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     public Class getClassById(Long id) {

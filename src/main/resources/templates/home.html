@@ -1,25 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
 <head>
+    <title>WOPFE</title>
     <meta charset="UTF-8">
-    <title> WOPFE </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" th:href="@{/css/home.css}">
+</head>
 <body>
-<div class="login-box">
-    <p>WOPFE</p>
-    <h1>Log In</h1>
-    <div class="textbox">
-        <input type="text" placeholder="Username" name="" value="">
-    </div>
-    <div class="textbox">
 
-        <input type="password" placeholder="Password" name="" value="">
+<div class="homepage_banner">
+    <div class="homepage_navbar">
+        <img th:src="@{/css/logo.png}" class="logo">
+        <ul>
+            <li><a href="#">About</a></li>
+        </ul>
     </div>
-    <input class="btn" type="button" name="" value="Sign in">
-    <input class="btnNoAccount" type="button" name="" value="No account?">
-
+    <div>
+        <div class="homepage_content">
+            <h1>A better learning future starts here.</h1>
+            <p>– WOPFE.<br></p>
+            <div>
+                <button type="button" class="homepage_button" onclick="window.location.href='/login.html';"><span class="homepage_span"></span>Log In</button>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="footer" th:insert="blocks/footer :: footer"></div>
-</body>
 
+</body>
 </html>

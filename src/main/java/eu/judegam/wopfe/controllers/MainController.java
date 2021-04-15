@@ -24,7 +24,6 @@ public class MainController {
         return Utils.addUsrAttrToModel(model, "/mains/main");
     }
 
-
     @GetMapping("/main/teacher")
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String teacher(Model model) {

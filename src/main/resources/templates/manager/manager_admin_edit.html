@@ -8,9 +8,8 @@
 </head>
 <body>
 <div class="sidenav">
-    <a href="/main/manager">Main</a>
-    <a href="/main/manager/admins">Admins</a>
-    <a href="/main/manager/schools">Schools</a>
+    <a href="/main">Main</a>
+    <a href="/main/admins">Admins</a>
 </div>
 
 <div class="main">
@@ -18,23 +17,10 @@
     <hr class="line">
     <div class="content">
         <h3>Schools' administrator</h3>
-        <form method="post" th:action="'/main/manager/admins/'+${admin.id}" th:object="${admin}">
-            <input id="name" placeholder="First Name" required th:field="*{name}" type="text"/>
+        <form method="post" th:action="'/main/admins/'+${admin.id}" th:object="${admin}">
+            <input id="name" placeholder="First Name" required th:field="*{firstName}" type="text"/>
             <input id="lastName" placeholder="Last Name" required th:field="*{lastName}" type="text"/>
-            <select id="school" required th:field="*{schools}">
-                <option hidden value="">Select a school</option>
-                <option value="all">all</option>
-                <option value="TMRG">TMRG</option>
-                <option value="TVL">TVL</option>
-            </select>
-            <input id="manager" placeholder="Manager" required th:field="*{manager}" type="text"/>
-            <input id="activeFlag" type="hidden" th:field="*{active}" value='true'>
-            <button class="button button5" type="submit" onclick="document.getElementById('activeFlag').value='true'">
-                Update
-            </button>
-            <button class="button button5" type="submit" onclick="document.getElementById('activeFlag').value='false'">
-                Delete
-            </button>
+            <input class="button button5" type="submit" value="Update">
         </form>
     </div>
 </div>

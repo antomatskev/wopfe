@@ -1,6 +1,6 @@
 package eu.judegam.wopfe.security;
 
-import eu.judegam.wopfe.auth.AppUserService;
+import eu.judegam.wopfe.auth.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,13 +18,13 @@ import java.util.concurrent.TimeUnit;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
-    private final AppUserService appUserService;
+    private final UserService appUserService;
 
     @Autowired
-    public AppSecurityConfig(PasswordEncoder passwordEncoder, AppUserService appUserService) {
+    public SecurityConfig(PasswordEncoder passwordEncoder, UserService appUserService) {
         this.passwordEncoder = passwordEncoder;
         this.appUserService = appUserService;
     }

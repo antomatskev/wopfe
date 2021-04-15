@@ -3,7 +3,6 @@ package eu.judegam.wopfe.services;
 import eu.judegam.wopfe.repositories.ClassRepository;
 import eu.judegam.wopfe.models.school.Class;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,8 +28,8 @@ public class ClassService {
         return (List<Class>) repository.saveAll(classes);
     }
 
-    public List<Class> getClasss() {
-        return (List<Class>) repository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+    public List<Class> getClasses() {
+        return (List<Class>) repository.findAll();
     }
 
     public Class getClassById(Long id) {
@@ -50,8 +49,6 @@ public class ClassService {
         Class existingProduct = repository.findById(classs.getId()).orElse(null);
         assert existingProduct != null;
         existingProduct.setName(classs.getName());
-        existingProduct.setSchool(classs.getSchool());
-        existingProduct.setStudents(classs.getStudents());
         existingProduct.setTimetable(classs.getTimetable());
         return repository.save(existingProduct);
 

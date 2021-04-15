@@ -1,11 +1,7 @@
 package eu.judegam.wopfe.controllers;
 
-import eu.judegam.wopfe.models.user.User;
-import eu.judegam.wopfe.security.AppUserRole;
+import eu.judegam.wopfe.utils.Utils;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,24 +21,13 @@ public class MainController {
 
     @GetMapping("/main")
     public String main(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!(auth instanceof AnonymousAuthenticationToken)) {
-            Object user = auth.getPrincipal();
-            if (user instanceof User) {
-                AppUserRole userRole = ((User) user).getRole();
-                model.addAttribute("role", userRole);
-                model.addAttribute("username", ((User) user).getUsername());
-            } else {
-                return "error";
-            }
-        } else {
-            return "error";
-        }
-        return "mains/main";
+        return Utils.addUsrAttrToModel(model, "/mains/main");
     }
+
+
     @GetMapping("/main/teacher")
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
-    public String teacher(Model model){
+    public String teacher(Model model) {
         return "mains/teacher_main";
     }
 

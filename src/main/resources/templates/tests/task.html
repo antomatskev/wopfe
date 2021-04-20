@@ -41,6 +41,7 @@
                 <th>Name</th>
                 <th>Text</th>
                 <th>Answer</th>
+                <th>Actions</th>
             </tr>
             </thead>
             <tr th:if="${#lists.isEmpty(test.questions)}">
@@ -51,14 +52,20 @@
                 <td th:text="${question.name}"></td>
                 <td th:text="${question.questionText}"></td>
                 <td>
-                    <select id="questionAnswer" required th:field="*{answer}">
-                        <option hidden value="">Select an answer</option>
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                    </select>
+                    <form method="post"
+                          th:action="'/main/task/' + ${question.id} + '/check'"
+                          th:object="${question}">
+                        <select id="questionAnswer" required th:field="*{answer}">
+                            <option hidden value="">Select an answer</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</option>
+                            <option value="Friday">Friday</option>
+                        </select>
+                        <input class="button button5" type="submit" value="Add Answer">
+                        <input class="button button5" type="reset" value="Reset">
+                    </form>
                 </td>
             </tr>
             </tbody>

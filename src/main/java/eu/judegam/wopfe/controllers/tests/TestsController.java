@@ -23,6 +23,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class TestsController {
@@ -89,7 +90,7 @@ public class TestsController {
     }
 
     @RequestMapping(value = "/main/tasks", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_STUDENT')")
     public String getTasks(Model model) {
         final String ret;
         final List<Test> tests = new ArrayList<>();
@@ -114,12 +115,31 @@ public class TestsController {
     }
 
     @GetMapping(value = "/main/tasks/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_STUDENT')")
     public String getTask(Model model, @PathVariable("id") Long id) {
+        final String ret;
         Test test = service.getTestById(id);
-        model.addAttribute("test", test);
-        model.addAttribute("question", new Question());
-        return Utils.addUsrAttrToModel(model, "tests/task");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            Object user = auth.getPrincipal();
+            if (user instanceof User) {
+                UserRole userRole = ((User) user).getUserRole();
+                model.addAttribute("role", userRole);
+                model.addAttribute("username", ((User) user).getUsername());
+                if (!Objects.equals(test.getClazz(), ((User) user).getClazz())) {
+                    ret = "error";
+                } else {
+                    model.addAttribute("test", test);
+                    model.addAttribute("question", new Question());
+                    ret = "tests/task";
+                }
+            } else {
+                ret = "error";
+            }
+        } else {
+            ret = "error";
+        }
+        return ret;
     }
 
 }

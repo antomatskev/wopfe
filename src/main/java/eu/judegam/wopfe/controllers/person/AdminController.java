@@ -1,7 +1,7 @@
 package eu.judegam.wopfe.controllers.person;
 
 import eu.judegam.wopfe.auth.UserService;
-import eu.judegam.wopfe.models.user.User;
+import eu.judegam.wopfe.models.User;
 import eu.judegam.wopfe.security.UserRole;
 import eu.judegam.wopfe.utils.Utils;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -42,7 +42,7 @@ public class AdminController {
     public String getStudent(Model model, @PathVariable("id") Long id) {
         User student = usrService.getUserById(id);
         model.addAttribute("user", student);
-        return "school/student_info";
+        return Utils.addUsrAttrToModel(model, "school/student_info");
     }
 
     @RequestMapping(path = "/main/students", method = RequestMethod.POST)
@@ -63,7 +63,7 @@ public class AdminController {
                                 @ModelAttribute User student) {
         User updStudent = usrService.updateUser(id, student);
         model.addAttribute("user", updStudent);
-        return "school/student_info";
+        return Utils.addUsrAttrToModel(model, "school/student_info");
     }
 
     @RequestMapping(path = "/main/students/{id}/delete", method =
@@ -84,7 +84,7 @@ public class AdminController {
         List<User> teachers = usrService.getUsersWithRole(UserRole.TEACHER);
         model.addAttribute("teachers", teachers);
         model.addAttribute("teacher", new User());
-        return "school/teachers";
+        return Utils.addUsrAttrToModel(model, "school/teachers");
     }
 
     @RequestMapping(path = "/main/teachers/{id}", method = RequestMethod.GET)
@@ -92,7 +92,7 @@ public class AdminController {
     public String getTeacher(Model model, @PathVariable("id") Long id) {
         User teacher = usrService.getUserById(id);
         model.addAttribute("user", teacher);
-        return "school/teacher_info";
+        return Utils.addUsrAttrToModel(model, "school/teacher_info");
     }
 
     @RequestMapping(path = "/main/teachers", method = RequestMethod.POST)
@@ -113,7 +113,7 @@ public class AdminController {
                                 @ModelAttribute User teacher) {
         User updTeacher = usrService.updateUser(id, teacher);
         model.addAttribute("user", updTeacher);
-        return "school/teacher_info";
+        return Utils.addUsrAttrToModel(model, "school/teacher_info");
     }
 
     @RequestMapping(path = "/main/teachers/{id}/delete", method =
@@ -135,7 +135,7 @@ public class AdminController {
                 .map(User::getClazz)
                 .collect(Collectors.toSet());
         model.addAttribute("classes", classes);
-        return "school/classes";
+        return Utils.addUsrAttrToModel(model, "school/classes");
     }
 
     @RequestMapping(path = "/main/classes/{name}", method = RequestMethod.GET)
@@ -146,7 +146,7 @@ public class AdminController {
                 .collect(Collectors.toList());
         model.addAttribute("class", name);
         model.addAttribute("users", users);
-        return "school/class_info";
+        return Utils.addUsrAttrToModel(model, "school/class_info");
     }
 
 }

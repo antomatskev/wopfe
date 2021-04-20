@@ -1,4 +1,4 @@
-package eu.judegam.wopfe.models.user;
+package eu.judegam.wopfe.models;
 
 import eu.judegam.wopfe.security.UserRole;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,7 +1,7 @@
 package eu.judegam.wopfe.auth;
 
 import com.google.common.base.Objects;
-import eu.judegam.wopfe.models.user.User;
+import eu.judegam.wopfe.models.User;
 import eu.judegam.wopfe.repositories.UserRepo;
 import eu.judegam.wopfe.security.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;

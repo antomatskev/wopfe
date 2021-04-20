@@ -27,13 +27,13 @@ public class MainController {
     @GetMapping("/main/teacher")
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String teacher(Model model) {
-        return "mains/teacher_main";
+        return Utils.addUsrAttrToModel(model, "mains/teacher_main");
     }
 
     @GetMapping("/main/student")
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_STUDENT')")
     public String student(Model model) {
-        return "mains/student_main";
+        return Utils.addUsrAttrToModel(model, "mains/student_main");
     }
 
 }

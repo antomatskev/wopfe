@@ -1,8 +1,9 @@
 package eu.judegam.wopfe.controllers.person;
 
 import eu.judegam.wopfe.auth.UserService;
-import eu.judegam.wopfe.models.user.User;
+import eu.judegam.wopfe.models.User;
 import eu.judegam.wopfe.security.UserRole;
+import eu.judegam.wopfe.utils.Utils;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +31,7 @@ public class ManagerController {
         List<User> admins = service.getUsersWithRole(UserRole.ADMIN);
         model.addAttribute("admins", admins);
         model.addAttribute("admin", new User());
-        return "manager/manager_admins";
+        return Utils.addUsrAttrToModel(model, "manager/manager_admins");
     }
 
     @RequestMapping(path = "/main/admins/{id}", method = RequestMethod.GET)
@@ -38,7 +39,7 @@ public class ManagerController {
     public String getAdmin(Model model, @PathVariable("id") Long id) {
         User admin = service.getUserById(id);
         model.addAttribute("admin", admin);
-        return "manager/manager_admin_edit";
+        return Utils.addUsrAttrToModel(model, "manager/manager_admin_edit");
     }
 
     @RequestMapping(path = "/main/admins", method = RequestMethod.POST)
@@ -58,7 +59,7 @@ public class ManagerController {
                               @ModelAttribute User admin) {
         User updatedAdmin = service.updateUser(id, admin);
         model.addAttribute("admin", updatedAdmin);
-        return "manager/manager_admins";
+        return Utils.addUsrAttrToModel(model, "manager/manager_admins");
     }
 
     @RequestMapping(path = "/main/admins/{id}/delete", method =

@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class TestsController {
@@ -39,7 +42,9 @@ public class TestsController {
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String showTestById(Model model, @PathVariable("id") Long id) {
         Test test = service.getTestById(id);
+        List<Question> questions = test.getQuestions().stream().sorted(Comparator.comparing(Question::getQuestionText)).collect(Collectors.toList());
         model.addAttribute("test", test);
+        model.addAttribute("questions", questions);
         model.addAttribute("question", new Question());
         return "tests/edit_test";
     }
@@ -50,6 +55,7 @@ public class TestsController {
         Test dbTest = service.updateTest(id, test);
         model.addAttribute("test", dbTest);
         model.addAttribute("question", new Question());
+        model.addAttribute("questions", test.getQuestions());
         return "tests/edit_test";
     }
 
@@ -58,6 +64,7 @@ public class TestsController {
     public String updateTestQuestions(Model model, @PathVariable("id") Long id) {
         Test test = service.getTestById(id);
         model.addAttribute("test", test);
+        model.addAttribute("question", new Question());
         model.addAttribute("questions", test.getQuestions());
         return "tests/edit_test";
     }

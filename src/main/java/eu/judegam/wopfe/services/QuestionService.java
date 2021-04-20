@@ -37,7 +37,7 @@ public class QuestionService {
     }
 
     public List<Question> getQuestions() {
-        return (List<Question>) repository.findAll(Sort.by(Sort.Direction.ASC, "questionText"));
+        return (List<Question>) repository.findAll(Sort.by(Sort.Direction.DESC, "questionText"));
     }
 
     public Question getQuestionById(Long id) {

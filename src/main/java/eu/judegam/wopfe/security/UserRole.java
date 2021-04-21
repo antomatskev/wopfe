@@ -7,21 +7,21 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public enum AppUserRole {
-    ALL(Sets.newHashSet(AppUserPermission.ALL)),
-    MANAGER(Sets.newHashSet(AppUserPermission.MANAGER)),
-    ADMIN(Sets.newHashSet(AppUserPermission.ADMIN)),
-    PRINCIPAL(Sets.newHashSet(AppUserPermission.PRINCIPAL)),
-    TEACHER(Sets.newHashSet(AppUserPermission.TEACHER)),
-    STUDENT(Sets.newHashSet(AppUserPermission.STUDENT));
+public enum UserRole {
+    ALL(Sets.newHashSet(UserPermission.ALL)),
+    MANAGER(Sets.newHashSet(UserPermission.MANAGER)),
+    ADMIN(Sets.newHashSet(UserPermission.ADMIN)),
+    PRINCIPAL(Sets.newHashSet(UserPermission.PRINCIPAL)),
+    TEACHER(Sets.newHashSet(UserPermission.TEACHER)),
+    STUDENT(Sets.newHashSet(UserPermission.STUDENT));
 
-    private final Set<AppUserPermission> permissions;
+    private final Set<UserPermission> permissions;
 
-    AppUserRole(Set<AppUserPermission> permissions) {
+    UserRole(Set<UserPermission> permissions) {
         this.permissions = permissions;
     }
 
-    public Set<AppUserPermission> getPermissions() {
+    public Set<UserPermission> getPermissions() {
         return permissions;
     }
 
@@ -31,6 +31,10 @@ public enum AppUserRole {
                 .collect(Collectors.toSet());
         ret.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
         return ret;
+    }
+
+    public String getName() {
+        return name();
     }
 
 }

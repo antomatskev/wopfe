@@ -6,6 +6,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class TestsService {
@@ -26,8 +28,13 @@ public class TestsService {
     }
 
     public List<Test> getTests() {
-
         return (List<Test>) repository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+    }
+
+    public List<Test> getUserTests(String clazz) {
+        return getTests().stream()
+                .filter(t -> Objects.equals(t.getClazz(), clazz))
+                .collect(Collectors.toList());
     }
 
     public Test getTestById(Long id) {

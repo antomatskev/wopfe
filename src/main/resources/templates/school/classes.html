@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WOPFE</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="sidenav">
+    <a href="/main/admins">Admins</a>
+    <a href="/main/classes">Classes</a>
+    <a href="/main/students">Students</a>
+    <a href="/main/teachers">Teachers</a>
+    <a href="/main/timetables">Timetables</a>
+</div>
+
+<div class="main">
+    <h1 class="moreGreenText appName">WOPFE</h1>
+    <hr class="line">
+    <div class="content">
+        <h3>Classes</h3>
+        <table class="greyGridTable">
+            <thead>
+            <tr>
+                <th>Class</th>
+                <th>Info</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(classes)}">
+                <td colspan="5">No classes available yet.</td>
+            </tr>
+            <tr th:each="class : ${classes}">
+                <td th:if="${class != null}" th:text="${class}"></td>
+                <td th:if="${class != null}"><a
+                        th:href="'/main/classes/' + ${class}">-i-</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

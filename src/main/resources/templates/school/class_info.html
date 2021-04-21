@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WOPFE</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="sidenav">
+    <a href="/main/admins">Admins</a>
+    <a href="/main/classes">Classes</a>
+    <a href="/main/students">Students</a>
+    <a href="/main/teachers">Teachers</a>
+    <a href="/main/timetables">Timetables</a>
+</div>
+
+<div class="main">
+    <h1 class="moreGreenText appName">WOPFE</h1>
+    <hr class="line">
+    <div class="content">
+        <h3 th:inline="text">
+            Class [[${class}]] people
+        </h3>
+        <table class="greyGridTable">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Class</th>
+                <th>Update</th>
+                <th>Remove</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(users)}">
+                <td colspan="5">No students available yet.</td>
+            </tr>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.fullName}"></td>
+                <td th:text="${user.userRole}"></td>
+                <td th:text="${user.clazz}"></td>
+                <td th:if="${user.userRole.name == 'STUDENT'}">
+                    <a th:href="'/main/students/' + ${user.id}">-O-</a>
+                </td>
+                <td th:if="${user.userRole.name == 'TEACHER'}">
+                    <a th:href="'/main/teachers/' + ${user.id}">-O-</a>
+                </td>
+                <td th:if="${user.userRole.name == 'STUDENT'}">
+                    <form method="post"
+                          th:action="'/main/students/' + ${user.id} + '/delete'" th:object="${user}">
+                        <input type="submit" value="X">
+                    </form>
+                </td>
+                <td th:if="${user.userRole.name == 'TEACHER'}">
+                    <form method="post"
+                          th:action="'/main/teachers/' + ${user.id} + '/delete'" th:object="${user}">
+                        <input type="submit" value="X">
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

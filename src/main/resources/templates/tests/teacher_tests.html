@@ -34,15 +34,15 @@
             <tbody>
             <tr th:each="test : ${tests}">
                 <td th:text="${test.name}"></td>
-                <td><a th:href="'/main/teacher/tests/' + ${test.id}">Add questions</a></td>
+                <td><a th:href="'/main/tests/' + ${test.id}">Add questions</a></td>
                 <td>
-                    <form method="post" th:action="'/main/teacher/test/' + ${test.id} + '/delete'" th:object="${test}">
+                    <form method="post" th:action="'/main/test/' + ${test.id} + '/delete'" th:object="${test}">
                         <input type="submit" value="X">
                     </form>
             </tr>
             </tbody>
         </table>
-        <form method="post" th:action="@{/main/teacher/addTest}" th:object="${test}">
+        <form method="post" th:action="@{/main/addTest}" th:object="${test}">
             <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
             <button class="button button5" type="submit"  >Create Test</button>
             <input class="button button5" type="reset" value="Reset">

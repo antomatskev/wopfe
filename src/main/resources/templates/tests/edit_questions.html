@@ -46,13 +46,13 @@
                 <td>
 
                     <form method="post"
-                          th:action="'/main/teacher/question/' + ${question.id} + '/deleteAnswer/' + ${answer.id}" th:object="${answer}">
+                          th:action="'/main/question/' + ${question.id} + '/deleteAnswer/' + ${answer.id}" th:object="${answer}">
                         <input type="submit" value="X">
                     </form>
             </tr>
             </tbody>
         </table >
-        <form method="post" th:action="'/main/teacher/questionsAnswer/' + ${question.id} + '/addAnswer'" th:object="${question}">
+        <form method="post" th:action="'/main/questionsAnswer/' + ${question.id} + '/addAnswer'" th:object="${question}">
             <input id="AnswerText" placeholder="answerText" required th:field="*{answerText}" type="text" th:object="${answer}"/>
             <select id="trueOrFalse" required th:field="*{type}">
                 <option hidden value="">Select a type</option>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WOPFE</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="sidenav">
+    <a href="/main">Main</a>
+    <a href="/main/admins">Admins</a>
+    <a href="/main/classes">Classes</a>
+    <a href="/main/students">Students</a>
+    <a href="/main/teachers">Teachers</a>
+    <a href="/main/timetables">Timetables</a>
+    <form class="form-signin" method="get" action="/logout">
+        Logged in as
+        <br/>
+        <span th:inline="text">
+            [[${username}]]
+        </span>
+        <br/>
+        <span th:inline="text">
+            (role [[${role.name}]])
+        </span>
+        <br/>
+        <input class="btn" type="submit" name="" value="Log out">
+    </form>
+</div>
+
+<div class="main">
+    <h1 class="moreGreenText appName">WOPFE</h1>
+    <hr class="line">
+    <div class="content">
+        <h3>Students</h3>
+        <form method="post" th:action="@{/main/students}"
+              th:object="${student}">
+            <input id="firstName" placeholder="firstName" required
+                   th:field="*{firstName}" type="text"/>
+            <input id="lastName" placeholder="lastName" required
+                   th:field="*{lastName}" type="text"/>
+            <input id="class" placeholder="Class" required th:field="*{clazz}"
+                   type="text"/>
+            <button class="button button5" type="submit">Add Student</button>
+            <button class="button button5" type="reset">Reset</button>
+        </form>
+        <table class="greyGridTable">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Username</th>
+                <th>Update</th>
+                <th>Remove</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(students)}">
+                <td colspan="5">No students available yet.</td>
+            </tr>
+            <tr th:each="student : ${students}">
+                <td th:text="${student.id}"></td>
+                <td th:text="${student.fullName}"></td>
+                <td th:text="${student.clazz}"></td>
+                <td th:text="${student.username}"></td>
+                <td><a th:href="'/main/students/' + ${student.id}">-O-</a></td>
+                <td>
+                    <form method="post"
+                          th:action="'/main/students/' + ${student.id} + '/delete'" th:object="${student}">
+                        <input type="submit" value="X">
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

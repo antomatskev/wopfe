@@ -34,6 +34,7 @@ public class Question implements Serializable {
     private Long testId;
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Answer> answers;
+    private String answer;
 
     public Question(String name, String type, String questionText) {
         this.name = name;
@@ -118,4 +119,12 @@ public class Question implements Serializable {
         this.answers = answers;
     }
 
+    public String getAnswer() {
+        // TODO: make selection in task.html for answers.
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
 }

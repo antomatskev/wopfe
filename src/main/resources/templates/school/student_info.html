@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WOPFE</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<div class="sidenav">
+    <a href="/main/admins">Admins</a>
+    <a href="/main/classes">Classes</a>
+    <a href="/main/students">Students</a>
+    <a href="/main/teachers">Teachers</a>
+    <a href="/main/timetables">Timetables</a>
+</div>
+
+<div class="main">
+    <h1 class="moreGreenText appName">WOPFE</h1>
+    <hr class="line">
+    <div class="content">
+        <h3>User info</h3>
+        <form method="post"
+              th:action="'/main/students/' + ${user.id}"
+              th:object="${user}">
+            <input id="firstName" placeholder="First Name" required
+                   th:field="*{firstName}" type="text"/>
+            <input id="lastName" placeholder="Last Name" required
+                   th:field="*{lastName}"
+                   type="text"/>
+            <input id="class" placeholder="Class" required th:field="*{clazz}"
+                   type="text"/>
+            <input class="button button5" type="submit" value="Update"
+                   th:onclick="'/main/students/'+${user.id}">
+        </form>
+        <table class="greyGridTable">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Class</th>
+                <th>Username</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${user == null}">
+                <td colspan="7">No Records found. Add some...!</td>
+            </tr>
+            <tr>
+                <td th:text="${user.id}"></td>
+                <td th:text="${user.fullName}"></td>
+                <td th:text="${user.userRole}"></td>
+                <td th:text="${user.clazz}"></td>
+                <td th:text="${user.username}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

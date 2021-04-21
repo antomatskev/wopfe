@@ -19,6 +19,7 @@ public class Test implements Serializable {
     private String name;
     private String date;
     private String time;
+    private String clazz;
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
     private List<Question> questions;
 
@@ -42,6 +43,14 @@ public class Test implements Serializable {
         this.name = name;
         this.date = date;
         this.time = time;
+    }
+
+    public Test(String name, String date, String time, String clazz, List<Question> questions) {
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.clazz = clazz;
+        this.questions = questions;
     }
 
     public Test() {
@@ -88,4 +97,11 @@ public class Test implements Serializable {
         this.questions = questions;
     }
 
+    public String getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(String clazz) {
+        this.clazz = clazz;
+    }
 }

@@ -80,7 +80,6 @@ public class TestsController {
         return view;
     }
 
-
     @RequestMapping(path = "/main/test/{id}/delete", method = RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public RedirectView deleteTest(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Test test) {
@@ -140,6 +139,18 @@ public class TestsController {
             ret = "error";
         }
         return ret;
+    }
+
+    @RequestMapping(path = "/main/task/{id}/check", method =
+            RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_STUDENT')")
+    public RedirectView checkTask(RedirectAttributes redirectAttributes,
+                          @PathVariable("id") Long id, @ModelAttribute Test test) {
+        RedirectView redirectView = new RedirectView("/main/tasks/", true);
+        Test task = service.getTestById(id);
+        redirectAttributes.addFlashAttribute("taskCheckMessage",
+                task);
+        return redirectView;
     }
 
 }

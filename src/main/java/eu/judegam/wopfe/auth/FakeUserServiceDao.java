@@ -27,34 +27,38 @@ public class FakeUserServiceDao implements UserDao {
     }
 
     private List<User> getAppUsers() {
+        User anton = new User(
+                "anton",
+                passwordEncoder.encode("matskevich"),
+                ALL,
+                true,
+                true,
+                true,
+                true
+        );
+        anton.setClazz("1a");
+        User ellina = new User(
+                "ellina",
+                passwordEncoder.encode("gedrojets"),
+                ALL,
+                true,
+                true,
+                true,
+                true
+        );
+        User julia = new User(
+                "julia",
+                passwordEncoder.encode("djomina"),
+                ALL,
+                true,
+                true,
+                true,
+                true
+        );
         return Lists.newArrayList(
-                new User(
-                    "anton",
-                        passwordEncoder.encode("matskevich"),
-                        ALL,
-                        true,
-                        true,
-                        true,
-                        true
-                ),
-                new User(
-                    "ellina",
-                        passwordEncoder.encode("gedrojets"),
-                        ALL,
-                        true,
-                        true,
-                        true,
-                        true
-                ),
-                new User(
-                    "julia",
-                        passwordEncoder.encode("djomina"),
-                        ALL,
-                        true,
-                        true,
-                        true,
-                        true
-                ),
+                anton,
+                ellina,
+                julia,
                 new User(
                     "manager",
                         passwordEncoder.encode("password"),

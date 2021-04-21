@@ -53,7 +53,7 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> getUsersWithRole(UserRole role) {
-        return ((List<User>) repo.findAll()).stream()
+        return getAllUsers().stream()
                 .filter(u -> u.getUserRole() == role)
                 .collect(Collectors.toList());
     }
@@ -69,6 +69,11 @@ public class UserService implements UserDetailsService {
                 : ((List<User>) repo.findAll())
                 .stream().filter(u -> Objects.equal(username, u.getUsername()))
                 .findFirst();
+    }
+
+    public List<User> getAllUsersByClass(String clazz) {
+        return getAllUsers().stream().filter(u -> Objects.equal(u.getClazz(),
+                clazz)).collect(Collectors.toList());
     }
 
     public User getUserById(Long id) {

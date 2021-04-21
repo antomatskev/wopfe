@@ -1,16 +1,23 @@
 package eu.judegam.wopfe.models.tests;
 
+import eu.judegam.wopfe.models.User;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Entity
+@Table(name="tests")
 public class Test implements Serializable {
 
     @Id
@@ -22,6 +29,9 @@ public class Test implements Serializable {
     private String clazz;
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
     private List<Question> questions;
+    @ManyToMany(fetch= FetchType.LAZY, cascade = CascadeType.PERSIST,
+            mappedBy = "tests")
+    private List<User> users = new ArrayList<>();
 
     public Test(String name) {
         this.name = name;
@@ -32,9 +42,10 @@ public class Test implements Serializable {
         this.questions = questions;
     }
 
-    public Test(Long id, String name, String date, String time) {
+    public Test(Long id, String name, String clazz, String date, String time) {
         this.id = id;
         this.name = name;
+        this.clazz = clazz;
         this.date = date;
         this.time = time;
     }
@@ -104,4 +115,21 @@ public class Test implements Serializable {
     public void setClazz(String clazz) {
         this.clazz = clazz;
     }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void addUser(User u) {
+        users.add(u);
+    }
+
+    public void addUsers(List<User> usrs) {
+        users.addAll(usrs);
+    }
+
 }

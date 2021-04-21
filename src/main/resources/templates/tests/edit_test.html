@@ -25,6 +25,8 @@
         </h3>
         <form method="post" th:action="'/main/tests/' + ${test.id} + '/update'" th:object="${test}">
             <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
+            <input id="class" placeholder="Class" required th:field="*{clazz}"
+                   type="text"/>
             <input id="date" placeholder="Date" required th:field="*{date}" type="text"/>
             <input id="time" placeholder="Time" required th:field="*{time}" type="text"/>
             <input class="button button5" type="submit" value="Update" th:onclick="'/main/tests/'+${test.id}+'/update'">
@@ -33,6 +35,7 @@
             <thead>
             <tr>
                 <th>Name</th>
+                <th>Class</th>
                 <th>Type</th>
                 <th>Questions</th>
             </tr>
@@ -43,6 +46,7 @@
             <tbody>
             <tr th:each="question : ${test.questions}">
                 <td th:text="${question.name}"></td>
+                <td th:text="${question.clazz}"></td>
                 <td th:text="${question.type}"></td>
                 <td th:text="${question.questionText}"></td>
                 <td><a th:href="'/main/questions/' + ${question.id}">Add answers</a></td>

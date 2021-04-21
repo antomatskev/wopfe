@@ -1,5 +1,6 @@
 package eu.judegam.wopfe.controllers.timetable;
 
+import eu.judegam.wopfe.models.user.User;
 import eu.judegam.wopfe.services.TimetableService;
 import eu.judegam.wopfe.models.timetable.Event;
 import eu.judegam.wopfe.models.timetable.Timetable;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class TimetableController {
@@ -27,8 +29,7 @@ public class TimetableController {
     @RequestMapping(value = "/main/timetables", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL', 'ROLE_ADMIN')")
     public String getTimetables(Model model) {
-        List<Timetable> tts = ttService.getAllTimetables();
-        tts.sort(Comparator.comparing(Timetable::getName));
+        List<Timetable> tts = ttService.getAllTimetables().stream().sorted(Comparator.comparing(Timetable::getName)).collect(Collectors.toList());
         model.addAttribute("timetables", tts);
         model.addAttribute("timetable", new Timetable());
         model.addAttribute("event", new Event());

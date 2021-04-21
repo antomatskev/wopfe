@@ -1,6 +1,7 @@
 package eu.judegam.wopfe.controllers.person;
 
 import eu.judegam.wopfe.auth.UserService;
+import eu.judegam.wopfe.models.tests.Question;
 import eu.judegam.wopfe.models.user.User;
 import eu.judegam.wopfe.security.UserRole;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ManagerController {
@@ -27,7 +30,7 @@ public class ManagerController {
     @RequestMapping(path = "/main/admins", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
     public String getAdmins(Model model) {
-        List<User> admins = service.getUsersWithRole(UserRole.ADMIN);
+        List<User> admins = service.getUsersWithRole(UserRole.ADMIN).stream().sorted(Comparator.comparing(User::getId)).collect(Collectors.toList());
         model.addAttribute("admins", admins);
         model.addAttribute("admin", new User());
         return "manager/manager_admins";

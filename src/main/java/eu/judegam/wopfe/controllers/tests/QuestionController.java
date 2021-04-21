@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class QuestionController {
@@ -59,7 +61,9 @@ public class QuestionController {
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String showQuestionById(Model model, @PathVariable("id") Long id) {
         Question question = service.getQuestionById(id);
+        List<Answer> answers = question.getAnswers().stream().sorted(Comparator.comparing(Answer::getAnswerText)).collect(Collectors.toList());
         model.addAttribute("question", question);
+        model.addAttribute("answers", answers);
         model.addAttribute("answer", new Answer());
         return "tests/edit_questions";
     }

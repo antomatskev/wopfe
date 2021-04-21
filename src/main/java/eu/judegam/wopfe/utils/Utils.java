@@ -1,11 +1,16 @@
 package eu.judegam.wopfe.utils;
 
+import eu.judegam.wopfe.models.timetable.Timetable;
 import eu.judegam.wopfe.models.user.User;
 import eu.judegam.wopfe.security.UserRole;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
+
+import java.awt.*;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 /**
  * Class with utility methods.
@@ -37,5 +42,4 @@ public class Utils {
         }
         return ret;
     }
-
 }

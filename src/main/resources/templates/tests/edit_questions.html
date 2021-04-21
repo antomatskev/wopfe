@@ -37,7 +37,7 @@
                 <td colspan="5">No created answers found.</td>
             </tr>
             <tbody>
-            <tr th:each="answer : ${question.answers}">
+            <tr th:each="answer : ${answers}">
                 <td th:text="${answer.answerText}"></td>
                 <td th:text="${answer.isTrue}"></td>
 <!--                <form method="post" th:action="'/main/teacher/Answer/change/boolean/' + ${answer.id}" th:object="${answer}">-->

@@ -1,12 +1,11 @@
 package eu.judegam.wopfe.controllers.tests;
 
 import eu.judegam.wopfe.models.User;
-import eu.judegam.wopfe.security.UserRole;
-import eu.judegam.wopfe.services.TestsService;
 import eu.judegam.wopfe.models.tests.Question;
 import eu.judegam.wopfe.models.tests.Test;
+import eu.judegam.wopfe.security.UserRole;
+import eu.judegam.wopfe.services.TestsService;
 import eu.judegam.wopfe.utils.Utils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -22,8 +21,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Controller
 public class TestsController {
@@ -47,7 +48,11 @@ public class TestsController {
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String showTestById(Model model, @PathVariable("id") Long id) {
         Test test = service.getTestById(id);
+        List<Question> questions = test.getQuestions().stream()
+                .sorted(Comparator.comparing(Question::getQuestionText))
+                .collect(Collectors.toList());
         model.addAttribute("test", test);
+        model.addAttribute("questions", questions);
         model.addAttribute("question", new Question());
         return Utils.addUsrAttrToModel(model, "tests/edit_test");
     }
@@ -58,6 +63,7 @@ public class TestsController {
         Test dbTest = service.updateTest(id, test);
         model.addAttribute("test", dbTest);
         model.addAttribute("question", new Question());
+        model.addAttribute("questions", test.getQuestions());
         return Utils.addUsrAttrToModel(model, "tests/edit_test");
     }
 
@@ -66,6 +72,7 @@ public class TestsController {
     public String updateTestQuestions(Model model, @PathVariable("id") Long id) {
         Test test = service.getTestById(id);
         model.addAttribute("test", test);
+        model.addAttribute("question", new Question());
         model.addAttribute("questions", test.getQuestions());
         return Utils.addUsrAttrToModel(model, "tests/edit_test");
     }
@@ -145,7 +152,7 @@ public class TestsController {
             RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_STUDENT')")
     public RedirectView checkTask(RedirectAttributes redirectAttributes,
-                          @PathVariable("id") Long id, @ModelAttribute Test test) {
+                                  @PathVariable("id") Long id, @ModelAttribute Test test) {
         RedirectView redirectView = new RedirectView("/main/tasks/", true);
         Test task = service.getTestById(id);
         redirectAttributes.addFlashAttribute("taskCheckMessage",

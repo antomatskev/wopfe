@@ -1,8 +1,8 @@
 package eu.judegam.wopfe.controllers.timetable;
 
-import eu.judegam.wopfe.services.TimetableService;
 import eu.judegam.wopfe.models.timetable.Event;
 import eu.judegam.wopfe.models.timetable.Timetable;
+import eu.judegam.wopfe.services.TimetableService;
 import eu.judegam.wopfe.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,20 +16,65 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.Comparator;
+import java.math.BigInteger;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 @Controller
 public class TimetableController {
 
-    @Autowired
-    private TimetableService ttService;
+    private final TimetableService ttService;
+    private static final Pattern PATTERN = Pattern.compile("(\\D*)(\\d*)");
+
+    public TimetableController(TimetableService ttService) {
+        this.ttService = ttService;
+    }
 
     @RequestMapping(value = "/main/timetables", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL', 'ROLE_ADMIN')")
     public String getTimetables(Model model) {
-        List<Timetable> tts = ttService.getAllTimetables();
-        tts.sort(Comparator.comparing(Timetable::getName));
+        List<Timetable> tts = ttService.getAllTimetables().stream().sorted((t1, t2) -> {
+            String s1 = t1.getName();
+            String s2 = t2.getName();
+            Matcher m1 = PATTERN.matcher(s1);
+            Matcher m2 = PATTERN.matcher(s2);
+
+            // The only way find() could fail is at the end of a string
+            while (m1.find() && m2.find()) {
+                // matcher.group(1) fetches any non-digits captured by the
+                // first parentheses in PATTERN.
+                int nonDigitCompare = m1.group(1).compareTo(m2.group(1));
+                if (0 != nonDigitCompare) {
+                    return nonDigitCompare;
+                }
+
+                // matcher.group(2) fetches any digits captured by the
+                // second parentheses in PATTERN.
+                if (m1.group(2).isEmpty()) {
+                    return m2.group(2).isEmpty() ? 0 : -1;
+                } else if (m2.group(2).isEmpty()) {
+                    return +1;
+                }
+
+                BigInteger n1 = new BigInteger(m1.group(2));
+                BigInteger n2 = new BigInteger(m2.group(2));
+                int numberCompare = n1.compareTo(n2);
+                if (0 != numberCompare) {
+                    return numberCompare;
+                }
+            }
+
+            // Handle if one string is a prefix of the other.
+            // Nothing comes before something.
+            return m1.hitEnd() && m2.hitEnd()
+                    ? 0
+                    : m1.hitEnd()
+                        ? -1
+                        : +1;
+
+        }).collect(Collectors.toList());
         model.addAttribute("timetables", tts);
         model.addAttribute("timetable", new Timetable());
         model.addAttribute("event", new Event());

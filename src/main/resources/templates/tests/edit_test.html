@@ -41,7 +41,7 @@
                 <td colspan="5">No created questions found.</td>
             </tr>
             <tbody>
-            <tr th:each="question : ${test.questions}">
+            <tr th:each="question : ${questions}">
                 <td th:text="${question.name}"></td>
                 <td th:text="${question.type}"></td>
                 <td th:text="${question.questionText}"></td>

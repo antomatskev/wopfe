@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -31,7 +32,7 @@ public class AdminController {
     @RequestMapping(path = "/main/students", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN')")
     public String getStudents(Model model) {
-        List<User> students = usrService.getUsersWithRole(UserRole.STUDENT);
+        List<User> students = usrService.getUsersWithRole(UserRole.STUDENT).stream().sorted(Comparator.comparing(User::getId)).collect(Collectors.toList());
         model.addAttribute("students", students);
         model.addAttribute("student", new User());
         return Utils.addUsrAttrToModel(model, "school/students");
@@ -81,7 +82,9 @@ public class AdminController {
     @RequestMapping(path = "/main/teachers", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN')")
     public String getTeachers(Model model) {
-        List<User> teachers = usrService.getUsersWithRole(UserRole.TEACHER);
+        List<User> teachers = usrService.getUsersWithRole(UserRole.TEACHER)
+                .stream().sorted(Comparator.comparing(User::getId))
+                .collect(Collectors.toList());
         model.addAttribute("teachers", teachers);
         model.addAttribute("teacher", new User());
         return Utils.addUsrAttrToModel(model, "school/teachers");

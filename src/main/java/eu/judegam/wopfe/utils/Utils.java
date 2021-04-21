@@ -9,13 +9,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 
 import java.awt.*;
+import java.sql.Time;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
 /**
  * Class with utility methods.
  */
-public class Utils {
+public class Utils{
 
     /**
      * Add authenticated user attributes to the model.
@@ -42,4 +44,5 @@ public class Utils {
         }
         return ret;
     }
+
 }

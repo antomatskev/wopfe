@@ -12,40 +12,74 @@
 
 .sidenav {
     height: 100%;
-    width: 250px;
+    width: 0;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
     background-color: #0a9471;
     overflow-x: hidden;
-    /*padding-top: 200px;*/
-    padding: 280px 0;
-    overflow-y: hidden;
+    padding-top: 80px; /*чтобы кнопки в меню были на определенном уровне*/
+    /*padding: 280px 0;*/
+    transition: 0.5s;
 }
+
+#closebtn {
+    position: absolute;
+    top: 0;
+    /*text-align: right;*/
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: black;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #215A48;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
 
 .sidenav a {
     border-left: 3px solid transparent;
+    transition: 0.3s;
 }
 
 /* Style the sidenav links and the dropdown button */
 .sidenav a, .dropdown-btn {
-    padding: 6px 8px 6px 16px;
+    /*padding: 6px 8px 6px 16px;*/
+    padding: 8px 8px 8px 32px;
     text-decoration: none;
     color: white;
     display: block;
-    border: none;
-    border-left: white;
-    background: none;
-    width: 100%;
-    cursor: pointer;
     font-size: 20px;
     font-weight: 200;
     line-height: 65px;
     text-align: left;
-    letter-spacing: 1px;
-    outline: none;
-
+    letter-spacing: 1px; /*border: none;*/
+    /*border-left: white;*/
+    /*background: none;*/
+    /*width: 100%;*/
+    /*cursor: pointer;*/
+    /*outline: none;*/
 }
 
 /* On mouse-over */
@@ -55,36 +89,11 @@
 }
 
 
-/* Main content */
-.main {
-    margin-left: 200px; /* Same as the width of the sidenav */
-    font-size: 20px; /* Increased text to enable scrolling */
-    padding: 0 10px;
-}
-
-/* Add an active class to the active dropdown button */
-.active {
-    background-color: #215A48;
-    color: white;
-}
-
-/* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
-.dropdown-container {
-    display: none;
-    background-color: #18453b;
-    padding-left: 16px;
-}
-
-/* Optional: Style the caret down icon */
-.fa-caret-down {
-    float: right;
-    padding-right: 8px;
-}
-
 /* Style page content */
 .main {
-    margin-left: 250px; /* Same as the width of the sidebar */
-    padding: 10px 10px;
+    /*margin-left: 250px; !* Same as the width of the sidebar *!*/;
+    transition: margin-left .5s;
+    padding: 16px;
 }
 
 .greenText {
@@ -112,7 +121,7 @@ body {
 }
 
 .content {
-    position: relative;
+    /*position: relative;*/
     /*left: 120px;*/
     text-align: center;
     top: 100px;
@@ -164,6 +173,7 @@ table.greyGridTable tfoot td {
     font-size: 14px;
 }
 
+/*ЛОМАЕТ ЧАТ!!!*/
 input[type=text] {
     width: 10%;
     padding: 12px 20px;
@@ -175,10 +185,9 @@ input[type=text] {
     outline: none;
 }
 
-
+/*ЛОМАЕТ ЧАТ!!!*/
 input[type=text]:focus {
     border: 3px solid #555;
-
 }
 
 select {
@@ -189,6 +198,7 @@ select {
     background-color: #f1f1f1;
 }
 
+/*ЛОМАЕТ ЧАТ!!!*/
 .button {
     background-color: black;
     width: 10%;
@@ -206,21 +216,12 @@ select {
     text-overflow: ellipsis
 }
 
+#closebtn:hover {
+    background-color: #0a9471;
+    color: white;
+}
+
 @media (max-width: 1024px) {
-    .sidenav {
-        width: 200px; /* Set the width of the sidebar */
-        padding: 250px 0;
-    }
-
-    .sidenav a {
-        padding: 5px;
-        font-size: 20px;
-        top: 100px;
-    }
-
-    .main {
-        margin-left: 200px; /* Same as the width of the sidebar */
-    }
 
     input[type=text] {
         width: 20%;
@@ -235,49 +236,11 @@ select {
     }
 
     @media (max-width: 414px) {
-        .sidenav {
-            width: 150px; /* Set the width of the sidebar */
-        }
-
-        .sidenav a {
-            padding: 18px;
-            font-size: 20px;
-            top: 150px;
-        }
-
-        .main {
-            margin-left: 150px; /* Same as the width of the sidebar */
-            padding: 10px 10px;
-        }
-
-        .appName {
-            margin-bottom: -60px;
-            padding-left: 5px;
-            font-size: 18px;
-        }
     }
+
 
     @media (max-width: 320px) {
-        .sidenav {
-            width: 100px; /* Set the width of the sidebar */
-        }
-
-        .sidenav a {
-            padding: 18px;
-            font-size: 20px;
-            top: 100px;
-        }
-
-        .main {
-            margin-left: 100px; /* Same as the width of the sidebar */
-            padding: 10px 10px;
-        }
-
-        .appName {
-            margin-bottom: -60px;
-            padding-left: 5px;
-            font-size: 18px;
-        }
     }
-
 }
+
+

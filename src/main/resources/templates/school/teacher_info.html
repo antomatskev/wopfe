@@ -2,11 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>WOPFE</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
-<div class="sidenav">
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" id="closebtn" onclick="closeNav()">&times;</a>
     <a href="/main/admins">Admins</a>
     <a href="/main/classes">Classes</a>
     <a href="/main/students">Students</a>
@@ -14,9 +16,10 @@
     <a href="/main/timetables">Timetables</a>
 </div>
 
-<div class="main">
+<div id="main" class="main">
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
     <div class="content">
         <h3>User info</h3>
         <form method="post"
@@ -57,6 +60,7 @@
         </table>
     </div>
 </div>
+<script src="/js/menu.js"></script>
 
 </body>
 </html>

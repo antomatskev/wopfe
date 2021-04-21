@@ -23,7 +23,6 @@ public class AnswerService {
         answer.setQuestionId(questionId);
         question.getAnswers().add(answer);
         questionRepository.save(question);
-//        repository.save(answer);
         return answer;
     }
 

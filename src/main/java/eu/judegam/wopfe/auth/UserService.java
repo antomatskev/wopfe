@@ -2,6 +2,7 @@ package eu.judegam.wopfe.auth;
 
 import com.google.common.base.Objects;
 import eu.judegam.wopfe.models.User;
+import eu.judegam.wopfe.models.tests.Test;
 import eu.judegam.wopfe.repositories.UserRepo;
 import eu.judegam.wopfe.security.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,6 +102,10 @@ public class UserService implements UserDetailsService {
             oldUser.setUserRole(user.getUserRole());
         }
         return repo.save(oldUser);
+    }
+
+    public List<Test> getAssignedTests(Long id) {
+        return getUserById(id).getAssignedTests();
     }
 
     private String generateUsername(User user) {

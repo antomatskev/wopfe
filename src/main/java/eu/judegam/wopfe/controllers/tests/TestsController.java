@@ -105,9 +105,7 @@ public class TestsController {
                 UserRole userRole = ((User) user).getUserRole();
                 model.addAttribute("role", userRole);
                 model.addAttribute("username", ((User) user).getUsername());
-//                tests.addAll(service.getUserTests(((User) user).getClazz()));
-                List<Test> assignedTests = ((User) user).getAssignedTests();
-                tests.addAll(assignedTests);
+                tests.addAll(usrService.getAssignedTests(((User) user).getId()));
                 ret = "tests/student_tasks";
             } else {
                 ret = "error";
@@ -166,7 +164,10 @@ public class TestsController {
         List<User> users = usrService.getAllUsersByClass(clazz);
         test.addUsers(users);
         service.updateTest(test.getId(), test);
-//        users.forEach(u -> u.addTest(test));
+        users.forEach(u -> {
+            u.addTest(test);
+            usrService.updateUser(u.getId(), u);
+        });
     }
 
 }

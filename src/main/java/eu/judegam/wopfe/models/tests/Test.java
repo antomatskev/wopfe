@@ -30,7 +30,7 @@ public class Test implements Serializable {
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
     private List<Question> questions;
     @ManyToMany(fetch= FetchType.LAZY, cascade = CascadeType.PERSIST,
-            mappedBy = "tests")
+            mappedBy = "assignedTests")
     private List<User> users = new ArrayList<>();
 
     public Test(String name) {

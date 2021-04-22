@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-html,body {
+html, body {
     height: 100%;
     overflow: hidden;
 }
@@ -29,7 +29,6 @@ body:before {
     top: 0;
     left: 0;
     background: #f4f4f4;
-    /*background: #128ff2;*/
     content: "";
     z-index: 0;
 }
@@ -254,7 +253,6 @@ button.accent {
 
 
 @media screen and (max-width: 730px) {
-
     .chat-container {
         margin-left: 10px;
         margin-right: 10px;

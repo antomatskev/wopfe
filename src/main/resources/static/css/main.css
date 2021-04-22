@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
-/* Fixed sidenav, full height */
 * {
     margin: 0;
     padding: 0;
@@ -20,14 +19,12 @@
     background-color: #0a9471;
     overflow-x: hidden;
     padding-top: 80px; /*чтобы кнопки в меню были на определенном уровне*/
-    /*padding: 280px 0;*/
     transition: 0.5s;
 }
 
 #closebtn {
     position: absolute;
     top: 0;
-    /*text-align: right;*/
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
@@ -35,37 +32,30 @@
 }
 
 
-/* width */
 ::-webkit-scrollbar {
     width: 7px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px;
     border-radius: 10px;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: #215A48;
     border-radius: 10px;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #888;
 }
-
 
 .sidenav a {
     border-left: 3px solid transparent;
     transition: 0.3s;
 }
 
-/* Style the sidenav links and the dropdown button */
 .sidenav a, .dropdown-btn {
-    /*padding: 6px 8px 6px 16px;*/
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     color: white;
@@ -74,22 +64,14 @@
     font-weight: 200;
     line-height: 65px;
     text-align: left;
-    letter-spacing: 1px; /*border: none;*/
-    /*border-left: white;*/
-    /*background: none;*/
-    /*width: 100%;*/
-    /*cursor: pointer;*/
-    /*outline: none;*/
+    letter-spacing: 1px;
 }
 
-/* On mouse-over */
 .sidenav a:hover, .dropdown-btn:hover {
     color: black;
     background-color: #215A48;
 }
 
-
-/* Style page content */
 .main {
     margin-left: 250px; /*!* Same as the width of the sidebar *!*/
     transition: margin-left .5s;
@@ -121,8 +103,6 @@ body {
 }
 
 .content {
-    /*position: relative;*/
-    /*left: 120px;*/
     text-align: center;
     top: 100px;
     width: 100%;
@@ -256,5 +236,3 @@ select {
         }
     }
 }
-
-

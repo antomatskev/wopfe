@@ -22,7 +22,7 @@ public class Answer implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String answerText;
-    private boolean isTrue;
+    private Boolean isCorrect;
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
     @JsonIgnore
@@ -32,11 +32,17 @@ public class Answer implements Serializable {
     private Long questionId;
 
 
-    public Answer(Long id, Long questionId, String answerText, boolean isTrue) {
+    public Answer(Long id, Long questionId, String answerText,
+                  Boolean isCorrect) {
         this.id = id;
         this.questionId = questionId;
         this.answerText = answerText;
-        this.isTrue = isTrue;
+        this.isCorrect = isCorrect;
+    }
+
+    public Answer(String answerText, Boolean isCorrect) {
+        this.answerText = answerText;
+        this.isCorrect = isCorrect;
     }
 
     public Answer() {
@@ -58,12 +64,12 @@ public class Answer implements Serializable {
         this.answerText = answerText;
     }
 
-    public boolean isTrue() {
-        return isTrue;
+    public Boolean isCorrect() {
+        return isCorrect;
     }
 
-    public void setTrue(boolean aTrue) {
-        isTrue = aTrue;
+    public void setCorrect(Boolean correct) {
+        isCorrect = correct;
     }
 
     public Question getQuestion() {

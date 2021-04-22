@@ -21,6 +21,9 @@ public class AnswerService {
         Question question = questionRepository.findById(questionId).get();
         answer.setQuestion(question);
         answer.setQuestionId(questionId);
+        if (answer.isCorrect() == null) {
+            answer.setCorrect(false); // TODO: fix receiving null from front.
+        }
         question.getAnswers().add(answer);
         questionRepository.save(question);
         return answer;
@@ -39,7 +42,7 @@ public class AnswerService {
         Answer existingProduct = repository.findById(id).orElse(null);
         assert existingProduct != null;
         existingProduct.setAnswerText(answer.getAnswerText());
-        existingProduct.setTrue(answer.isTrue());
+        existingProduct.setCorrect(answer.isCorrect());
         return repository.save(existingProduct);
 
     }

@@ -34,8 +34,9 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Type</th>
-                <th>Questions</th>
+                <th>Text</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tr th:if="${#lists.isEmpty(test.questions)}">
@@ -44,7 +45,6 @@
             <tbody>
             <tr th:each="question : ${test.questions}">
                 <td th:text="${question.name}"></td>
-                <td th:text="${question.type}"></td>
                 <td th:text="${question.questionText}"></td>
                 <td><a th:href="'/main/questions/' + ${question.id}">Add answers</a></td>
                 <td>
@@ -57,11 +57,6 @@
         </table>
         <form method="post" th:action="'/main/question/' + ${test.id} + '/addQuestion'" th:object="${question}">
             <input id="questionName" placeholder="Name" required th:field="*{name}" type="text"/>
-            <select id="questionType" required th:field="*{type}">
-                <option hidden value="">Select a type</option>
-                <option value="Options">Options</option>
-                <option value="Text">Text</option>
-            </select>
             <input id="questionText" placeholder="Text" required th:field="*{questionText}" type="text"/>
             <input class="button button5" type="submit" value="Add Question">
             <input class="button button5" type="reset" value="Reset">

@@ -30,7 +30,7 @@
             <thead>
             <tr>
                 <th>Answer Text</th>
-                <th>True/False</th>
+                <th>Is correct?</th>
             </tr>
             </thead>
             <tr th:if="${#lists.isEmpty(question.answers)}">
@@ -39,12 +39,8 @@
             <tbody>
             <tr th:each="answer : ${question.answers}">
                 <td th:text="${answer.answerText}"></td>
-                <td th:text="${answer.isTrue}"></td>
-<!--                <form method="post" th:action="'/main/teacher/Answer/change/boolean/' + ${answer.id}" th:object="${answer}">-->
-<!--                    <input type="submit" value="True">-->
-<!--                </form>-->
+                <td th:text="${answer.isCorrect}"></td>
                 <td>
-
                     <form method="post"
                           th:action="'/main/question/' + ${question.id} + '/deleteAnswer/' + ${answer.id}" th:object="${answer}">
                         <input type="submit" value="X">
@@ -54,11 +50,9 @@
         </table >
         <form method="post" th:action="'/main/questionsAnswer/' + ${question.id} + '/addAnswer'" th:object="${question}">
             <input id="AnswerText" placeholder="answerText" required th:field="*{answerText}" type="text" th:object="${answer}"/>
-            <select id="trueOrFalse" required th:field="*{type}">
-                <option hidden value="">Select a type</option>
-                <option value="Options">True</option>
-                <option value="Text">False</option>
-            </select>
+            <label for="isCorrect">Is correct?</label>
+            <input type="checkbox" name="isCorrect" id="isCorrect"
+                   th:field="*{isCorrect}" th:object="${answer}"/>
             <input class="button button5" type="submit" value="Add Answer">
             <input class="button button5" type="reset" value="Reset">
         </form>

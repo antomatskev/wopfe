@@ -22,10 +22,9 @@ import java.util.List;
 @Table(name = "questions")
 public class Question implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String type;
     private String questionText;
     @ManyToOne
     @JoinColumn(name = "test_id", nullable = false)
@@ -36,11 +35,10 @@ public class Question implements Serializable {
     private Long testId;
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Answer> answers;
-    private String answer;
+    private String correctAnswer;
 
-    public Question(String name, String type, String questionText) {
+    public Question(String name, String questionText) {
         this.name = name;
-        this.type = type;
         this.questionText = questionText;
     }
 
@@ -49,15 +47,13 @@ public class Question implements Serializable {
         this.test = test;
     }
 
-    public Question(String type, String questionText, Long testId) {
-        this.type = type;
+    public Question(String questionText, Long testId) {
         this.questionText = questionText;
         this.testId = testId;
     }
 
-    public Question(Long id, String type, String questionText, Test test) {
+    public Question(Long id, String questionText, Test test) {
         this.id = id;
-        this.type = type;
         this.questionText = questionText;
         this.test = test;
     }
@@ -79,14 +75,6 @@ public class Question implements Serializable {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getQuestionText() {
@@ -121,12 +109,12 @@ public class Question implements Serializable {
         this.answers = answers;
     }
 
-    public String getAnswer() {
+    public String getCorrectAnswer() {
         // TODO: make selection in task.html for answers.
-        return answer;
+        return correctAnswer;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer;
+    public void setCorrectAnswer(String answer) {
+        this.correctAnswer = answer;
     }
 }

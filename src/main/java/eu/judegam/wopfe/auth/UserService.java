@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -105,7 +106,8 @@ public class UserService implements UserDetailsService {
     }
 
     public List<Test> getAssignedTests(Long id) {
-        return getUserById(id).getAssignedTests();
+        User usr = getUserById(id);
+        return usr != null ? usr.getAssignedTests() : new ArrayList<>();
     }
 
     private String generateUsername(User user) {

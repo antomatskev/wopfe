@@ -37,6 +37,7 @@ public class FakeUserServiceDao implements UserDao {
                 true
         );
         anton.setClazz("1a");
+        anton.setId(123L);
         User ellina = new User(
                 "ellina",
                 passwordEncoder.encode("gedrojets"),
@@ -46,6 +47,7 @@ public class FakeUserServiceDao implements UserDao {
                 true,
                 true
         );
+        ellina.setId(1234L);
         User julia = new User(
                 "julia",
                 passwordEncoder.encode("djomina"),
@@ -55,6 +57,7 @@ public class FakeUserServiceDao implements UserDao {
                 true,
                 true
         );
+        julia.setId(12345L);
         return Lists.newArrayList(
                 anton,
                 ellina,

@@ -20,8 +20,7 @@
     <hr class="line">
     <div class="content">
         <h3 th:inline="text">
-            Question
-            [[${question.name}]]
+            Question [[${question.name}]]
         </h3>
         <h2 th:inline="text">
             [[${question.questionText}]]
@@ -37,22 +36,21 @@
                 <td colspan="5">No created answers found.</td>
             </tr>
             <tbody>
-            <tr th:each="answer : ${question.answers}">
-                <td th:text="${answer.answerText}"></td>
-                <td th:text="${answer.isCorrect}"></td>
+            <tr th:each="qAnswer : ${question.answers}">
+                <td th:text="${qAnswer.answerText}"></td>
+                <td th:text="${qAnswer.isCorrect}"></td>
                 <td>
                     <form method="post"
-                          th:action="'/main/question/' + ${question.id} + '/deleteAnswer/' + ${answer.id}" th:object="${answer}">
+                          th:action="'/main/question/' + ${question.id} + '/deleteAnswer/' + ${qAnswer.id}" th:object="${qAnswer}">
                         <input type="submit" value="X">
                     </form>
             </tr>
             </tbody>
         </table >
-        <form method="post" th:action="'/main/questionsAnswer/' + ${question.id} + '/addAnswer'" th:object="${question}">
-            <input id="AnswerText" placeholder="answerText" required th:field="*{answerText}" type="text" th:object="${answer}"/>
+        <form method="post" th:action="'/main/questionsAnswer/' + ${question.id} + '/addAnswer'" th:object="${answer}">
+            <input id="AnswerText" placeholder="answerText" required th:field="*{answerText}" type="text"/>
             <label for="isCorrect">Is correct?</label>
-            <input type="checkbox" name="isCorrect" id="isCorrect"
-                   th:field="*{isCorrect}" th:object="${answer}"/>
+            <input type="checkbox" id="isCorrect" th:field="*{isCorrect}"/>
             <input class="button button5" type="submit" value="Add Answer">
             <input class="button button5" type="reset" value="Reset">
         </form>

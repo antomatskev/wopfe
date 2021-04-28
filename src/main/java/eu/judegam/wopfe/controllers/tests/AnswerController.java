@@ -1,5 +1,6 @@
 package eu.judegam.wopfe.controllers.tests;
 
+import eu.judegam.wopfe.models.tests.Question;
 import eu.judegam.wopfe.services.AnswerService;
 import eu.judegam.wopfe.models.tests.Answer;
 import eu.judegam.wopfe.utils.Utils;
@@ -41,26 +42,5 @@ public class AnswerController {
         redirectAttributes.addFlashAttribute("evMessage", msg);
         return view;
     }
-
-
-    // TODO: dont think that it is a good idea to update answers, you can just delete old one and create a new one.
-    @RequestMapping(path = "/main/answers/{id}/update", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
-    public String updateAnswers(Model model, @PathVariable("id") Long id, @ModelAttribute Answer answer) {
-        Answer dbAnswer = service.updateAnswer(id, answer);
-        model.addAttribute("answer", dbAnswer);
-//        model.addAttribute("answer", new Answer());
-        return Utils.addUsrAttrToModel(model, "tests/edit_questions");
-    }
-
-
-// TODO: 4/7/2021 Change boolean in answers
-//    @RequestMapping(path = "/main/teacher/Answer/change/boolean/{id}", method = RequestMethod.POST)
-//    public String changeAnswersboolean(Model model, @PathVariable("id") Long id) {
-//        Answer answer = service.getAnswerById(id);
-//        answer.setTrue(true);
-//        model.addAttribute("answer", answer);
-//        return "tests/edit_questions";
-//    }
 
 }

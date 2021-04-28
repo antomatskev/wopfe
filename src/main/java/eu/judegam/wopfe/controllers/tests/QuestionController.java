@@ -57,6 +57,7 @@ public class QuestionController {
         List<Question> questions = service.getQuestions();
         model.addAttribute("questions", questions);
         model.addAttribute("question", new Question());
+        model.addAttribute("answer", new Answer());
         return Utils.addUsrAttrToModel(model, "tests/edit_questions");
     }
 

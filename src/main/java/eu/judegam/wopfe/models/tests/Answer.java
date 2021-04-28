@@ -45,6 +45,12 @@ public class Answer implements Serializable {
         this.isCorrect = isCorrect;
     }
 
+    public Answer(Long id, String answerText, Boolean isCorrect) {
+        this.id = id;
+        this.answerText = answerText;
+        this.isCorrect = isCorrect;
+    }
+
     public Answer() {
     }
 

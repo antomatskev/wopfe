@@ -1,6 +1,7 @@
 package eu.judegam.wopfe.models.tests;
 
 import eu.judegam.wopfe.models.User;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -13,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -24,7 +26,8 @@ public class Test implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String date;
+    @DateTimeFormat(pattern = "dd/mm/yyyy")
+    private Date date;
     private String time;
     private String clazz;
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
@@ -42,7 +45,7 @@ public class Test implements Serializable {
         this.questions = questions;
     }
 
-    public Test(Long id, String name, String clazz, String date, String time) {
+    public Test(Long id, String name, String clazz, Date date, String time) {
         this.id = id;
         this.name = name;
         this.clazz = clazz;
@@ -50,13 +53,13 @@ public class Test implements Serializable {
         this.time = time;
     }
 
-    public Test(String name, String date, String time) {
+    public Test(String name, Date date, String time) {
         this.name = name;
         this.date = date;
         this.time = time;
     }
 
-    public Test(String name, String date, String time, String clazz, List<Question> questions) {
+    public Test(String name, Date date, String time, String clazz, List<Question> questions) {
         this.name = name;
         this.date = date;
         this.time = time;
@@ -84,11 +87,11 @@ public class Test implements Serializable {
         this.name = name;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

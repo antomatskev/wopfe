@@ -1,0 +1,45 @@
+<div th:fragment="menu" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" id="closebtn" onclick="closeNav()">&times;</a>
+        <a href="/main">Main</a>
+        <a th:if="${role.name == 'MANAGER'}" href="/main/admins">Admins</a>
+
+        <a th:if="${role.name == 'ADMIN'}" href="/main/teachers">Teachers</a>
+        <a th:if="${role.name == 'ADMIN'}" href="/main/students">Students</a>
+        <a th:if="${role.name == 'ADMIN'}" href="/main/timetables">Timetables</a>
+
+        <a th:if="${role.name == 'TEACHER'}" href="/main/timetables">Timetables</a>
+        <a th:if="${role.name == 'TEACHER'}" href="/main/classes">Classes</a>
+        <a th:if="${role.name == 'TEACHER'}" href="/main/students">Students</a>
+        <a th:if="${role.name == 'TEACHER'}" href="/main/tests">All Tests</a>
+
+        <a th:if="${role.name == 'STUDENT'}" href="/main/timetables">Timetables</a>
+        <a th:if="${role.name == 'STUDENT'}" href="/main/tasks">My Tasks</a>
+
+        <a th:if="${role.name == 'ALL'}" href="/main/admins">Admins</a>
+        <a th:if="${role.name == 'ALL'}" href="/main/teachers">Teachers</a>
+        <a th:if="${role.name == 'ALL' }" href="/main/classes">Classes</a>
+        <a th:if="${role.name == 'ALL'}" href="/main/students">Students</a>
+        <a th:if="${role.name == 'ALL'}" href="/main/timetables">Timetables</a>
+        <a th:if="${role.name == 'ALL'}" href="/main/tests">All Tests</a>
+        <a th:if="${role.name == 'ALL'}" href="/main/tasks">My Tasks</a>
+
+        <form class="form-signin" method="get" action="/logout">
+            Logged in as
+            <br/>
+            <span th:inline="text">
+            [[${username}]]
+        </span>
+            <br/>
+            <span th:inline="text">
+            (role [[${role.name}]])
+        </span>
+            <br/>
+            <input class="btn" type="submit" name="" value="Log out">
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/js/chat.js"></script>
+    <script src="/js/menu.js"></script>
+</div>

@@ -22,6 +22,11 @@
     transition: 0.5s;
 }
 
+.form-signin{
+    margin-left: 20px;
+    margin-top: 150px;
+}
+
 #closebtn {
     position: absolute;
     top: 0;

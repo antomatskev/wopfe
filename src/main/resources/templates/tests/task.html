@@ -7,30 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
-<div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" id="closebtn" onclick="closeNav()">&times;</a>
-    <a href="/main">Main</a>
-    <a href="/main/admins">Admins</a>
-    <a href="/main/classes">Classes</a>
-    <a href="/main/students">Students</a>
-    <a href="/main/teachers">Teachers</a>
-    <a href="/main/timetables">Timetables</a>
-    <a href="/main/tests">All Tests</a>
-    <a href="/main/tasks">My Tasks</a>
-    <form class="form-signin" method="get" action="/logout">
-        Logged in as
-        <br/>
-        <span th:inline="text">
-            [[${username}]]
-        </span>
-        <br/>
-        <span th:inline="text">
-            (role [[${role.name}]])
-        </span>
-        <br/>
-        <input class="btn" type="submit" name="" value="Log out">
-    </form>
-</div>
+<div class="footer" th:insert="blocks/header :: header"></div>
 
 <div id="main" class="main">
     <h1 class="moreGreenText appName">WOPFE</h1>

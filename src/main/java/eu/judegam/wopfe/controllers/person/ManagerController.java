@@ -76,4 +76,13 @@ public class ManagerController {
         return redirectView;
     }
 
+    @RequestMapping(path = "/main/users", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
+    public String getAllUsers(Model model) {
+        List<User> users = service.getAllUsers();
+        model.addAttribute("users", users);
+        model.addAttribute("user", new User());
+        return Utils.addUsrAttrToModel(model, "mains/users");
+    }
+
 }

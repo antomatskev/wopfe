@@ -19,6 +19,11 @@ public class MainController {
         return "login";
     }
 
+    @GetMapping("/profile")
+    public String profile(Model model) {
+        return Utils.addUsrAttrToModel(model, "/profile");
+    }
+
     @GetMapping("/main")
     public String main(Model model) {
         return Utils.addUsrAttrToModel(model, "/mains/main");

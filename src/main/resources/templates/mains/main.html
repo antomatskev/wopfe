@@ -12,14 +12,17 @@
 <body id="chat">
 <div th:insert="blocks/menu :: menu"></div>
 
+
 <div id="main" class="main">
+
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    <div th:insert="blocks/header :: header"></div>
+
 
     <div class="content">
         <noscript>
-            <h2>Sorry! Your browser doesn't support Javascript</h2>
+            <h2>Sorry! Yo ur browser doesn't support Javascript</h2>
         </noscript>
         <div class="chat">
             <div id="username-page">

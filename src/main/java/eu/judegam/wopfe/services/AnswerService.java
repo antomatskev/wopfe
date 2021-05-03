@@ -23,13 +23,28 @@ public class AnswerService {
         answer.setQuestionId(questionId);
         question.getAnswers().add(answer);
         questionRepository.save(question);
-//        repository.save(answer);
         return answer;
     }
 
     public String deleteAnswer(Long id) {
         repository.deleteById(id);
         return "Answer is not available!";
+    }
+
+    public void addCorrectAnswer(Long qId, Long aId) {
+        questionRepository.findById(qId).ifPresent(q -> {
+            q.getCorrectAnswers().add(aId);
+            questionRepository.save(q);
+        });
+
+    }
+
+    public void removeCorrectAnswer(Long qId, Long aId) {
+        questionRepository.findById(qId).ifPresent(q -> {
+            q.getCorrectAnswers().remove(aId);
+            questionRepository.save(q);
+        });
+
     }
 
     public Answer getAnswerById(Long id) {
@@ -40,7 +55,6 @@ public class AnswerService {
         Answer existingProduct = repository.findById(id).orElse(null);
         assert existingProduct != null;
         existingProduct.setAnswerText(answer.getAnswerText());
-        existingProduct.setTrue(answer.isTrue());
         return repository.save(existingProduct);
 
     }

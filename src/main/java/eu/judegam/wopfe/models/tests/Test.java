@@ -1,29 +1,40 @@
 package eu.judegam.wopfe.models.tests;
 
+import eu.judegam.wopfe.models.User;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Entity
+@Table(name="tests")
 public class Test implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String date;
+    @DateTimeFormat(pattern = "dd/mm/yyyy")
+    private Date date;
     private String time;
     private String clazz;
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
     private List<Question> questions;
+    @ManyToMany(fetch= FetchType.LAZY, cascade = CascadeType.PERSIST,
+            mappedBy = "assignedTests")
+    private List<User> users = new ArrayList<>();
 
     public Test(String name) {
         this.name = name;
@@ -34,20 +45,21 @@ public class Test implements Serializable {
         this.questions = questions;
     }
 
-    public Test(Long id, String name, String date, String time) {
+    public Test(Long id, String name, String clazz, Date date, String time) {
         this.id = id;
         this.name = name;
+        this.clazz = clazz;
         this.date = date;
         this.time = time;
     }
 
-    public Test(String name, String date, String time) {
+    public Test(String name, Date date, String time) {
         this.name = name;
         this.date = date;
         this.time = time;
     }
 
-    public Test(String name, String date, String time, String clazz, List<Question> questions) {
+    public Test(String name, Date date, String time, String clazz, List<Question> questions) {
         this.name = name;
         this.date = date;
         this.time = time;
@@ -75,11 +87,11 @@ public class Test implements Serializable {
         this.name = name;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -107,4 +119,21 @@ public class Test implements Serializable {
     public void setClazz(String clazz) {
         this.clazz = clazz;
     }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void addUser(User u) {
+        users.add(u);
+    }
+
+    public void addUsers(List<User> usrs) {
+        users.addAll(usrs);
+    }
+
 }

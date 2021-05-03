@@ -27,34 +27,41 @@ public class FakeUserServiceDao implements UserDao {
     }
 
     private List<User> getAppUsers() {
+        User anton = new User(
+                "anton",
+                passwordEncoder.encode("matskevich"),
+                ALL,
+                true,
+                true,
+                true,
+                true
+        );
+        anton.setClazz("1a");
+        anton.setId(123L);
+        User ellina = new User(
+                "ellina",
+                passwordEncoder.encode("gedrojets"),
+                ALL,
+                true,
+                true,
+                true,
+                true
+        );
+        ellina.setId(1234L);
+        User julia = new User(
+                "julia",
+                passwordEncoder.encode("djomina"),
+                ALL,
+                true,
+                true,
+                true,
+                true
+        );
+        julia.setId(12345L);
         return Lists.newArrayList(
-                new User(
-                    "anton",
-                        passwordEncoder.encode("matskevich"),
-                        ALL,
-                        true,
-                        true,
-                        true,
-                        true
-                ),
-                new User(
-                    "ellina",
-                        passwordEncoder.encode("gedrojets"),
-                        ALL,
-                        true,
-                        true,
-                        true,
-                        true
-                ),
-                new User(
-                    "julia",
-                        passwordEncoder.encode("djomina"),
-                        ALL,
-                        true,
-                        true,
-                        true,
-                        true
-                ),
+                anton,
+                ellina,
+                julia,
                 new User(
                     "manager",
                         passwordEncoder.encode("password"),

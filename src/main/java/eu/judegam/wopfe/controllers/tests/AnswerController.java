@@ -1,13 +1,10 @@
 package eu.judegam.wopfe.controllers.tests;
 
-import eu.judegam.wopfe.models.tests.Question;
-import eu.judegam.wopfe.services.AnswerService;
 import eu.judegam.wopfe.models.tests.Answer;
-import eu.judegam.wopfe.utils.Utils;
+import eu.judegam.wopfe.services.AnswerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +24,36 @@ public class AnswerController {
                                    @PathVariable("id") Long questionId) {
         service.saveAnswer(answer, questionId);
         final String msg = "Created answer <b>" + answer.getName() + "</b> ✨.";
+        RedirectView view = new RedirectView("/main/questions/{id}", true);
+        redirectAttributes.addFlashAttribute("qMessage", msg);
+        return view;
+    }
+
+    @RequestMapping(path = "/main/question/{id}/markCorrect/{aId}", method =
+            RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
+    public RedirectView markCorrect(RedirectAttributes redirectAttributes,
+                                    @ModelAttribute Answer answer,
+                                    @PathVariable("id") Long questionId,
+                                    @PathVariable("aId") Long aId) {
+        service.addCorrectAnswer(questionId, aId);
+        final String msg = "Marked answer as correct <b>" + answer.getName() +
+                "</b> ✨.";
+        RedirectView view = new RedirectView("/main/questions/{id}", true);
+        redirectAttributes.addFlashAttribute("qMessage", msg);
+        return view;
+    }
+
+    @RequestMapping(path = "/main/question/{id}/markIncorrect/{aId}", method =
+            RequestMethod.POST)
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
+    public RedirectView markIncorrect(RedirectAttributes redirectAttributes,
+                                      @ModelAttribute Answer answer,
+                                      @PathVariable("id") Long questionId,
+                                      @PathVariable("aId") Long aId) {
+        service.removeCorrectAnswer(questionId, aId);
+        final String msg =
+                "Marked answer as incorrect <b>" + answer.getName() + "</b> ✨.";
         RedirectView view = new RedirectView("/main/questions/{id}", true);
         redirectAttributes.addFlashAttribute("qMessage", msg);
         return view;

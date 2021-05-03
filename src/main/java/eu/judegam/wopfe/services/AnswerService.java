@@ -21,9 +21,6 @@ public class AnswerService {
         Question question = questionRepository.findById(questionId).get();
         answer.setQuestion(question);
         answer.setQuestionId(questionId);
-        if (answer.isCorrect() == null) {
-            answer.setCorrect(false); // TODO: fix receiving null from front.
-        }
         question.getAnswers().add(answer);
         questionRepository.save(question);
         return answer;
@@ -34,6 +31,22 @@ public class AnswerService {
         return "Answer is not available!";
     }
 
+    public void addCorrectAnswer(Long qId, Long aId) {
+        questionRepository.findById(qId).ifPresent(q -> {
+            q.getCorrectAnswers().add(aId);
+            questionRepository.save(q);
+        });
+
+    }
+
+    public void removeCorrectAnswer(Long qId, Long aId) {
+        questionRepository.findById(qId).ifPresent(q -> {
+            q.getCorrectAnswers().remove(aId);
+            questionRepository.save(q);
+        });
+
+    }
+
     public Answer getAnswerById(Long id) {
         return repository.findById(id).orElse(null);
     }
@@ -42,7 +55,6 @@ public class AnswerService {
         Answer existingProduct = repository.findById(id).orElse(null);
         assert existingProduct != null;
         existingProduct.setAnswerText(answer.getAnswerText());
-        existingProduct.setCorrect(answer.isCorrect());
         return repository.save(existingProduct);
 
     }

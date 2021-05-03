@@ -1,11 +1,9 @@
 package eu.judegam.wopfe.controllers.tests;
 
-
-import eu.judegam.wopfe.services.QuestionService;
 import eu.judegam.wopfe.models.tests.Answer;
 import eu.judegam.wopfe.models.tests.Question;
+import eu.judegam.wopfe.services.QuestionService;
 import eu.judegam.wopfe.utils.Utils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +39,6 @@ public class QuestionController {
         return view;
     }
 
-
     @RequestMapping(path = "/main/question/{id}/deleteQuestion/{eId}", method = RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public RedirectView deleteQuestion(RedirectAttributes redirectAttributes, @ModelAttribute Question question,
@@ -53,16 +50,6 @@ public class QuestionController {
         return view;
     }
 
-    @RequestMapping(value = "/main/questions", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
-    public String getQuestions(Model model) {
-        List<Question> questions = service.getQuestions();
-        model.addAttribute("questions", questions);
-        model.addAttribute("question", new Question());
-        model.addAttribute("answer", new Answer());
-        return Utils.addUsrAttrToModel(model, "tests/edit_questions");
-    }
-
     @GetMapping(value = "/main/questions/{id}")
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String showQuestionById(Model model, @PathVariable("id") Long id) {
@@ -70,16 +57,18 @@ public class QuestionController {
         List<Answer> answers = question.getAnswers().stream().sorted(Comparator.comparing(Answer::getAnswerText)).collect(Collectors.toList());
         model.addAttribute("question", question);
         model.addAttribute("answers", answers);
+        model.addAttribute("correctAnswers", question.getCorrectAnswers());
         model.addAttribute("answer", new Answer());
         return Utils.addUsrAttrToModel(model, "tests/edit_questions");
     }
-
 
     @RequestMapping(path = "/main/questions/{id}/update", method = RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String updateQuestion(Model model, @PathVariable("id") Long id, @ModelAttribute Question question) {
         Question dbQuestion = service.updateQuestion(id, question);
         model.addAttribute("question", dbQuestion);
+        model.addAttribute("answers", dbQuestion.getAnswers());
+        model.addAttribute("correctAnswers", dbQuestion.getCorrectAnswers());
         model.addAttribute("answer", new Answer());
         return Utils.addUsrAttrToModel(model, "tests/edit_questions");
     }
@@ -90,9 +79,9 @@ public class QuestionController {
         Question question = service.getQuestionById(id);
         model.addAttribute("question", question);
         model.addAttribute("answers", question.getAnswers());
+        model.addAttribute("correctAnswers", question.getCorrectAnswers());
         model.addAttribute("answer", new Answer());
         return Utils.addUsrAttrToModel(model, "tests/edit_questions");
     }
-
 
 }

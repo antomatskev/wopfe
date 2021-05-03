@@ -38,19 +38,34 @@
             <tbody>
             <tr th:each="qAnswer : ${question.answers}">
                 <td th:text="${qAnswer.answerText}"></td>
-                <td th:text="${qAnswer.isCorrect}"></td>
+                <div
+                        th:switch="${#arrays.contains(correctAnswers, qAnswer.id)}">
+                    <td th:case="${true}">
+                        <form method="post"
+                              th:action="'/main/question/' + ${question.id} + '/markIncorrect/' + ${qAnswer.id}" th:object="${qAnswer}">
+                            <input type="submit"
+                                   th:value="v">
+                        </form>
+                    </td>
+                    <td th:case="*">
+                        <form method="post"
+                              th:action="'/main/question/' + ${question.id} + '/markCorrect/' + ${qAnswer.id}" th:object="${qAnswer}">
+                            <input type="submit" value="x">
+                        </form>
+                    </td>
+                </div>
                 <td>
                     <form method="post"
                           th:action="'/main/question/' + ${question.id} + '/deleteAnswer/' + ${qAnswer.id}" th:object="${qAnswer}">
                         <input type="submit" value="X">
                     </form>
+                </td>
             </tr>
             </tbody>
         </table >
-        <form method="post" th:action="'/main/questionsAnswer/' + ${question.id} + '/addAnswer'" th:object="${answer}">
+        <form method="post"
+              th:action="@{'/main/questionsAnswer/' + ${question.id} + '/addAnswer'}" th:object="${answer}">
             <input id="AnswerText" placeholder="answerText" required th:field="*{answerText}" type="text"/>
-            <label for="isCorrect">Is correct?</label>
-            <input type="checkbox" id="isCorrect" th:field="*{isCorrect}"/>
             <input class="button button5" type="submit" value="Add Answer">
             <input class="button button5" type="reset" value="Reset">
         </form>

@@ -22,7 +22,6 @@ public class Answer implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String answerText;
-    private Boolean isCorrect;
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
     @JsonIgnore
@@ -30,26 +29,6 @@ public class Answer implements Serializable {
     @Transient
     @JsonIgnore
     private Long questionId;
-
-
-    public Answer(Long id, Long questionId, String answerText,
-                  Boolean isCorrect) {
-        this.id = id;
-        this.questionId = questionId;
-        this.answerText = answerText;
-        this.isCorrect = isCorrect;
-    }
-
-    public Answer(String answerText, Boolean isCorrect) {
-        this.answerText = answerText;
-        this.isCorrect = isCorrect;
-    }
-
-    public Answer(Long id, String answerText, Boolean isCorrect) {
-        this.id = id;
-        this.answerText = answerText;
-        this.isCorrect = isCorrect;
-    }
 
     public Answer() {
     }
@@ -68,14 +47,6 @@ public class Answer implements Serializable {
 
     public void setAnswerText(String answerText) {
         this.answerText = answerText;
-    }
-
-    public Boolean isCorrect() {
-        return isCorrect;
-    }
-
-    public void setCorrect(Boolean correct) {
-        isCorrect = correct;
     }
 
     public Question getQuestion() {

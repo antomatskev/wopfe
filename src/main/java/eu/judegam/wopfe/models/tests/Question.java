@@ -3,6 +3,7 @@ package eu.judegam.wopfe.models.tests;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,9 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.io.Serializable;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Represents Question, that can be open(students can write their answers manually) or questions for tests.
@@ -37,28 +36,8 @@ public class Question implements Serializable {
     private Long testId;
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
     private List<Answer> answers;
-    private String correctAnswer;
-
-    public Question(String name, String questionText) {
-        this.name = name;
-        this.questionText = questionText;
-    }
-
-    public Question(String name, Test test) {
-        this.name = name;
-        this.test = test;
-    }
-
-    public Question(String questionText, Long testId) {
-        this.questionText = questionText;
-        this.testId = testId;
-    }
-
-    public Question(Long id, String questionText, Test test) {
-        this.id = id;
-        this.questionText = questionText;
-        this.test = test;
-    }
+    @ElementCollection
+    private List<Long> correctAnswers;
 
     public Question() {
     }
@@ -111,12 +90,11 @@ public class Question implements Serializable {
         this.answers = answers;
     }
 
-    public String getCorrectAnswer() {
-        // TODO: make selection in task.html for answers.
-        return correctAnswer;
+    public List<Long> getCorrectAnswers() {
+        return correctAnswers;
     }
 
-    public void setCorrectAnswer(String answer) {
-        this.correctAnswer = answer;
+    public void setCorrectAnswer(List<Long> answers) {
+        this.correctAnswers = answers;
     }
 }

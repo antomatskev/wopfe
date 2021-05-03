@@ -1,13 +1,3 @@
-/*!*CSS for homepage*!*/
-/** {*/
-
-
-/** {*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    font-family: sans-serif;*/
-/*}*/
-
 .homepage_banner {
     width: 100%;
     height: 100vh;
@@ -24,7 +14,6 @@
     align-items: center;
     justify-content: space-between;
 }
-
 
 .logo {
     width: 120px;
@@ -111,6 +100,7 @@ span {
 button:hover span {
     width: 100%;
 }
+
 button:hover {
     border: none;
 }
@@ -219,4 +209,54 @@ p.rememberMe {
     font-size: small;
     position: relative;
     color: grey;
+}
+
+.homepage_content b {
+    font-size: 70px;
+}
+
+@media (max-width: 1024px) {
+    .footer {
+        display: none;
+    }
+
+    .homepage_content b {
+        font-size: 60px;
+    }
+
+}
+
+@media (max-width: 450px) {
+    .footer {
+        display: none;
+    }
+
+    .homepage_content b {
+        font-size: 30px;
+    }
+
+    .logo {
+        width: 80px;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 321px) {
+    .footer {
+        display: none;
+    }
+
+    .login-box h1 {
+        font-size: 30px;
+        border-bottom: 3px solid #4caf50;
+    }
+
+    .homepage_content b {
+        font-size: 25px;
+    }
+
+    .logo {
+        width: 80px;
+        cursor: pointer;
+    }
 }

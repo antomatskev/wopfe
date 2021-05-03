@@ -13,7 +13,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents Question, that can be open(students can write their answers manually) or questions for tests.
@@ -102,7 +104,7 @@ public class Question implements Serializable {
     }
 
     public List<Answer> getAnswers() {
-        return answers;
+            return answers;
     }
 
     public void setAnswers(List<Answer> answers) {

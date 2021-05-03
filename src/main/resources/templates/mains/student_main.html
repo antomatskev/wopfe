@@ -2,25 +2,21 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>WOPFE</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
 <!-- Side navigation -->
-<div class="sidenav">
-    <a href="#">Main</a>
-    <a href="#">My class</a>
-    <a href="#">Grades</a>
-    <a href="#">Tasks</a>
-    <a href="#">Timetable</a>
-</div>
+<div th:insert="blocks/menu :: menu"></div>
 
-<div class="main">
+<div id="main" class="main">
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
     <div class="addLater">Under construction</div>
 </div>
-
+<script src="/js/menu.js"></script>
 
 </body>
 </html>

@@ -5,6 +5,7 @@ import eu.judegam.wopfe.repositories.QuestionRepository;
 import eu.judegam.wopfe.repositories.TestsRepository;
 import eu.judegam.wopfe.models.tests.Question;
 import eu.judegam.wopfe.models.tests.Test;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,7 +37,7 @@ public class QuestionService {
     }
 
     public List<Question> getQuestions() {
-        return (List<Question>) repository.findAll();
+        return (List<Question>) repository.findAll(Sort.by(Sort.Direction.DESC, "questionText"));
     }
 
     public Question getQuestionById(Long id) {

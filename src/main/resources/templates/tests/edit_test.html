@@ -2,22 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>WOPFE</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
-<div class="sidenav">
-    <a class="mainPage greenText" href="/main/teacher">Main</a>
-    <a class="myClassPage greenText" href="/main/teacher/class">My class</a>
-    <a class="gradesPage greenText" href="/main/teacher/grades">Grades</a>
-    <a class="tasksPage greenText" href="/main/teacher/tasks">Tasks</a>
-    <a class="testsPage greenText" href="/main/teacher/tests">Tests</a>
-    <a class="timetablePage greenText" href="/main/teacher/timetable">Timetable</a>
-</div>
+<div th:insert="blocks/menu :: menu"></div>
 
-<div class="main">
+<div id="main" class="main">
     <h1 class="moreGreenText appName">WOPFE</h1>
     <hr class="line">
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
     <div class="content">
         <h3 th:inline="text">
             Test [[${test.name}]] for class [[${test.clazz}]]
@@ -45,13 +40,14 @@
                 <td colspan="5">No created questions found.</td>
             </tr>
             <tbody>
-            <tr th:each="question : ${test.questions}">
+            <tr th:each="question : ${questions}">
                 <td th:text="${question.name}"></td>
                 <td th:text="${question.questionText}"></td>
                 <td><a th:href="'/main/questions/' + ${question.id}">Add answers</a></td>
                 <td>
                     <form method="post"
-                          th:action="'/main/question/' + ${test.id} + '/deleteQuestion/' + ${question.id}" th:object="${question}">
+                          th:action="'/main/question/' + ${test.id} + '/deleteQuestion/' + ${question.id}"
+                          th:object="${question}">
                         <input type="submit" value="X">
                     </form>
             </tr>
@@ -65,6 +61,7 @@
         </form>
     </div>
 </div>
+<script src="/js/menu.js"></script>
 
 </body>
 </html>

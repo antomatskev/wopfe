@@ -20,6 +20,8 @@
         </h3>
         <form method="post" th:action="'/main/tests/' + ${test.id} + '/update'" th:object="${test}">
             <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
+            <input id="clazz" placeholder="Class" th:field="*{clazz}"
+                   type="text"/>
             <input id="date" placeholder="Date" required th:field="*{date}" type="text"/>
             <input id="time" placeholder="Time" required th:field="*{time}" type="text"/>
             <input class="button button5" type="submit" value="Update" th:onclick="'/main/tests/'+${test.id}+'/update'">

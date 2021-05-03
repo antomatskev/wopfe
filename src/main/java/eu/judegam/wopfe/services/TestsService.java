@@ -54,6 +54,7 @@ public class TestsService {
         Test existingProduct = repository.findById(id).orElse(null);
         assert existingProduct != null;
         existingProduct.setName(test.getName());
+        existingProduct.setClazz(test.getClazz());
         existingProduct.setDate(test.getDate());
         existingProduct.setTime(test.getTime());
         return repository.save(existingProduct);

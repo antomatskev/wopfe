@@ -152,7 +152,8 @@ public class TestsController {
             RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_STUDENT')")
     public RedirectView checkTask(RedirectAttributes redirectAttributes,
-                                  @PathVariable("id") Long id, @ModelAttribute Test test) {
+                                  @PathVariable("id") Long id,
+                                  @ModelAttribute Question question) {
         RedirectView redirectView = new RedirectView("/main/tasks/", true);
         Test task = service.getTestById(id);
         redirectAttributes.addFlashAttribute("taskCheckMessage",

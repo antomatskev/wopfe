@@ -29,22 +29,19 @@
             </tr>
             <tbody>
             <tr th:each="question : ${test.questions}">
-                <td th:text="${question.name}"></td>
-                <td th:text="${question.questionText}"></td>
+                <td th:text="${question.name}" th:rowspan="${#lists.size(question.answers)}"></td>
+                <td th:text="${question.questionText}" th:rowspan="${#lists.size(question.answers)}"></td>
                 <td>
                     <form method="post"
                           th:action="'/main/task/' + ${question.id} + '/check'"
                           th:object="${question}">
-                        <select id="questionAnswer" required th:field="*{answer}">
-                            <option hidden value="">Select an answer</option>
-                            <option value="Monday">Monday</option>
-                            <option value="Tuesday">Tuesday</option>
-                            <option value="Wednesday">Wednesday</option>
-                            <option value="Thursday">Thursday</option>
-                            <option value="Friday">Friday</option>
-                        </select>
-                        <input class="button button5" type="submit" value="Add Answer">
-                        <input class="button button5" type="reset" value="Reset">
+                        <input th:type="checkbox" name="answer"
+                               th:each="qAnswer : ${question.answers}"
+                               th:text="${qAnswer.answerText}"
+                               th:value="${qAnswer.id}"
+                               th:field="*{answer}"/>
+                        <input class="button button5" type="submit"
+                               value="check">
                     </form>
                 </td>
             </tr>

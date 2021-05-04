@@ -154,15 +154,17 @@ public class TestsController {
         return ret;
     }
 
-    @RequestMapping(path = "/main/task/{id}/check", method =
+    @RequestMapping(path = "/main/task/{id}/check/{qId}", method =
             RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_STUDENT')")
     public RedirectView checkTask(RedirectAttributes redirectAttributes,
-                                  @PathVariable("id") Long id, @ModelAttribute Test test) {
-        RedirectView redirectView = new RedirectView("/main/tasks/", true);
-        Test task = service.getTestById(id);
-        redirectAttributes.addFlashAttribute("taskCheckMessage",
-                task);
+                                  @PathVariable("id") Long id,
+                                  @PathVariable("qId") Long qId,
+                                  @ModelAttribute Question q) {
+        RedirectView redirectView =
+                new RedirectView("/main/tasks/" + id, true);
+        // TODO: implement checking with correct answers.
+//        service.getTestQuestion(id, qId).getCorrectAnswers();
         return redirectView;
     }
 

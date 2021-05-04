@@ -21,30 +21,36 @@
                 <th>Name</th>
                 <th>Text</th>
                 <th>Answer</th>
-                <th>Actions</th>
             </tr>
             </thead>
             <tr th:if="${#lists.isEmpty(test.questions)}">
                 <td colspan="5">No questions found.</td>
             </tr>
             <tbody>
-            <tr th:each="question : ${test.questions}">
-                <td th:text="${question.name}" th:rowspan="${#lists.size(question.answers)}"></td>
-                <td th:text="${question.questionText}" th:rowspan="${#lists.size(question.answers)}"></td>
-                <td>
-                    <form method="post"
-                          th:action="'/main/task/' + ${question.id} + '/check'"
-                          th:object="${question}">
-                        <input th:type="checkbox" name="answer"
-                               th:each="qAnswer : ${question.answers}"
-                               th:text="${qAnswer.answerText}"
-                               th:value="${qAnswer.id}"
-                               th:field="*{answer}"/>
-                        <input class="button button5" type="submit"
-                               value="check">
-                    </form>
-                </td>
-            </tr>
+            <div th:each="question : ${test.questions}">
+                <form method="post"
+                      th:action="'/main/task/' + ${test.id} + '/check/' + ${question.id}"
+                      th:object="${question}">
+                <tr>
+                    <td th:text="${question.name}"
+                        th:rowspan="${#lists.size(question.answers) + 1}"></td>
+                    <td th:text="${question.questionText}"
+                        th:rowspan="${#lists.size(question.answers) + 1}"></td>
+                </tr>
+                <tr th:each="qAnswer : ${question.answers}">
+                        <td>
+                            <input th:type="checkbox"
+                                   th:text="${qAnswer.answerText}"
+                                   th:value="${qAnswer.id}"
+                                   th:field="*{answer}">
+                        </td>
+                </tr>
+                    <tr th:colspan="3">
+                        <td>
+                    <input class="button button5" type="submit"
+                           value="check"></td></tr>
+                </form>
+            </div>
             </tbody>
         </table>
     </div>

@@ -46,8 +46,7 @@
         </table>
         <form method="post" th:action="@{/main/addTest}" th:object="${test}">
             <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
-            <input id="class" placeholder="Class" required th:field="*{clazz}"
-                   type="text"/>
+            <input id="class" placeholder="Class" th:field="*{clazz}" type="text"/>
             <button class="button button5" type="submit"  >Create Test</button>
             <input class="button button5" type="reset" value="Reset">
         </form>

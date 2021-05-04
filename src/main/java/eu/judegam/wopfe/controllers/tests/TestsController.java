@@ -2,6 +2,7 @@ package eu.judegam.wopfe.controllers.tests;
 
 import eu.judegam.wopfe.auth.UserService;
 import eu.judegam.wopfe.models.User;
+import eu.judegam.wopfe.models.tests.Answer;
 import eu.judegam.wopfe.models.tests.Question;
 import eu.judegam.wopfe.models.tests.Test;
 import eu.judegam.wopfe.security.UserRole;
@@ -143,6 +144,7 @@ public class TestsController {
                 } else {
                     model.addAttribute("test", test);
                     model.addAttribute("question", new Question());
+                    model.addAttribute("answer", new Answer());
                     ret = "tests/task";
                 }
             } else {
@@ -171,7 +173,9 @@ public class TestsController {
     @Transactional
     public void assignTestToUsers(Test test) {
         final String clazz = test.getClazz();
-        List<User> users = usrService.getAllUsersByClass(clazz);
+        List<User> users = clazz == null || "all".equals(clazz)
+                ? usrService.getAllUsers()
+                : usrService.getAllUsersByClass(clazz);
         test.addUsers(users);
         service.updateTest(test.getId(), test);
         users.forEach(u -> {

@@ -183,6 +183,28 @@ select {
     background-color: #f1f1f1;
 }
 
+.checkbox{
+    outline: 1000px;
+}
+.buttonForAns{
+    background-color: black;
+    position: fixed;
+    width: 10%;
+
+    border: none;
+    right: 40%;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 10px;
+    cursor: pointer;
+    padding: 7px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
 /*ЛОМАЕТ ЧАТ!!!*/
 .button {
     background-color: black;
@@ -200,6 +222,8 @@ select {
     overflow: hidden;
     text-overflow: ellipsis
 }
+
+
 
 #closebtn:hover {
     background-color: #0a9471;

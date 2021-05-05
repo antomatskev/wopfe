@@ -60,13 +60,23 @@ public class TestsService {
     }
 
     public Test updateTest(Long id, Test test) {
-        Test existingProduct = repository.findById(id).orElse(null);
-        assert existingProduct != null;
-        existingProduct.setName(test.getName());
-        existingProduct.setClazz(test.getClazz());
-        existingProduct.setDate(test.getDate());
-        existingProduct.setTime(test.getTime());
-        existingProduct.setUsers(test.getUsers());
-        return repository.save(existingProduct);
+        Test foundTest = repository.findById(id).orElse(null);
+        assert foundTest != null;
+        foundTest.setName(test.getName());
+        foundTest.setClazz(test.getClazz());
+        foundTest.setDate(test.getDate());
+        foundTest.setTime(test.getTime());
+        foundTest.setUsers(test.getUsers());
+        return repository.save(foundTest);
     }
+
+    public Question answerQuestion(Long testId, Long qId, String answer) {
+        return new Question();
+    }
+
+    public Question answerQuestion(Long testId, Long qId, List<Long> answers,
+                                   List<Long> correctAnswers) {
+        return new Question();
+    }
+
 }

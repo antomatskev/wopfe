@@ -38,6 +38,10 @@ public class Question implements Serializable {
     private List<Answer> answers;
     @ElementCollection
     private List<Long> correctAnswers;
+    @ElementCollection
+    private List<Long> chosenAnswers;
+    private String chosenAnswer;
+    private Boolean isAnswered;
 
     public Question() {
     }
@@ -83,7 +87,7 @@ public class Question implements Serializable {
     }
 
     public List<Answer> getAnswers() {
-            return answers;
+        return answers;
     }
 
     public void setAnswers(List<Answer> answers) {
@@ -94,7 +98,31 @@ public class Question implements Serializable {
         return correctAnswers;
     }
 
-    public void setCorrectAnswer(List<Long> answers) {
-        this.correctAnswers = answers;
+    public void setCorrectAnswers(List<Long> correctAnswers) {
+        this.correctAnswers = correctAnswers;
+    }
+
+    public List<Long> getChosenAnswers() {
+        return chosenAnswers;
+    }
+
+    public void setChosenAnswers(List<Long> chosenAnswers) {
+        this.chosenAnswers = chosenAnswers;
+    }
+
+    public Boolean getAnswered() {
+        return isAnswered;
+    }
+
+    public void setAnswered(Boolean answered) {
+        isAnswered = answered;
+    }
+
+    public String getChosenAnswer() {
+        return chosenAnswer;
+    }
+
+    public void setChosenAnswer(String chosenAnswer) {
+        this.chosenAnswer = chosenAnswer;
     }
 }

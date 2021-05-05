@@ -1,9 +1,8 @@
 <div th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
     <div class="header">
-        <span class="opening_menu logo" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+        <span class="opening_menu logo" id="open_menu_button" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
         <div class="header-right">
             <form method="get" action="/logout">
-                Hello,
                 <span th:inline="text">
             [[${username}]]
         </span>

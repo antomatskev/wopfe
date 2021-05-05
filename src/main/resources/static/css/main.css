@@ -254,6 +254,10 @@ select {
     color: white;
 }
 
+#open_menu_button {
+    opacity: 0;
+}
+
 @media screen and (max-width: 500px) {
     .header form {
         float: none;
@@ -263,6 +267,10 @@ select {
 
     .header-right {
         float: none;
+    }
+
+    #open_menu_button {
+        opacity: 1;
     }
 }
 
@@ -280,6 +288,10 @@ select {
         width: 20%;
     }
 
+    #open_menu_button {
+        opacity: 1;
+    }
+
     @media (max-width: 414px) {
         .sidenav {
             width: 0;
@@ -288,7 +300,12 @@ select {
         .main {
             margin-left: 0;
         }
+
+        #open_menu_button {
+            opacity: 1;
+        }
     }
+
 
 
     @media (max-width: 320px) {
@@ -298,6 +315,10 @@ select {
 
         .main {
             margin-left: 0;
+        }
+
+        #open_menu_button {
+            opacity: 1;
         }
     }
 }

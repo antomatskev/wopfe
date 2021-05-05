@@ -17,8 +17,8 @@
 
 <div class="main">
     <h1 class="moreGreenText appName">WOPFE</h1>
-    <hr class="line">
     <div th:insert="blocks/header :: header"></div>
+    <hr class="line">
     <div class="content">
         <h3 th:inline="text">
             Question [[${question.name}]]
@@ -43,27 +43,30 @@
                         th:switch="${#arrays.contains(correctAnswers, qAnswer.id)}">
                     <td th:case="${true}">
                         <form method="post"
-                              th:action="'/main/question/' + ${question.id} + '/markIncorrect/' + ${qAnswer.id}" th:object="${qAnswer}">
+                              th:action="'/main/question/' + ${question.id} + '/markIncorrect/' + ${qAnswer.id}"
+                              th:object="${qAnswer}">
                             <input type="submit"
                                    th:value="v">
                         </form>
                     </td>
                     <td th:case="*">
                         <form method="post"
-                              th:action="'/main/question/' + ${question.id} + '/markCorrect/' + ${qAnswer.id}" th:object="${qAnswer}">
+                              th:action="'/main/question/' + ${question.id} + '/markCorrect/' + ${qAnswer.id}"
+                              th:object="${qAnswer}">
                             <input type="submit" value="x">
                         </form>
                     </td>
                 </div>
                 <td>
                     <form method="post"
-                          th:action="'/main/question/' + ${question.id} + '/deleteAnswer/' + ${qAnswer.id}" th:object="${qAnswer}">
+                          th:action="'/main/question/' + ${question.id} + '/deleteAnswer/' + ${qAnswer.id}"
+                          th:object="${qAnswer}">
                         <input type="submit" value="X">
                     </form>
                 </td>
             </tr>
             </tbody>
-        </table >
+        </table>
         <form method="post"
               th:action="@{'/main/questionsAnswer/' + ${question.id} + '/addAnswer'}" th:object="${answer}">
             <input id="AnswerText" placeholder="answerText" required th:field="*{answerText}" type="text"/>

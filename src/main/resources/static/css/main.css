@@ -188,19 +188,16 @@ select {
 }
 .buttonForAns{
     background-color: black;
-    position: fixed;
-    width: 10%;
-
-    border: none;
-    right: 40%;
+    position: relative;
+    border: 10px;
     color: white;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 13px;
-    margin: 10px;
+/*    margin: 10px;*/
+    margin-left: 260%;
     cursor: pointer;
-    padding: 7px;
+    padding: 8px 35px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis

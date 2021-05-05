@@ -2,6 +2,7 @@ package eu.judegam.wopfe.auth;
 
 import com.google.common.base.Objects;
 import eu.judegam.wopfe.models.User;
+import eu.judegam.wopfe.models.tests.Test;
 import eu.judegam.wopfe.repositories.UserRepo;
 import eu.judegam.wopfe.security.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -53,7 +55,7 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> getUsersWithRole(UserRole role) {
-        return ((List<User>) repo.findAll()).stream()
+        return getAllUsers().stream()
                 .filter(u -> u.getUserRole() == role)
                 .collect(Collectors.toList());
     }
@@ -69,6 +71,11 @@ public class UserService implements UserDetailsService {
                 : ((List<User>) repo.findAll())
                 .stream().filter(u -> Objects.equal(username, u.getUsername()))
                 .findFirst();
+    }
+
+    public List<User> getAllUsersByClass(String clazz) {
+        return getAllUsers().stream().filter(u -> Objects.equal(u.getClazz(),
+                clazz)).collect(Collectors.toList());
     }
 
     public User getUserById(Long id) {
@@ -96,6 +103,11 @@ public class UserService implements UserDetailsService {
             oldUser.setUserRole(user.getUserRole());
         }
         return repo.save(oldUser);
+    }
+
+    public List<Test> getAssignedTests(Long id) {
+        User usr = getUserById(id);
+        return usr != null ? usr.getAssignedTests() : new ArrayList<>();
     }
 
     private String generateUsername(User user) {

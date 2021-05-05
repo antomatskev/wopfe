@@ -1,16 +1,27 @@
 package eu.judegam.wopfe.models;
 
+import eu.judegam.wopfe.models.tests.Test;
 import eu.judegam.wopfe.security.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
+@Table(name = "users")
 public class User implements UserDetails {
 
     @Id
@@ -22,6 +33,11 @@ public class User implements UserDetails {
     private String firstName;
     private String lastName;
     private String clazz;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "user_tests",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "test_id")})
+    private List<Test> assignedTests = new ArrayList<>();
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
@@ -161,6 +177,18 @@ public class User implements UserDetails {
 
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
+    }
+
+    public List<Test> getAssignedTests() {
+        return assignedTests;
+    }
+
+    public void setAssignedTests(List<Test> assignedTests) {
+        this.assignedTests = assignedTests;
+    }
+
+    public void addTest(Test t) {
+        assignedTests.add(t);
     }
 
     public void enableAll() {

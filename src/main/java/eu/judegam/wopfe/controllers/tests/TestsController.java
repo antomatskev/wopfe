@@ -1,5 +1,6 @@
 package eu.judegam.wopfe.controllers.tests;
 
+import eu.judegam.wopfe.auth.UserService;
 import eu.judegam.wopfe.models.User;
 import eu.judegam.wopfe.models.tests.Question;
 import eu.judegam.wopfe.models.tests.Test;
@@ -11,6 +12,7 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,9 +32,11 @@ import java.util.stream.Collectors;
 public class TestsController {
 
     private final TestsService service;
+    private final UserService usrService;
 
-    public TestsController(TestsService service) {
+    public TestsController(TestsService service, UserService usrService) {
         this.service = service;
+        this.usrService = usrService;
     }
 
     @RequestMapping(value = "/main/tests", method = RequestMethod.GET)
@@ -61,6 +65,7 @@ public class TestsController {
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String updateTest(Model model, @PathVariable("id") Long id, @ModelAttribute Test test) {
         Test dbTest = service.updateTest(id, test);
+        assignTestToUsers(test);
         model.addAttribute("test", dbTest);
         model.addAttribute("question", new Question());
         model.addAttribute("questions", test.getQuestions());
@@ -81,6 +86,7 @@ public class TestsController {
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public RedirectView saveTest(RedirectAttributes redirectAttributes, @ModelAttribute Test test) {
         service.saveTest(test);
+        assignTestToUsers(test);
         final String msg = "Created test <b>" + test.getName() + "</b> ✨.";
         RedirectView view = new RedirectView("tests", true);
         redirectAttributes.addFlashAttribute("ttMessage", msg);
@@ -107,7 +113,7 @@ public class TestsController {
                 UserRole userRole = ((User) user).getUserRole();
                 model.addAttribute("role", userRole);
                 model.addAttribute("username", ((User) user).getUsername());
-                tests.addAll(service.getUserTests(((User) user).getClazz()));
+                tests.addAll(usrService.getAssignedTests(((User) user).getId()));
                 ret = "tests/student_tasks";
             } else {
                 ret = "error";
@@ -158,6 +164,18 @@ public class TestsController {
         redirectAttributes.addFlashAttribute("taskCheckMessage",
                 task);
         return redirectView;
+    }
+
+    @Transactional
+    public void assignTestToUsers(Test test) {
+        final String clazz = test.getClazz();
+        List<User> users = usrService.getAllUsersByClass(clazz);
+        test.addUsers(users);
+        service.updateTest(test.getId(), test);
+        users.forEach(u -> {
+            u.addTest(test);
+            usrService.updateUser(u.getId(), u);
+        });
     }
 
 }

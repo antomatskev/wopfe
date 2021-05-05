@@ -22,7 +22,7 @@
     transition: 0.5s;
 }
 
-.form-signin{
+.form-signin {
     margin-left: 20px;
     margin-top: 150px;
 }
@@ -198,12 +198,80 @@ select {
     padding: 10px 25px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis
+    text-overflow: ellipsis;
 }
 
 #closebtn:hover {
     background-color: #0a9471;
     color: white;
+}
+
+/* css для header-а*/
+.header {
+    overflow: hidden;
+    padding: 10px 10px;
+}
+
+.header form {
+    float: left;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    border-radius: 4px;
+}
+
+.header span.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.header-right {
+    float: right;
+}
+
+.buttonHeader {
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 2px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.buttonHeader2 {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+}
+
+.buttonHeader2:hover {
+    background-color: black;
+    color: white;
+}
+
+#open_menu_button {
+    opacity: 0;
+}
+
+@media screen and (max-width: 500px) {
+    .header form {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .header-right {
+        float: none;
+    }
+
+    #open_menu_button {
+        opacity: 1;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -220,6 +288,10 @@ select {
         width: 20%;
     }
 
+    #open_menu_button {
+        opacity: 1;
+    }
+
     @media (max-width: 414px) {
         .sidenav {
             width: 0;
@@ -228,7 +300,12 @@ select {
         .main {
             margin-left: 0;
         }
+
+        #open_menu_button {
+            opacity: 1;
+        }
     }
+
 
 
     @media (max-width: 320px) {
@@ -238,6 +315,10 @@ select {
 
         .main {
             margin-left: 0;
+        }
+
+        #open_menu_button {
+            opacity: 1;
         }
     }
 }

@@ -143,8 +143,8 @@ public class TestsController {
                     ret = "error";
                 } else {
                     model.addAttribute("test", test);
-//                    model.addAttribute("question", new Question());
-//                    model.addAttribute("answer", new Answer());
+                    model.addAttribute("question", new Question());
+                    model.addAttribute("answer", new Answer());
                     ret = "tests/task";
                 }
             } else {
@@ -174,7 +174,7 @@ public class TestsController {
                     testService.answerQuestion(id,
                     qId,
                     textAnswer));
-        } else if (!cbAnswers.isEmpty()) {
+        } else if (cbAnswers != null && !cbAnswers.isEmpty()) {
             redirectAttributes.addAttribute("answeredQuestion",
                     testService.answerQuestion(id, qId, cbAnswers,
                             correctAnswers));

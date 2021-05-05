@@ -43,6 +43,7 @@
                                 <input th:type="checkbox"
                                        th:text="${qAnswer.answerText}"
                                        th:value="${qAnswer.id}"
+                                       th:checked="${#lists.contains(question.chosenAnswers, qAnswer.id)}"
                                        th:field="*{chosenAnswers}">
                             </td>
                     </tr>
@@ -66,6 +67,9 @@
             </div>
             </tbody>
         </table>
+        <div class="results">
+            Your results are:
+        </div>
     </div>
 </div>
 <script src="/js/menu.js"></script>

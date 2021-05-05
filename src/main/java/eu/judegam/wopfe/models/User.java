@@ -15,10 +15,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -37,7 +36,7 @@ public class User implements UserDetails {
     @JoinTable(name = "user_tests",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "test_id")})
-    private List<Test> assignedTests = new ArrayList<>();
+    private Set<Test> assignedTests = new HashSet<>();
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
@@ -179,11 +178,11 @@ public class User implements UserDetails {
         isEnabled = enabled;
     }
 
-    public List<Test> getAssignedTests() {
+    public Set<Test> getAssignedTests() {
         return assignedTests;
     }
 
-    public void setAssignedTests(List<Test> assignedTests) {
+    public void setAssignedTests(Set<Test> assignedTests) {
         this.assignedTests = assignedTests;
     }
 

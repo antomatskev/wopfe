@@ -13,10 +13,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -66,9 +67,13 @@ public class UserService implements UserDetailsService {
 
     public Optional<User> getUserByUsername(String username) {
         final Optional<User> user = userDao.selectUserByUsername(username);
-        return user.isPresent()
-                ? user
-                : ((List<User>) repo.findAll())
+        if (user.isPresent()) {
+            if (repo.findById(user.get().getId()).isEmpty()) {
+                repo.save(user.get());
+            }
+            return user;
+        }
+        return ((List<User>) repo.findAll())
                 .stream().filter(u -> Objects.equal(username, u.getUsername()))
                 .findFirst();
     }
@@ -105,9 +110,9 @@ public class UserService implements UserDetailsService {
         return repo.save(oldUser);
     }
 
-    public List<Test> getAssignedTests(Long id) {
+    public Set<Test> getAssignedTests(Long id) {
         User usr = getUserById(id);
-        return usr != null ? usr.getAssignedTests() : new ArrayList<>();
+        return usr != null ? usr.getAssignedTests() : new HashSet<>();
     }
 
     private String generateUsername(User user) {

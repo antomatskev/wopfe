@@ -19,7 +19,7 @@
         </h3>
         <form method="post" th:action="'/main/tests/' + ${test.id} + '/update'" th:object="${test}">
             <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
-            <input id="class" placeholder="Class" required th:field="*{clazz}"
+            <input id="class" placeholder="Class" th:field="*{clazz}"
                    type="text"/>
             <input id="date" placeholder="dd/mm/yyyy" required
                    th:field="*{date}" type="text"/>

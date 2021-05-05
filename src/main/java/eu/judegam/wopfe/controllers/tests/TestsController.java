@@ -2,6 +2,7 @@ package eu.judegam.wopfe.controllers.tests;
 
 import eu.judegam.wopfe.auth.UserService;
 import eu.judegam.wopfe.models.User;
+import eu.judegam.wopfe.models.tests.Answer;
 import eu.judegam.wopfe.models.tests.Question;
 import eu.judegam.wopfe.models.tests.Test;
 import eu.judegam.wopfe.security.UserRole;
@@ -143,6 +144,7 @@ public class TestsController {
                 } else {
                     model.addAttribute("test", test);
                     model.addAttribute("question", new Question());
+                    model.addAttribute("answer", new Answer());
                     ret = "tests/task";
                 }
             } else {
@@ -154,22 +156,26 @@ public class TestsController {
         return ret;
     }
 
-    @RequestMapping(path = "/main/task/{id}/check", method =
+    @RequestMapping(path = "/main/task/{id}/check/{qId}", method =
             RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_STUDENT')")
     public RedirectView checkTask(RedirectAttributes redirectAttributes,
-                                  @PathVariable("id") Long id, @ModelAttribute Test test) {
-        RedirectView redirectView = new RedirectView("/main/tasks/", true);
-        Test task = service.getTestById(id);
-        redirectAttributes.addFlashAttribute("taskCheckMessage",
-                task);
+                                  @PathVariable("id") Long id,
+                                  @PathVariable("qId") Long qId,
+                                  @ModelAttribute Question q) {
+        RedirectView redirectView =
+                new RedirectView("/main/tasks/" + id, true);
+        // TODO: implement checking with correct answers.
+//        service.getTestQuestion(id, qId).getCorrectAnswers();
         return redirectView;
     }
 
     @Transactional
     public void assignTestToUsers(Test test) {
         final String clazz = test.getClazz();
-        List<User> users = usrService.getAllUsersByClass(clazz);
+        List<User> users = clazz == null || "all".equals(clazz)
+                ? usrService.getAllUsers()
+                : usrService.getAllUsersByClass(clazz);
         test.addUsers(users);
         service.updateTest(test.getId(), test);
         users.forEach(u -> {

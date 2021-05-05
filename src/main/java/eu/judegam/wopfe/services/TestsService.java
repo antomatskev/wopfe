@@ -1,5 +1,6 @@
 package eu.judegam.wopfe.services;
 
+import eu.judegam.wopfe.models.tests.Question;
 import eu.judegam.wopfe.models.tests.Test;
 import eu.judegam.wopfe.repositories.TestsRepository;
 import org.springframework.data.domain.Sort;
@@ -39,6 +40,14 @@ public class TestsService {
 
     public Test getTestById(Long id) {
         return repository.findById(id).orElse(null);
+    }
+
+    public Question getTestQuestion(Long id, Long qId) {
+        return repository.findById(id).map(test ->
+                test.getQuestions().stream()
+                        .filter(q -> q.getId().equals(qId))
+                        .collect(Collectors.toList())
+                        .stream().findFirst().get()).orElse(null);
     }
 
     public Test getTestByName(String name) {

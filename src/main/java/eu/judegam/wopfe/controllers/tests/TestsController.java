@@ -143,8 +143,8 @@ public class TestsController {
                     ret = "error";
                 } else {
                     model.addAttribute("test", test);
-                    model.addAttribute("question", new Question());
-                    model.addAttribute("answer", new Answer());
+//                    model.addAttribute("question", new Question());
+//                    model.addAttribute("answer", new Answer());
                     ret = "tests/task";
                 }
             } else {
@@ -170,9 +170,14 @@ public class TestsController {
         final String textAnswer = q.getChosenAnswer();
         final List<Long> cbAnswers = q.getChosenAnswers();
         if (textAnswer != null && !textAnswer.isEmpty()) {
-            testService.answerQuestion(id, qId, textAnswer);
+            redirectAttributes.addAttribute("answeredQuestion",
+                    testService.answerQuestion(id,
+                    qId,
+                    textAnswer));
         } else if (!cbAnswers.isEmpty()) {
-            testService.answerQuestion(id, qId, cbAnswers, correctAnswers);
+            redirectAttributes.addAttribute("answeredQuestion",
+                    testService.answerQuestion(id, qId, cbAnswers,
+                            correctAnswers));
         }
         return redirectView;
     }

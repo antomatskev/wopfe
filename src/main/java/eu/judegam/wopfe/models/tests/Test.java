@@ -104,7 +104,6 @@ public class Test implements Serializable {
     }
 
     public List<Question> getQuestions() {
-
         return questions;
     }
 
@@ -134,6 +133,11 @@ public class Test implements Serializable {
 
     public void addUsers(List<User> usrs) {
         users.addAll(usrs);
+    }
+
+    public void updateQuestion(Question q) {
+        questions.remove(q);
+        questions.add(q);
     }
 
 }

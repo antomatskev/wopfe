@@ -7,13 +7,11 @@
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
-
 <div th:insert="blocks/menu :: menu"></div>
-
 <div id="main" class="main">
     <h1 class="moreGreenText appName">WOPFE</h1>
+    <div th:insert="blocks/header :: header"></div>
     <hr class="line">
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
     <div class="content">
         <h3>Tests</h3>
         <table class="greyGridTable">
@@ -29,7 +27,9 @@
             <tbody>
             <tr th:each="test : ${tests}">
                 <td><a th:href="'/main/tasks/' + ${test.id}">[[${test.name}]]</a></td>
-                <td>TODO</td>
+                <td th:text="${#lists.size(test.correctlyAnswered)} + '/'
+                        + ${#lists.size(test
+                .questions)}"></td>
                 <td th:text="${test.date}"></td>
             </tr>
             </tbody>
@@ -37,6 +37,5 @@
     </div>
 </div>
 <script src="/js/menu.js"></script>
-
 </body>
 </html>

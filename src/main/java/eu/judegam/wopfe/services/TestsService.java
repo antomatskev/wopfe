@@ -96,6 +96,9 @@ public class TestsService {
                 diff.removeAll(correctAnswers);
                 answeredQuestion.setCorrectlyAnswered(diff.isEmpty());
             }
+            if (answeredQuestion.getCorrectlyAnswered()) {
+                test.getCorrectlyAnswered().add(answeredQuestion.getId());
+            }
             test.updateQuestion(answeredQuestion);
             repository.save(test);
         }

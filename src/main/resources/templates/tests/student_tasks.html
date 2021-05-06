@@ -27,7 +27,9 @@
             <tbody>
             <tr th:each="test : ${tests}">
                 <td><a th:href="'/main/tasks/' + ${test.id}">[[${test.name}]]</a></td>
-                <td>TODO</td>
+                <td th:text="${#lists.size(test.correctlyAnswered)} + '/'
+                        + ${#lists.size(test
+                .questions)}"></td>
                 <td th:text="${test.date}"></td>
             </tr>
             </tbody>

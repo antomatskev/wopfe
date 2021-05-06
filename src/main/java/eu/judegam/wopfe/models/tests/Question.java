@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Represents Question, that can be open(students can write their answers manually) or questions for tests.
@@ -38,6 +39,11 @@ public class Question implements Serializable {
     private List<Answer> answers;
     @ElementCollection
     private List<Long> correctAnswers;
+    @ElementCollection
+    private List<Long> chosenAnswers;
+    private String chosenAnswer;
+    private boolean isAnswered;
+    private boolean isCorrectlyAnswered;
 
     public Question() {
     }
@@ -83,7 +89,7 @@ public class Question implements Serializable {
     }
 
     public List<Answer> getAnswers() {
-            return answers;
+        return answers;
     }
 
     public void setAnswers(List<Answer> answers) {
@@ -94,7 +100,52 @@ public class Question implements Serializable {
         return correctAnswers;
     }
 
-    public void setCorrectAnswer(List<Long> answers) {
-        this.correctAnswers = answers;
+    public void setCorrectAnswers(List<Long> correctAnswers) {
+        this.correctAnswers = correctAnswers;
+    }
+
+    public List<Long> getChosenAnswers() {
+        return chosenAnswers;
+    }
+
+    public void setChosenAnswers(List<Long> chosenAnswers) {
+        this.chosenAnswers = chosenAnswers;
+    }
+
+    public boolean getAnswered() {
+        return isAnswered;
+    }
+
+    public void setAnswered(boolean answered) {
+        isAnswered = answered;
+    }
+
+    public String getChosenAnswer() {
+        return chosenAnswer;
+    }
+
+    public void setChosenAnswer(String chosenAnswer) {
+        this.chosenAnswer = chosenAnswer;
+    }
+
+    public boolean getCorrectlyAnswered() {
+        return isCorrectlyAnswered;
+    }
+
+    public void setCorrectlyAnswered(boolean correctlyAnswered) {
+        isCorrectlyAnswered = correctlyAnswered;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Question question = (Question) o;
+        return Objects.equals(id, question.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

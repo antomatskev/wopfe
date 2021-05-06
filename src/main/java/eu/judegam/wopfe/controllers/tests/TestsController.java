@@ -32,18 +32,18 @@ import java.util.stream.Collectors;
 @Controller
 public class TestsController {
 
-    private final TestsService service;
+    private final TestsService testService;
     private final UserService usrService;
 
     public TestsController(TestsService service, UserService usrService) {
-        this.service = service;
+        this.testService = service;
         this.usrService = usrService;
     }
 
     @RequestMapping(value = "/main/tests", method = RequestMethod.GET)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String getTests(Model model) {
-        List<Test> tests = service.getTests();
+        List<Test> tests = testService.getTests();
         model.addAttribute("tests", tests);
         model.addAttribute("test", new Test());
         return Utils.addUsrAttrToModel(model, "tests/teacher_tests");
@@ -52,7 +52,7 @@ public class TestsController {
     @GetMapping(value = "/main/tests/{id}")
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String showTestById(Model model, @PathVariable("id") Long id) {
-        Test test = service.getTestById(id);
+        Test test = testService.getTestById(id);
         List<Question> questions = test.getQuestions().stream()
                 .sorted(Comparator.comparing(Question::getQuestionText))
                 .collect(Collectors.toList());
@@ -65,7 +65,7 @@ public class TestsController {
     @RequestMapping(path = "/main/tests/{id}/update", method = RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String updateTest(Model model, @PathVariable("id") Long id, @ModelAttribute Test test) {
-        Test dbTest = service.updateTest(id, test);
+        Test dbTest = testService.updateTest(id, test);
         assignTestToUsers(test);
         model.addAttribute("test", dbTest);
         model.addAttribute("question", new Question());
@@ -76,7 +76,7 @@ public class TestsController {
     @RequestMapping(path = "/main/tests/{id}", method = RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public String updateTestQuestions(Model model, @PathVariable("id") Long id) {
-        Test test = service.getTestById(id);
+        Test test = testService.getTestById(id);
         model.addAttribute("test", test);
         model.addAttribute("question", new Question());
         model.addAttribute("questions", test.getQuestions());
@@ -86,7 +86,7 @@ public class TestsController {
     @RequestMapping(path = "/main/addTest", method = RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public RedirectView saveTest(RedirectAttributes redirectAttributes, @ModelAttribute Test test) {
-        service.saveTest(test);
+        testService.saveTest(test);
         assignTestToUsers(test);
         final String msg = "Created test <b>" + test.getName() + "</b> ✨.";
         RedirectView view = new RedirectView("tests", true);
@@ -98,7 +98,7 @@ public class TestsController {
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_TEACHER')")
     public RedirectView deleteTest(RedirectAttributes redirectAttributes, @PathVariable("id") Long id, @ModelAttribute Test test) {
         RedirectView redirectView = new RedirectView("/main/tests", true);
-        redirectAttributes.addFlashAttribute("ttMessage", service.deleteTest(id));
+        redirectAttributes.addFlashAttribute("ttMessage", testService.deleteTest(id));
         return redirectView;
     }
 
@@ -131,7 +131,7 @@ public class TestsController {
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_STUDENT')")
     public String getTask(Model model, @PathVariable("id") Long id) {
         final String ret;
-        Test test = service.getTestById(id);
+        Test test = testService.getTestById(id);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             Object user = auth.getPrincipal();
@@ -165,8 +165,20 @@ public class TestsController {
                                   @ModelAttribute Question q) {
         RedirectView redirectView =
                 new RedirectView("/main/tasks/" + id, true);
-        // TODO: implement checking with correct answers.
-//        service.getTestQuestion(id, qId).getCorrectAnswers();
+        final Question answeredQuestion = testService.getTestQuestion(id, qId);
+        final List<Long> correctAnswers = answeredQuestion.getCorrectAnswers();
+        final String textAnswer = q.getChosenAnswer();
+        final List<Long> cbAnswers = q.getChosenAnswers();
+        if (textAnswer != null && !textAnswer.isEmpty()) {
+            redirectAttributes.addAttribute("answeredQuestion",
+                    testService.answerQuestion(id,
+                    qId,
+                    textAnswer));
+        } else if (cbAnswers != null && !cbAnswers.isEmpty()) {
+            redirectAttributes.addAttribute("answeredQuestion",
+                    testService.answerQuestion(id, qId, cbAnswers,
+                            correctAnswers));
+        }
         return redirectView;
     }
 
@@ -177,7 +189,7 @@ public class TestsController {
                 ? usrService.getAllUsers()
                 : usrService.getAllUsersByClass(clazz);
         test.addUsers(users);
-        service.updateTest(test.getId(), test);
+        testService.updateTest(test.getId(), test);
         users.forEach(u -> {
             u.addTest(test);
             usrService.updateUser(u.getId(), u);

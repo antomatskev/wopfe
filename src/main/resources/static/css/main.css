@@ -306,8 +306,6 @@ select {
         }
     }
 
-
-
     @media (max-width: 320px) {
         .sidenav {
             width: 0;

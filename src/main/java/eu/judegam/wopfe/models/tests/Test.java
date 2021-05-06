@@ -36,37 +36,6 @@ public class Test implements Serializable {
             mappedBy = "assignedTests")
     private List<User> users = new ArrayList<>();
 
-    public Test(String name) {
-        this.name = name;
-    }
-
-    public Test(String name, List<Question> questions) {
-        this.name = name;
-        this.questions = questions;
-    }
-
-    public Test(Long id, String name, String clazz, Date date, String time) {
-        this.id = id;
-        this.name = name;
-        this.clazz = clazz;
-        this.date = date;
-        this.time = time;
-    }
-
-    public Test(String name, Date date, String time) {
-        this.name = name;
-        this.date = date;
-        this.time = time;
-    }
-
-    public Test(String name, Date date, String time, String clazz, List<Question> questions) {
-        this.name = name;
-        this.date = date;
-        this.time = time;
-        this.clazz = clazz;
-        this.questions = questions;
-    }
-
     public Test() {
 
     }
@@ -104,7 +73,6 @@ public class Test implements Serializable {
     }
 
     public List<Question> getQuestions() {
-
         return questions;
     }
 
@@ -134,6 +102,11 @@ public class Test implements Serializable {
 
     public void addUsers(List<User> usrs) {
         users.addAll(usrs);
+    }
+
+    public void updateQuestion(Question q) {
+        questions.remove(q);
+        questions.add(q);
     }
 
 }

@@ -67,7 +67,9 @@
             </tbody>
         </table>
         <div class="results">
-            Your results are:
+            <h3 th:inline="text">Your results are:
+                [[${#lists.size(test.correctlyAnswered)}]]/[[${#lists.size(test
+                .questions)}]]</h3>
         </div>
     </div>
 </div>

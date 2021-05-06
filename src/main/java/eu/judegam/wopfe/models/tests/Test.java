@@ -4,6 +4,7 @@ import eu.judegam.wopfe.models.User;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -35,6 +36,8 @@ public class Test implements Serializable {
     @ManyToMany(fetch= FetchType.LAZY, cascade = CascadeType.PERSIST,
             mappedBy = "assignedTests")
     private List<User> users = new ArrayList<>();
+    @ElementCollection
+    private List<Long> correctlyAnswered = new ArrayList<>();
 
     public Test() {
 
@@ -109,4 +112,11 @@ public class Test implements Serializable {
         questions.add(q);
     }
 
+    public List<Long> getCorrectlyAnswered() {
+        return correctlyAnswered;
+    }
+
+    public void setCorrectlyAnswered(List<Long> correctlyAnswered) {
+        this.correctlyAnswered = correctlyAnswered;
+    }
 }

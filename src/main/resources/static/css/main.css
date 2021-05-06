@@ -186,7 +186,7 @@ select {
 .checkbox{
     outline: 1000px;
 }
-.buttonForAns{
+.button6{
     background-color: black;
     position: relative;
     border: 10px;
@@ -194,8 +194,7 @@ select {
     text-align: center;
     text-decoration: none;
     font-size: 13px;
-/*    margin: 10px;*/
-    margin-left: 260%;
+    margin-left: 280%;
     cursor: pointer;
     padding: 8px 35px;
     white-space: nowrap;

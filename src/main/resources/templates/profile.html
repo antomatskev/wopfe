@@ -2,17 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
     <title>WOPFE</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
 <body>
 <div th:insert="blocks/menu :: menu"></div>
 <div id="main" class="main">
-    <h1 class="moreGreenText appName">WOPFE</h1>
-    <div th:insert="blocks/header :: header"></div>
-    <hr class="line">
-    <div class="addLater">Under construction</div>
+    <div th:insert="blocks/header :: header">
+        <h1 class="moreGreenText appName">WOPFE</h1>
+    </div><hr class="line">
+    <div class="content">
+        <h3>Your profile information</h3>
+    </div>
 </div>
 <script src="/js/menu.js"></script>
 </body>

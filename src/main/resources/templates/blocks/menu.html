@@ -3,6 +3,8 @@
         <a href="javascript:void(0)" id="closebtn" onclick="closeNav()">&times;</a>
         <a href="/main">Main</a>
         <a th:if="${userObj.userRole.name == 'MANAGER'}"
+           href="/main/users">Users</a>
+        <a th:if="${userObj.userRole.name == 'MANAGER'}"
            href="/main/admins">Admins</a>
 
         <a th:if="${userObj.userRole.name == 'ADMIN'}"
@@ -29,7 +31,8 @@
            th:href="@{'/main/timetable/' + ${userObj.clazz}}">Timetable</a>
         <a th:if="${userObj.userRole.name == 'STUDENT'}" href="/main/tasks">My
             Tasks</a>
-
+        <a th:if="${userObj.userRole.name == 'ALL'}"
+           href="/main/users">Users</a>
         <a th:if="${userObj.userRole.name == 'ALL'}" href="/main/admins">Admins
         </a>
         <a th:if="${userObj.userRole.name == 'ALL'}"

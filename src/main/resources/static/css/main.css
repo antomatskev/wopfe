@@ -256,6 +256,16 @@ select {
     opacity: 0;
 }
 
+.correctAnswer {
+    background-color: #0a9471;
+    color: white;
+}
+
+.notCorrectAnswer {
+    background-color: red;
+    color: white;
+}
+
 @media screen and (max-width: 500px) {
     .header form {
         float: none;

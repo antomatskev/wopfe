@@ -25,9 +25,7 @@ public class Utils {
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             Object user = auth.getPrincipal();
             if (user instanceof User) {
-                UserRole userRole = ((User) user).getUserRole();
-                model.addAttribute("role", userRole);
-                model.addAttribute("username", ((User) user).getUsername());
+                model.addAttribute("userObj", user);
                 ret = defPath;
             } else {
                 ret = "error";

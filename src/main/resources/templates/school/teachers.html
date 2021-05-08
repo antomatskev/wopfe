@@ -45,7 +45,7 @@
                 <td th:text="${teacher.fullName}"></td>
                 <td th:text="${teacher.clazz}"></td>
                 <td th:text="${teacher.username}"></td>
-                <td><a th:href="'/main/teachers/' + ${teacher.id}">-O-</a></td>
+                <td><a th:href="'/main/teachers/' + ${teacher.id}">✏</a></td>
                 <td>
                     <form method="post"
                           th:action="'/main/teachers/' + ${teacher.id} + '/delete'" th:object="${teacher}">

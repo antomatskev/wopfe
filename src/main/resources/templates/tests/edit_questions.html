@@ -23,6 +23,7 @@
             <tr>
                 <th>Answer Text</th>
                 <th>Is correct?</th>
+                <th>Remove</th>
             </tr>
             </thead>
             <tr th:if="${#lists.isEmpty(question.answers)}">
@@ -45,7 +46,7 @@
                         <form method="post"
                               th:action="'/main/question/' + ${question.id} + '/markCorrect/' + ${qAnswer.id}"
                               th:object="${qAnswer}">
-                            <input type="submit" value="x">
+                            <input type="submit" value="o">
                         </form>
                     </td>
                 </div>

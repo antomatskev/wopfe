@@ -24,7 +24,7 @@
                 <th>Name</th>
                 <th>Role</th>
                 <th>Class</th>
-                <th>Update</th>
+                <th th:if="${userObj.userRole.name != 'TEACHER'}">Update</th>
                 <th>Remove</th>
             </tr>
             </thead>
@@ -37,22 +37,24 @@
                 <td th:text="${user.fullName}"></td>
                 <td th:text="${user.userRole}"></td>
                 <td th:text="${user.clazz}"></td>
-                <td th:if="${user.userRole.name == 'STUDENT'}">
-                    <a th:href="'/main/students/' + ${user.id}">-O-</a>
+                <td
+                        th:if="${user.userRole.name == 'STUDENT' and  userObj.userRole.name != 'TEACHER'}">
+                    <a th:href="'/main/students/' + ${user.id}">✏</a>
                 </td>
-                <td th:if="${user.userRole.name == 'TEACHER'}">
-                    <a th:href="'/main/teachers/' + ${user.id}">-O-</a>
+                <td
+                        th:if="${user.userRole.name == 'TEACHER' and userObj.userRole.name != 'TEACHER'}">
+                    <a th:href="'/main/teachers/' + ${user.id}">✏</a>
                 </td>
                 <td th:if="${user.userRole.name == 'STUDENT'}">
                     <form method="post"
                           th:action="'/main/students/' + ${user.id} + '/delete'" th:object="${user}">
-                        <input type="submit" value="X">
+                        <input type="submit" value="X" th:disabled="${userObj.userRole.name == 'TEACHER'}">
                     </form>
                 </td>
                 <td th:if="${user.userRole.name == 'TEACHER'}">
                     <form method="post"
                           th:action="'/main/teachers/' + ${user.id} + '/delete'" th:object="${user}">
-                        <input type="submit" value="X">
+                        <input type="submit" value="X" th:disabled="${userObj.userRole.name == 'TEACHER'}">
                     </form>
                 </td>
             </tr>

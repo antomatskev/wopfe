@@ -360,9 +360,9 @@ select {
 }
 
 .answersInput{
-    margin-left: 150%;
-    width: 300px;
-    height: 350px;
+    /*margin-left: 150%;*/
+    /*width: 300px;*/
+    /*height: 350px;*/
     resize: none;
 }
 

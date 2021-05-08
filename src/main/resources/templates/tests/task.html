@@ -28,30 +28,22 @@
             </tr>
             <tbody>
             <div th:each="question : ${test.questions}">
-
                 <form method="post"
                       th:action="'/main/task/' + ${test.id} + '/check/' + ${question.id}"
                       th:object="${question}">
                     <tr>
-                        <td th:text="${question.name}"
-                            th:rowspan="${#lists.size(question.answers) + 1}"></td>
-                        <td th:text="${question.questionText}"
-                            th:rowspan="${#lists.size(question.answers) + 1}"></td>
-                    </tr>
-                    <tr th:unless="${#lists.isEmpty(question.answers)}"
-                        th:each="qAnswer : ${question.answers}">
-                        <td>
+                        <td th:text="${question.name}"></td>
+                        <td th:text="${question.questionText}"></td>
+                        <td th:unless="${#lists.isEmpty(question.answers)}"
+                            th:each="qAnswer : ${question.answers}">
                             <input th:type="checkbox"
                                    th:text="${qAnswer.answerText}"
                                    th:value="${qAnswer.id}"
                                    th:checked="${#lists.contains(question.chosenAnswers, qAnswer.id)}"
                                    th:field="*{chosenAnswers}">
                         </td>
-                    </tr>
-                    <tr th:if="${#lists.isEmpty(question.answers)}">
-                        <td>
-                                <textarea class="answersInput" name="answersInput" cols="30" rows="5"
-                                          style="margin-top: 0px; margin-bottom: 0px; height: 42px"
+                        <td th:if="${#lists.isEmpty(question.answers)}">
+                                <textarea class="answersInput" name="answersInput"
                                           th:field="*{chosenAnswer}"></textarea>
                         </td>
                     </tr>

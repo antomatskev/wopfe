@@ -8,13 +8,13 @@
 </head>
 <body>
 <div th:insert="blocks/menu :: menu"></div>
-
 <div id="main" class="main">
     <h1 class="moreGreenText appName">WOPFE</h1>
+    <div th:insert="blocks/header :: header"></div>
     <hr class="line">
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
     <div class="content">
         <h3 th:inline="text">Task [[${test.name}]]</h3>
+        <hr class="line">
         <table class="greyGridTable">
             <thead>
             <tr>
@@ -28,36 +28,59 @@
             </tr>
             <tbody>
             <div th:each="question : ${test.questions}">
+
                 <form method="post"
                       th:action="'/main/task/' + ${test.id} + '/check/' + ${question.id}"
                       th:object="${question}">
-                <tr>
-                    <td th:text="${question.name}"
-                        th:rowspan="${#lists.size(question.answers) + 1}"></td>
-                    <td th:text="${question.questionText}"
-                        th:rowspan="${#lists.size(question.answers) + 1}"></td>
-                </tr>
-                <tr th:each="qAnswer : ${question.answers}">
+                    <tr>
+                        <td th:text="${question.name}"
+                            th:rowspan="${#lists.size(question.answers) + 1}"></td>
+                        <td th:text="${question.questionText}"
+                            th:rowspan="${#lists.size(question.answers) + 1}"></td>
+                    </tr>
+                    <tr th:unless="${#lists.isEmpty(question.answers)}"
+                        th:each="qAnswer : ${question.answers}">
                         <td>
-                            <input class="checkbox" th:type="checkbox"
+                            <input th:type="checkbox"
                                    th:text="${qAnswer.answerText}"
                                    th:value="${qAnswer.id}"
-                                   th:field="*{answers}">
+                                   th:checked="${#lists.contains(question.chosenAnswers, qAnswer.id)}"
+                                   th:field="*{chosenAnswers}">
                         </td>
-                </tr>
-                    <tr th:colspan="15">
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(question.answers)}">
                         <td>
-                    <input class="button6" type="submit"
-                           value="check"></td>
+                            <p>Enter your answer<Br>
+                                <textarea class="answersInput" name="answersInput" cols="30" rows="5"
+                                          style="margin-top: 0px; margin-bottom: 0px; height: 42px"
+                                          th:field="*{chosenAnswer}"></textarea>
 
+                        </td>
+                    </tr>
+                    <tr th:unless="${question.getAnswered}"
+                        th:colspan="3">
+                        <td><input class="button6" type="submit"
+                                   value="check">
+                            <hr class="line2">
+                        </td>
+                    </tr>
+                    <tr th:if="${question.getAnswered}"
+                        th:colspan="3">
+                        <td>Answered
+                            <hr class="line2">
+                        </td>
                     </tr>
                 </form>
             </div>
             </tbody>
         </table>
+        <div class="results">
+            <h3 th:inline="text">Your results are:
+                [[${#lists.size(test.correctlyAnswered)}]]/[[${#lists.size(test
+                .questions)}]]</h3>
+        </div>
     </div>
 </div>
 <script src="/js/menu.js"></script>
-
 </body>
 </html>

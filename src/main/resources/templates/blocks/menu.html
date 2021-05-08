@@ -2,27 +2,54 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" id="closebtn" onclick="closeNav()">&times;</a>
         <a href="/main">Main</a>
-        <a th:if="${role.name == 'MANAGER'}" href="/main/admins">Admins</a>
+        <a th:if="${userObj.userRole.name == 'MANAGER'}"
+           href="/main/users">Users</a>
+        <a th:if="${userObj.userRole.name == 'MANAGER'}"
+           href="/main/admins">Admins</a>
 
-        <a th:if="${role.name == 'ADMIN'}" href="/main/teachers">Teachers</a>
-        <a th:if="${role.name == 'ADMIN'}" href="/main/students">Students</a>
-        <a th:if="${role.name == 'ADMIN'}" href="/main/timetables">Timetables</a>
+        <a th:if="${userObj.userRole.name == 'ADMIN'}"
+           href="/main/teachers">Teachers
+        </a>
+        <a th:if="${userObj.userRole.name == 'ADMIN'}"
+           href="/main/students">Students
+        </a>
+        <a th:if="${userObj.userRole.name == 'ADMIN'}" href="/main/timetables">
+            Timetables</a>
 
-        <a th:if="${role.name == 'TEACHER'}" href="/main/timetables">Timetables</a>
-        <a th:if="${role.name == 'TEACHER'}" href="/main/classes">Classes</a>
-        <a th:if="${role.name == 'TEACHER'}" href="/main/students">Students</a>
-        <a th:if="${role.name == 'TEACHER'}" href="/main/tests">All Tests</a>
+        <a th:if="${userObj.userRole.name == 'TEACHER'}"
+           href="/main/timetables">
+            Timetables</a>
+        <a th:if="${userObj.userRole.name == 'TEACHER'}"
+           href="/main/classes">Classes
+        </a>
+        <a th:if="${userObj.userRole.name == 'TEACHER'}" href="/main/students">
+            Students</a>
+        <a th:if="${userObj.userRole.name == 'TEACHER'}" href="/main/tests">All
+            Tests</a>
 
-        <a th:if="${role.name == 'STUDENT'}" href="/main/timetables">Timetables</a>
-        <a th:if="${role.name == 'STUDENT'}" href="/main/tasks">My Tasks</a>
-
-        <a th:if="${role.name == 'ALL'}" href="/main/admins">Admins</a>
-        <a th:if="${role.name == 'ALL'}" href="/main/teachers">Teachers</a>
-        <a th:if="${role.name == 'ALL' }" href="/main/classes">Classes</a>
-        <a th:if="${role.name == 'ALL'}" href="/main/students">Students</a>
-        <a th:if="${role.name == 'ALL'}" href="/main/timetables">Timetables</a>
-        <a th:if="${role.name == 'ALL'}" href="/main/tests">All Tests</a>
-        <a th:if="${role.name == 'ALL'}" href="/main/tasks">My Tasks</a>
+        <a th:if="${userObj.userRole.name == 'STUDENT'}"
+           th:href="@{'/main/timetable/' + ${userObj.clazz}}">Timetable</a>
+        <a th:if="${userObj.userRole.name == 'STUDENT'}" href="/main/tasks">My
+            Tasks</a>
+        <a th:if="${userObj.userRole.name == 'ALL'}"
+           href="/main/users">Users</a>
+        <a th:if="${userObj.userRole.name == 'ALL'}" href="/main/admins">Admins
+        </a>
+        <a th:if="${userObj.userRole.name == 'ALL'}"
+           href="/main/teachers">Teachers
+        </a>
+        <a th:if="${userObj.userRole.name == 'ALL' }"
+           href="/main/classes">Classes
+        </a>
+        <a th:if="${userObj.userRole.name == 'ALL'}"
+           href="/main/students">Students
+        </a>
+        <a th:if="${userObj.userRole.name == 'ALL'}" href="/main/timetables">
+            Timetables</a>
+        <a th:if="${userObj.userRole.name == 'ALL'}" href="/main/tests">All
+            Tests</a>
+        <a th:if="${userObj.userRole.name == 'ALL'}" href="/main/tasks">My
+            Tasks</a>
 
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>

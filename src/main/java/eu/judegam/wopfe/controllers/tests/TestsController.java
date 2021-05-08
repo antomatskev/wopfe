@@ -111,9 +111,7 @@ public class TestsController {
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             Object user = auth.getPrincipal();
             if (user instanceof User) {
-                UserRole userRole = ((User) user).getUserRole();
-                model.addAttribute("role", userRole);
-                model.addAttribute("username", ((User) user).getUsername());
+                model.addAttribute("userObj", user);
                 tests.addAll(usrService.getAssignedTests(((User) user).getId()));
                 ret = "tests/student_tasks";
             } else {
@@ -136,9 +134,7 @@ public class TestsController {
         if (!(auth instanceof AnonymousAuthenticationToken)) {
             Object user = auth.getPrincipal();
             if (user instanceof User) {
-                UserRole userRole = ((User) user).getUserRole();
-                model.addAttribute("role", userRole);
-                model.addAttribute("username", ((User) user).getUsername());
+                model.addAttribute("userObj", user);
                 if (!Objects.equals(test.getClazz(), ((User) user).getClazz())) {
                     ret = "error";
                 } else {

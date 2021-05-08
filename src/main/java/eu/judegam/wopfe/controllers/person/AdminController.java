@@ -30,7 +30,7 @@ public class AdminController {
     }
 
     @RequestMapping(path = "/main/students", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN', 'ROLE_TEACHER')")
     public String getStudents(Model model) {
         List<User> students = usrService.getUsersWithRole(UserRole.STUDENT).stream().sorted(Comparator.comparing(User::getId)).collect(Collectors.toList());
         model.addAttribute("students", students);
@@ -132,7 +132,7 @@ public class AdminController {
     }
 
     @RequestMapping(path = "/main/classes", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN', 'ROLE_TEACHER')")
     public String getClasses(Model model) {
         Set<String> classes = usrService.getAllUsers().stream()
                 .map(User::getClazz)
@@ -142,7 +142,7 @@ public class AdminController {
     }
 
     @RequestMapping(path = "/main/classes/{name}", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_ADMIN', 'ROLE_TEACHER')")
     public String getClass(Model model, @PathVariable("name") String name) {
         List<User> users = usrService.getAllUsers().stream()
                 .filter(u -> Objects.equals(u.getClazz(), name))

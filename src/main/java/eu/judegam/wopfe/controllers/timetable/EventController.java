@@ -19,7 +19,7 @@ public class EventController {
     private EventService service;
 
     @RequestMapping(path = "/main/timetables/{id}/addEvent", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL', 'ROLE_ADMIN')")
     public RedirectView saveEvent(RedirectAttributes redirectAttributes, @ModelAttribute Event event,
                                   @PathVariable("id") Long ttId) {
         service.saveEvent(event, ttId);
@@ -30,7 +30,7 @@ public class EventController {
     }
 
     @RequestMapping(path = "/main/timetables/{id}/deleteEvent/{eId}", method = RequestMethod.POST)
-    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL', 'ROLE_ADMIN')")
     public RedirectView deleteEvent(RedirectAttributes redirectAttributes, @ModelAttribute Event event,
                                   @PathVariable("id") Long ttId, @PathVariable("eId") Long eId) {
         service.deleteEvent(eId);

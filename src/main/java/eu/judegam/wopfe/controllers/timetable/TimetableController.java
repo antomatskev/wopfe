@@ -33,7 +33,8 @@ public class TimetableController {
     }
 
     @RequestMapping(value = "/main/timetables", method = RequestMethod.GET)
-    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL', 'ROLE_ADMIN', " +
+            "'ROLE_TEACHER')")
     public String getTimetables(Model model) {
         List<Timetable> tts = ttService.getAllTimetables().stream().sorted((t1, t2) -> {
             String s1 = t1.getName();
@@ -92,9 +93,20 @@ public class TimetableController {
     }
 
     @GetMapping("/main/timetables/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL', 'ROLE_ADMIN', " +
+            "'ROLE_TEACHER', 'ROLE_STUDENT')")
     public String showTimetableById(Model model, @PathVariable("id") Long id) {
         Timetable tt = ttService.getTtById(id);
+        model.addAttribute("timetable", tt);
+        model.addAttribute("event", new Event());
+        return Utils.addUsrAttrToModel(model, "timetable/timetable_edit");
+    }
+
+    @GetMapping("/main/timetable/{className}")
+    @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_STUDENT')")
+    public String showTimetableByClass(Model model,
+                                       @PathVariable("className") String className) {
+        Timetable tt = ttService.getTtByName(className);
         model.addAttribute("timetable", tt);
         model.addAttribute("event", new Event());
         return Utils.addUsrAttrToModel(model, "timetable/timetable_edit");

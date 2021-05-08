@@ -28,6 +28,7 @@ public class FakeUserServiceDao implements UserDao {
 
     private List<User> getAppUsers() {
         User anton = new User(
+                1717L,
                 "anton",
                 passwordEncoder.encode("matskevich"),
                 ALL,
@@ -36,9 +37,8 @@ public class FakeUserServiceDao implements UserDao {
                 true,
                 true
         );
-        anton.setClazz("1a");
-        anton.setId(123L);
         User ellina = new User(
+                1718L,
                 "ellina",
                 passwordEncoder.encode("gedrojets"),
                 ALL,
@@ -47,8 +47,8 @@ public class FakeUserServiceDao implements UserDao {
                 true,
                 true
         );
-        ellina.setId(1234L);
         User julia = new User(
+                1719L,
                 "julia",
                 passwordEncoder.encode("djomina"),
                 ALL,
@@ -57,13 +57,13 @@ public class FakeUserServiceDao implements UserDao {
                 true,
                 true
         );
-        julia.setId(12345L);
         return Lists.newArrayList(
                 anton,
                 ellina,
                 julia,
                 new User(
-                    "manager",
+                        1720L,
+                        "manager",
                         passwordEncoder.encode("password"),
                         MANAGER,
                         true,
@@ -72,7 +72,8 @@ public class FakeUserServiceDao implements UserDao {
                         true
                 ),
                 new User(
-                    "admin",
+                        1721L,
+                        "admin",
                         passwordEncoder.encode("password"),
                         ADMIN,
                         true,
@@ -81,7 +82,8 @@ public class FakeUserServiceDao implements UserDao {
                         true
                 ),
                 new User(
-                    "principal",
+                        1722L,
+                        "principal",
                         passwordEncoder.encode("password"),
                         PRINCIPAL,
                         true,
@@ -90,7 +92,8 @@ public class FakeUserServiceDao implements UserDao {
                         true
                 ),
                 new User(
-                    "teacher",
+                        1723L,
+                        "teacher",
                         passwordEncoder.encode("password"),
                         TEACHER,
                         true,
@@ -99,7 +102,8 @@ public class FakeUserServiceDao implements UserDao {
                         true
                 ),
                 new User(
-                    "student",
+                        1724L,
+                        "student",
                         passwordEncoder.encode("password"),
                         STUDENT,
                         true,

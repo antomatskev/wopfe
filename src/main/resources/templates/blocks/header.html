@@ -3,12 +3,8 @@
         <span class="opening_menu logo" id="open_menu_button" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
         <div class="header-right">
             <form method="get" action="/logout">
-                <span th:inline="text">
-            [[${username}]]
-        </span>
-                <span th:inline="text">
-            (role [[${role.name}]])
-        </span>
+                <span th:inline="text">[[${userObj.username}]]</span>
+                <span th:inline="text">(role [[${userObj.userRole.name}]])</span>
                 <button type="button" class="buttonHeader buttonHeader2" onclick="window.location.href='/profile';">
                     <span class="homepage_span"></span>Profile
                 </button>

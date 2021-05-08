@@ -30,6 +30,10 @@ public class TimetableService {
         return ttRepo.findById(id).get();
     }
 
+    public Timetable getTtByName(String name) {
+        return ttRepo.findByName(name);
+    }
+
     public Timetable updateTimetable(Long id, Timetable tt) {
         Timetable existingProduct = ttRepo.findById(id).orElse(null);
         assert existingProduct != null;

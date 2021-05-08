@@ -94,23 +94,28 @@ button.default {
 }
 
 button.primary {
-    background-color: #128ff2;
+    background-color: #0a9471;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
     color: #fff;
 }
 
 button.accent {
-    background-color: #ff4743;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
+    background-color: darkgreen;
     color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
+    border: 2px solid black;
 }
 
 #username-page {
     text-align: center;
 }
 
+.title {
+    color: #fff;
+}
+
 .username-page-container {
-    background: #fff;
+    background: #0a9471;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     border-radius: 2px;
     width: 100%;
@@ -229,6 +234,7 @@ button.accent {
     width: 80px;
     height: 38px;
     margin-left: 5px;
+    margin-top: 15px;
 }
 
 .chat-header {
@@ -249,6 +255,21 @@ button.accent {
     position: absolute;
     top: 65px;
     width: 100%;
+}
+
+input[type=text] {
+    width: 60%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 3px solid green;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+}
+
+input[type=text]:focus {
+    border: 3px solid darkgreen;
 }
 
 

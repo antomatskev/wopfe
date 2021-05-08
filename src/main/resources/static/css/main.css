@@ -120,7 +120,9 @@ table.greyGridTable {
     text-align: center;
     border-collapse: collapse;
 }
-
+#testTable{
+    width: 100%;
+}
 table.greyGridTable td, table.greyGridTable th {
     border: 2px solid #FFFFFF;
     padding: 5px 6px;
@@ -351,8 +353,23 @@ select {
 }
 
 .line2 {
-    width: 210%;
+    width: 260%;
     margin-top: 2px;
     margin-bottom: 2px;
 
+}
+
+.answersInput{
+    margin-left: 150%;
+    width: 300px;
+    height: 350px;
+    resize: none;
+}
+
+.answerText{
+    margin-left: 150%;
+}
+
+.answerField2{
+    width: 100%;
 }

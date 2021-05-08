@@ -18,9 +18,9 @@
         <table class="greyGridTable">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Text</th>
-                <th>Answer</th>
+                <th class="answerField">Name</th>
+                <th class="answerField">Text</th>
+                <th class="answerField2"> Answer</th>
             </tr>
             </thead>
             <tr th:if="${#lists.isEmpty(test.questions)}">
@@ -50,11 +50,9 @@
                     </tr>
                     <tr th:if="${#lists.isEmpty(question.answers)}">
                         <td>
-                            <p>Enter your answer<Br>
                                 <textarea class="answersInput" name="answersInput" cols="30" rows="5"
                                           style="margin-top: 0px; margin-bottom: 0px; height: 42px"
                                           th:field="*{chosenAnswer}"></textarea>
-
                         </td>
                     </tr>
                     <tr th:unless="${question.getAnswered}"

@@ -121,6 +121,10 @@ table.greyGridTable {
     border-collapse: collapse;
 }
 
+#testTable {
+    width: 100%;
+}
+
 table.greyGridTable td, table.greyGridTable th {
     border: 2px solid #FFFFFF;
     padding: 5px 6px;
@@ -181,6 +185,34 @@ select {
     background-color: #f1f1f1;
 }
 
+.checkbox {
+    outline: 1000px;
+}
+
+.answersInput {
+    position: static;
+    /*border: 10px;*/
+    text-decoration: none;
+    font-size: 13px;
+    /*margin-left: 20%;*/
+}
+
+.button6 {
+    background-color: black;
+    position: relative;
+    border: 10px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    margin-left: 220%;
+    cursor: pointer;
+    padding: 8px 35px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
+}
+
 /*ЛОМАЕТ ЧАТ!!!*/
 .button {
     background-color: black;
@@ -198,6 +230,7 @@ select {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 
 #closebtn:hover {
     background-color: #0a9471;
@@ -327,4 +360,30 @@ select {
             opacity: 1;
         }
     }
+}
+
+.line2 {
+    width: 260%;
+    margin-top: 2px;
+    margin-bottom: 2px;
+
+}
+
+.answerText {
+    margin-left: 150%;
+}
+
+.button7 {
+    background-color: black;
+    position: relative;
+    border: 10px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 8px 35px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
 }

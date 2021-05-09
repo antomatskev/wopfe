@@ -14,12 +14,13 @@
     <hr class="line">
     <div class="content">
         <h3 th:inline="text">Task [[${test.name}]]</h3>
+        <hr class="line">
         <table class="greyGridTable">
             <thead>
             <tr>
-                <th>Name</th>
-                <th>Text</th>
-                <th>Answer</th>
+                <th class="answerField">Name</th>
+                <th class="answerField">Text</th>
+                <th class="answerField2">Answer</th>
             </tr>
             </thead>
             <tr th:if="${#lists.isEmpty(test.questions)}">
@@ -38,29 +39,24 @@
                     </tr>
                     <tr th:unless="${#lists.isEmpty(question.answers)}"
                         th:each="qAnswer : ${question.answers}">
-                            <td>
-                                <input th:type="checkbox"
-                                       th:text="${qAnswer.answerText}"
-                                       th:value="${qAnswer.id}"
-                                       th:checked="${#lists.contains(question.chosenAnswers, qAnswer.id)}"
-                                       th:field="*{chosenAnswers}">
-                            </td>
-                    </tr>
-                    <tr th:if="${#lists.isEmpty(question.answers)}">
                         <td>
-                            <input th:type="text"
-                                   placeholder="Enter your answer"
-                                   th:field="*{chosenAnswer}">
+                            <input th:type="checkbox"
+                                   th:text="${qAnswer.answerText}"
+                                   th:value="${qAnswer.id}"
+                                   th:checked="${#lists.contains(question.chosenAnswers, qAnswer.id)}"
+                                   th:field="*{chosenAnswers}">
                         </td>
                     </tr>
                     <tr th:unless="${question.getAnswered}"
                         th:colspan="3">
-                        <td><input class="button button5" type="submit"
-                           value="check"></td>
+                        <td><input class="button7" type="submit"
+                                   value="check"></td>
                     </tr>
                     <tr th:if="${question.getAnswered}"
                         th:colspan="3">
-                        <td th:class="${#lists.contains(test.correctlyAnswered, question.id)} ? 'correctAnswer' : 'notCorrectAnswer'">Answered</td>
+                        <td th:class="${#lists.contains(test.correctlyAnswered, question.id)} ? 'correctAnswer' : 'notCorrectAnswer'">
+                            Answered
+                        </td>
                     </tr>
                 </form>
             </div>

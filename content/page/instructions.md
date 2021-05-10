@@ -19,6 +19,7 @@ A teacher can see classes, a list of students, and timetables. Also, the teacher
 Student can see the timetable and complete tests.
 
 **NB! WHILE CREATING NEW TEACHERS, STUDENTS AND TIMETABLES YOU SHOULD USE THE SAME CLASS (e.g. 9a), OTHERWISE, YOU WOULD NOT BE ABLE TO SEE FUNCTIONALITY OF THE APPLICATION**
+Also, if you forgot users credentials, you can find them in manager account. (Sign in as manager -> users -> username) 
 
 1. Visit our website http://193.40.255.22:5001/
 2. Firstly, sign in as a manager using 
@@ -50,9 +51,13 @@ Student can see the timetable and complete tests.
     - Press action
     - Now you can add different lessons
     - Enter:
+
         Name - subject
+
         Place - room number
+
         Teacher - teachers' name
+        
         Select day and time
     - Press the Log out button
 10. Log in as a teacher

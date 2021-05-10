@@ -4,9 +4,6 @@ author: Julia Djomina
 date: 2021-05-10
 ---
 
-**WOPFE stands for Web Online Platform For Education, which goal is to provide a convenient way
-for both teachers and students to attend lessons using their devices and the Internet.**
-
 There is an instruction manual for our web application WOPFE. In our application, it is possible to sign in as manager, 
 admin, teacher, and student.
 Shortly about all users:

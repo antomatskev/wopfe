@@ -1,4 +1,4 @@
-baseurl = "https://wopfe.github.io"
+baseurl = "http://193.40.255.22:5001/"
 DefaultContentLanguage = "en"
 title = "WOPFE"
 theme = "beautifulhugo"
@@ -16,7 +16,7 @@ pygmentsCodefencesGuessSyntax = true
 #  homeTitle = "Beautiful Hugo Theme" # Set a different text for the header on the home page
   subtitle = "A better learning future starts here."
   mainSections = ["post","posts"]
-  logo = "logo.png" # Expecting square
+  logo = "images/logo.png" # Expecting square
 #  dimensions
   favicon = "img/favicon.ico"
   dateFormat = "January 2, 2006"
@@ -76,15 +76,15 @@ pygmentsCodefencesGuessSyntax = true
 
 [[menu.main]]
     name = "Instructions"
-    url = "page/instructions"
+    url = "pages/instructions"
     weight = 1
 
 [[menu.main]]
     name = "Technical docs"
-    url = "page/techincal/"
+    url = "pages/techincal/"
     weight = 2
 
 [[menu.main]]
-    identifier = "Project Link"
-    url = "page/link"
+    name = "Project Link"
+    url = "pages/link"
     weight = 3

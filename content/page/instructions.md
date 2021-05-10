@@ -4,6 +4,8 @@ author: Julia Djomina
 date: 2021-05-10
 ---
 
+#User Guide
+
 This is an user guide for our web application WOPFE. In WOPFE application, it is possible to sign in as a manager, 
 a admin, a teacher, and a student.
 Shortly about all users:

@@ -4,7 +4,7 @@ author: Julia Djomina
 date: 2021-05-10
 ---
 
-**User Guide**
+# User Guide
 
 This is an user guide for our web application WOPFE. In WOPFE application, it is possible to sign in as a manager, 
 a admin, a teacher, and a student.
@@ -63,7 +63,7 @@ Student
 14. Create a test 
     - e.g. MAth 10a((enter the same class, which your student has) + Create
     - Press update test
-    - Try to update tests data (apart from class) adding date and time (**date in suitable form**)
+    - Try to update tests data (apart from class) adding date and time (NB! The date must be in suitable format)
     - Create questions 
         e.g. 1. How old are you + Add button
     - Press add answers

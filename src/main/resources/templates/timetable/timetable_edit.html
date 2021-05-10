@@ -13,79 +13,86 @@
     <div th:insert="blocks/header :: header"></div>
     <hr class="line">
     <div class="content">
+        <div th:if="${timetable != null}">
+            <h3 th:inline="text">
+                Timetable [[${timetable.name}]]
+            </h3>
+            <form method="post"
+                  th:action="'/main/timetables/' + ${timetable.id} + '/update'"
+                  th:object="${timetable}" th:if="${userObj.userRole.name != 'STUDENT'}">
+                <input id="name" placeholder="Name" required th:field="*{name}"
+                       type="text" th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
+                <button class="button button5"
+                        th:onclick="'/main/timetables/'+${timetable.id}+'/update'" type="submit" th:disabled="${userObj.userRole.name == 'TEACHER'}">
+                    Update
+                </button>
+            </form>
+            <form method="post" th:action="'/main/timetables/' + ${timetable.id} + '/addEvent'" th:object="${event}" th:if="${userObj.userRole.name != 'STUDENT'}">
+                <input id="eventName" placeholder="Name" required
+                       th:field="*{name}" type="text" th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
+                <input id="eventPlace" placeholder="Place" required th:field="*{place}" type="text" th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
+                <input id="eventTeacher" placeholder="Teacher" required th:field="*{teacher}" type="text" th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
+                <select id="eventDay" required th:field="*{day}" th:disabled="${userObj.userRole.name == 'TEACHER'}">
+                    <option hidden value="">Select a day</option>
+                    <option value="Monday">Monday</option>
+                    <option value="Tuesday">Tuesday</option>
+                    <option value="Wednesday">Wednesday</option>
+                    <option value="Thursday">Thursday</option>
+                    <option value="Friday">Friday</option>
+                </select>
+                <select id="eventTime" required th:field="*{time}" th:disabled="${userObj.userRole.name == 'TEACHER'}">
+                    <option hidden value="">Select time</option>
+                    <option value="08:00">08:00</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="12:00">12:00</option>
+                    <option value="13:00">13:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                    <option value="17:00">17:00</option>
+                    <option value="18:00">18:00</option>
+                </select>
+                <button class="button button5" type="submit" th:disabled="${userObj.userRole.name == 'TEACHER'}">Add Event</button>
+                <button class="button button5" type="reset" th:disabled="${userObj.userRole.name == 'TEACHER'}">Reset</button>
+            </form>
+            <table class="greyGridTable">
+                <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Name</th>
+                    <th>Place</th>
+                    <th>Teacher</th>
+                    <th th:if="${userObj.userRole.name != 'STUDENT'}">Remove</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${#lists.isEmpty(timetable.events)}">
+                    <td colspan="5">No events available yet.</td>
+                </tr>
+                <tr th:each="event : ${timetable.events}">
+                    <td th:text="${event.day} + ': ' + ${event.time}"></td>
+                    <td th:text="${event.name}"></td>
+                    <td th:text="${event.place}"></td>
+                    <td th:text="${event.teacher}"></td>
+                    <td th:if="${userObj.userRole.name != 'STUDENT'}">
+                        <form method="post"
+                              th:action="'/main/timetables/' + ${timetable.id} + '/deleteEvent/' + ${event.id}"
+                              th:object="${event}">
+                            <input type="submit" value="X"
+                                   th:disabled="${userObj.userRole.name == 'TEACHER'}">
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div th:unless="${timetable != null}">
         <h3 th:inline="text">
-            Timetable [[${timetable.name}]]
+            There is no such timetable yet
         </h3>
-        <form method="post"
-              th:action="'/main/timetables/' + ${timetable.id} + '/update'"
-              th:object="${timetable}" th:if="${userObj.userRole.name != 'STUDENT'}">
-            <input id="name" placeholder="Name" required th:field="*{name}"
-                   type="text" th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
-            <button class="button button5"
-                    th:onclick="'/main/timetables/'+${timetable.id}+'/update'" type="submit" th:disabled="${userObj.userRole.name == 'TEACHER'}">
-                Update
-            </button>
-        </form>
-        <form method="post" th:action="'/main/timetables/' + ${timetable.id} + '/addEvent'" th:object="${event}" th:if="${userObj.userRole.name != 'STUDENT'}">
-            <input id="eventName" placeholder="Name" required
-                   th:field="*{name}" type="text" th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
-            <input id="eventPlace" placeholder="Place" required th:field="*{place}" type="text" th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
-            <input id="eventTeacher" placeholder="Teacher" required th:field="*{teacher}" type="text" th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
-            <select id="eventDay" required th:field="*{day}" th:disabled="${userObj.userRole.name == 'TEACHER'}">
-                <option hidden value="">Select a day</option>
-                <option value="Monday">Monday</option>
-                <option value="Tuesday">Tuesday</option>
-                <option value="Wednesday">Wednesday</option>
-                <option value="Thursday">Thursday</option>
-                <option value="Friday">Friday</option>
-            </select>
-            <select id="eventTime" required th:field="*{time}" th:disabled="${userObj.userRole.name == 'TEACHER'}">
-                <option hidden value="">Select time</option>
-                <option value="08:00">08:00</option>
-                <option value="09:00">09:00</option>
-                <option value="10:00">10:00</option>
-                <option value="11:00">11:00</option>
-                <option value="12:00">12:00</option>
-                <option value="13:00">13:00</option>
-                <option value="14:00">14:00</option>
-                <option value="15:00">15:00</option>
-                <option value="16:00">16:00</option>
-                <option value="17:00">17:00</option>
-                <option value="18:00">18:00</option>
-            </select>
-            <button class="button button5" type="submit" th:disabled="${userObj.userRole.name == 'TEACHER'}">Add Event</button>
-            <button class="button button5" type="reset" th:disabled="${userObj.userRole.name == 'TEACHER'}">Reset</button>
-        </form>
-        <table class="greyGridTable">
-            <thead>
-            <tr>
-                <th>Time</th>
-                <th>Name</th>
-                <th>Place</th>
-                <th>Teacher</th>
-                <th th:if="${userObj.userRole.name != 'STUDENT'}">Remove</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:if="${#lists.isEmpty(timetable.events)}">
-                <td colspan="5">No events available yet.</td>
-            </tr>
-            <tr th:each="event : ${timetable.events}">
-                <td th:text="${event.day} + ': ' + ${event.time}"></td>
-                <td th:text="${event.name}"></td>
-                <td th:text="${event.place}"></td>
-                <td th:text="${event.teacher}"></td>
-                <td th:if="${userObj.userRole.name != 'STUDENT'}">
-                    <form method="post"
-                          th:action="'/main/timetables/' + ${timetable.id} + '/deleteEvent/' + ${event.id}"
-                          th:object="${event}">
-                        <input type="submit" value="X"
-                               th:disabled="${userObj.userRole.name == 'TEACHER'}">
-                    </form>
-                </td>
-            </tr>
-            </tbody>
-        </table>
     </div>
 </div>
 <script src="/js/menu.js"></script>

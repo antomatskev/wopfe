@@ -1,4 +1,3 @@
-
 ---
 title: Instruction Manual for WOPFE
 author: Julia Djomina
@@ -23,6 +22,7 @@ Student
 
 
     login: manager
+
     password: password
 
 
@@ -35,6 +35,7 @@ Student
     login: _data from Username field_
 
     password: _same as Username_
+    
 5. Press the Log out button
 6. Sign in as admin 
 7. Create a new teacher (keep in mind username)

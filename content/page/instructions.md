@@ -4,12 +4,6 @@ author: Julia Djomina
 date: 2021-05-10
 ---
 
----
-title: User Guide for WOPFE
-author: Julia Djomina
-date: 2021-05-10
----
-
 # User Guide
 
 This is the user guide for the web application WOPFE. In WOPFE, it is possible to sign in as a manager,

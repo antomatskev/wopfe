@@ -27,6 +27,12 @@
                    type="text"/>
             <input class="button button5" type="submit" value="Update" th:onclick="'/main/tests/'+${test.id}+'/update'">
         </form>
+        <form method="post" th:action="'/main/question/' + ${test.id} + '/addQuestion'" th:object="${question}">
+            <input id="questionName" placeholder="Name" required th:field="*{name}" type="text"/>
+            <input id="questionText" placeholder="Text" required th:field="*{questionText}" type="text"/>
+            <input class="button button5" type="submit" value="Add Question">
+            <input class="button button5" type="reset" value="Reset">
+        </form>
         <table class="greyGridTable">
             <thead>
             <tr>
@@ -53,12 +59,6 @@
             </tr>
             </tbody>
         </table>
-        <form method="post" th:action="'/main/question/' + ${test.id} + '/addQuestion'" th:object="${question}">
-            <input id="questionName" placeholder="Name" required th:field="*{name}" type="text"/>
-            <input id="questionText" placeholder="Text" required th:field="*{questionText}" type="text"/>
-            <input class="button button5" type="submit" value="Add Question">
-            <input class="button button5" type="reset" value="Reset">
-        </form>
     </div>
 </div>
 <script src="/js/menu.js"></script>

@@ -41,7 +41,7 @@
                         th:each="qAnswer : ${question.answers}">
                         <td>
                             <input th:type="checkbox"
-                                   th:text="${qAnswer.answerText}"
+                                   th:text="${' ' + qAnswer.answerText}"
                                    th:value="${qAnswer.id}"
                                    th:checked="${#lists.contains(question.chosenAnswers, qAnswer.id)}"
                                    th:field="*{chosenAnswers}">

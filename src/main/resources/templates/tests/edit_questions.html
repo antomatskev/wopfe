@@ -18,6 +18,12 @@
         <h2 th:inline="text">
             [[${question.questionText}]]
         </h2>
+        <form method="post"
+              th:action="@{'/main/questionsAnswer/' + ${question.id} + '/addAnswer'}" th:object="${answer}">
+            <input id="AnswerText" placeholder="answerText" required th:field="*{answerText}" type="text"/>
+            <input class="button button5" type="submit" value="Add Answer">
+            <input class="button button5" type="reset" value="Reset">
+        </form>
         <table class="greyGridTable">
             <thead>
             <tr>
@@ -60,12 +66,6 @@
             </tr>
             </tbody>
         </table>
-        <form method="post"
-              th:action="@{'/main/questionsAnswer/' + ${question.id} + '/addAnswer'}" th:object="${answer}">
-            <input id="AnswerText" placeholder="answerText" required th:field="*{answerText}" type="text"/>
-            <input class="button button5" type="submit" value="Add Answer">
-            <input class="button button5" type="reset" value="Reset">
-        </form>
     </div>
 </div>
 <script src="/js/menu.js"></script>

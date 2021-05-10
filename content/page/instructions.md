@@ -14,10 +14,10 @@ Admin is the user, who is due to creating new teachers, students, and timetables
 A teacher can see classes, a list of students, and timetables. Also, the teacher can create tests for students.
 Student  
 
-**NB! CREATING NEW TEACHERS, STUDENTS AND TIMETABLES USE THE SAME CLASS (e.g. 9a), OTHERWISE, YOU COULD NOT TRY ALL FUNCTIONALITY OF THE APPLICATION**
+**NB! WHILE CREATING NEW TEACHERS, STUDENTS AND TIMETABLES YOU SHOULD USE THE SAME CLASS (e.g. 9a), OTHERWISE, YOU WOULD NOT BE ABLE TO SEE FUNCTIONALITY OF THE APPLICATION**
 
-1. Please open the following link http://193.40.255.22:5001/
-2. Firstly, sign in as manager using 
+1. Visit our website http://193.40.255.22:5001/
+2. Firstly, sign in as a manager using 
 
 
     login: manager
@@ -25,15 +25,15 @@ Student
     password: password
 
 
-3. Try to use chat
+3. Try to use the chat
 4. Try to add a new admin 
     - Press admins
     - Enter First and Last name -> press Add  button
-    - New admin is created (Now it is possible to sign in using this admins credentials, keep in mind the username which was generated)
+    - New admin is created (Now it is possible to sign in using this admins' credentials, keep in mind the username which was generated)
 
     login: _data from Username field_
 
-    password: _same as Username_
+    password: _same as the Username_
     
 5. Press the Log out button
 6. Sign in as admin 
@@ -47,38 +47,37 @@ Student
     - Enter:
         Name - subject
         Place - room number
-        Teacher - teachers name
+        Teacher - teachers' name
         Select day and time
     - Press the Log out button
 10. Log in as a teacher
 
     login: _data from Username field_
 
-    password: _the same as Username_
+    password: _the same as the Username_
 
 11. Press the profile button to see your profile data
-12. Take an outlook on different opportunities in the menu. 
-13. Press all tests
+12. Take a look on different opportunities in the menu. 
+13. Press All Tests
 14. Create a test 
     - e.g. MAth 10a((enter the same class, which your student has) + Create
     - Press update test
-    - Try to update tests data (apart from class) adding date and time (date in suitable form)
+    - Try to update tests data (apart from class) adding date and time (**date in suitable form**)
     - Create questions 
         e.g. 1. How old are you + Add button
     - Press add answers
     - Add some answers to the question 
-    - Choose the correct answer (v - correct, o - incorrect) 
+    - Choose the correct answer (v - correct, o - incorrect). If there are no correct answers selected, then all answers are correct.
 15. Press the Log out button
-16. Sign in as a student (using credentials, which you get while creating the student)
+16. Sign in as a student (using credentials, which you got after the student creation)
 
     login: _data from Username field_
 
-    password: _the same as Username_
+    password: _the same as the Username_
 
-17. Press timetables to see the students' timetables. (If the error page occurs, it means you didn`t create a timetable for  students' class. In this case, you can sign in as an admin, create the timetable and return to this step)
+17. Press timetables to see the students' timetables.
 18. Press My Tasks
 19. Complete the test
-20. Congratulations, you have tried all functionality of our project
 
 
 

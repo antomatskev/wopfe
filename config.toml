@@ -16,7 +16,7 @@ pygmentsCodefencesGuessSyntax = true
 #  homeTitle = "Beautiful Hugo Theme" # Set a different text for the header on the home page
   subtitle = "A better learning future starts here."
   mainSections = ["post","posts"]
-  logo = "images/logo.png" # Expecting square
+  logo = "iti0301-2021/images/logo.png" # Expecting square
 #  dimensions
   favicon = "img/favicon.ico"
   dateFormat = "January 2, 2006"
@@ -76,15 +76,15 @@ pygmentsCodefencesGuessSyntax = true
 
 [[menu.main]]
     name = "Instructions"
-    url = "pages/instructions"
+    url = "iti0301-2021/page/instructions"
     weight = 1
 
 [[menu.main]]
     name = "Technical docs"
-    url = "pages/techincal/"
+    url = "iti0301-2021/page/techincal/"
     weight = 2
 
 [[menu.main]]
     name = "Project Link"
-    url = "pages/link"
+    url = "iti0301-2021/page/link"
     weight = 3

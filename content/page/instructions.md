@@ -30,6 +30,7 @@ Student
     - Press admins
     - Enter First and Last name -> press Add  button
     - New admin is created (Now it is possible to sign in using this admins' credentials, keep in mind the username which was generated)
+    
 
     login: _data from Username field_
 

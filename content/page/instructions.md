@@ -71,7 +71,7 @@ password: _same as the Username_
 
 11. Press the profile button to see your profile data
 12. Take a look at the different opportunities in the menu.
-13. - Press the All Tests button
+13. Press the All Tests button
 14. Create a test
 - e.g. Write in the Name field "Mаth" and in the class fields 10a(enter the same class, which your student is in) + Create
 - Press the update test button 

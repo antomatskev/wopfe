@@ -70,7 +70,7 @@ Also, if you forgot users credentials, you can find them in manager account. (Si
 12. Take a look on different opportunities in the menu. 
 13. Press All Tests
 14. Create a test 
-    - e.g. Mаth 10a((enter the same class, which your student has) + Create
+    - e.g. Write in Name field "Mаth" and in class fiels 10a(enter the same class, which your student has) + Create
     - Press update test
     - Try to update tests data (apart from class) adding date and time (NB! The date must be in suitable format)
     - Create questions 

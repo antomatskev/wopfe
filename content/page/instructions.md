@@ -6,13 +6,17 @@ date: 2021-05-10
 
 # User Guide
 
-This is an user guide for web application WOPFE. In WOPFE application, it is possible to sign in as a manager, 
-a admin, a teacher, and a student.
+This is the user guide for web application WOPFE. In WOPFE application, it is possible to sign in as manager, 
+admin, teacher, and student.
 Shortly about all users:
-A manager has a table with all users using this application and can add new admins. 
-Admin is the user, who is due to creating new teachers, students, and timetables. 
+
+A manager has a table with all users using this application and can add new admins.
+
+An admin is the user, who is due to creating new teachers, students, and timetables. 
+
 A teacher can see classes, a list of students, and timetables. Also, the teacher can create tests for students.
-Student  
+
+Student can see the timetable and complete tests.
 
 **NB! WHILE CREATING NEW TEACHERS, STUDENTS AND TIMETABLES YOU SHOULD USE THE SAME CLASS (e.g. 9a), OTHERWISE, YOU WOULD NOT BE ABLE TO SEE FUNCTIONALITY OF THE APPLICATION**
 

@@ -6,7 +6,7 @@ date: 2021-05-10
 
 # User Guide
 
-This is an user guide for our web application WOPFE. In WOPFE application, it is possible to sign in as a manager, 
+This is an user guide for web application WOPFE. In WOPFE application, it is possible to sign in as a manager, 
 a admin, a teacher, and a student.
 Shortly about all users:
 A manager has a table with all users using this application and can add new admins. 

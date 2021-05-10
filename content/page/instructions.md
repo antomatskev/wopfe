@@ -1,11 +1,11 @@
 ---
-title: Instruction Manual for WOPFE
+title: User Guide for WOPFE
 author: Julia Djomina
 date: 2021-05-10
 ---
 
-There is an instruction manual for our web application WOPFE. In our application, it is possible to sign in as manager, 
-admin, teacher, and student.
+This is an user guide for our web application WOPFE. In WOPFE application, it is possible to sign in as a manager, 
+a admin, a teacher, and a student.
 Shortly about all users:
 A manager has a table with all users using this application and can add new admins. 
 Admin is the user, who is due to creating new teachers, students, and timetables. 

@@ -1,7 +1,6 @@
 package eu.judegam.wopfe.utils;
 
 import eu.judegam.wopfe.models.User;
-import eu.judegam.wopfe.security.UserRole;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

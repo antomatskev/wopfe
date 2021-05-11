@@ -4,7 +4,6 @@ import eu.judegam.wopfe.models.timetable.Event;
 import eu.judegam.wopfe.models.timetable.Timetable;
 import eu.judegam.wopfe.services.TimetableService;
 import eu.judegam.wopfe.utils.Utils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -72,8 +71,8 @@ public class TimetableController {
             return m1.hitEnd() && m2.hitEnd()
                     ? 0
                     : m1.hitEnd()
-                        ? -1
-                        : +1;
+                    ? -1
+                    : +1;
 
         }).collect(Collectors.toList());
         model.addAttribute("timetables", tts);

@@ -5,7 +5,6 @@ import eu.judegam.wopfe.models.User;
 import eu.judegam.wopfe.models.tests.Answer;
 import eu.judegam.wopfe.models.tests.Question;
 import eu.judegam.wopfe.models.tests.Test;
-import eu.judegam.wopfe.security.UserRole;
 import eu.judegam.wopfe.services.TestsService;
 import eu.judegam.wopfe.utils.Utils;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -168,8 +167,8 @@ public class TestsController {
         if (textAnswer != null && !textAnswer.isEmpty()) {
             redirectAttributes.addAttribute("answeredQuestion",
                     testService.answerQuestion(id,
-                    qId,
-                    textAnswer));
+                            qId,
+                            textAnswer));
         } else if (cbAnswers != null && !cbAnswers.isEmpty()) {
             redirectAttributes.addAttribute("answeredQuestion",
                     testService.answerQuestion(id, qId, cbAnswers,

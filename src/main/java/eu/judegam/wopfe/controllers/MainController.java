@@ -21,12 +21,12 @@ public class MainController {
 
     @GetMapping("/profile")
     public String profile(Model model) {
-        return Utils.addUsrAttrToModel(model, "/profile");
+        return Utils.addUsrAttrToModel(model, "profile");
     }
 
     @GetMapping("/main")
     public String main(Model model) {
-        return Utils.addUsrAttrToModel(model, "/mains/main");
+        return Utils.addUsrAttrToModel(model, "mains/main");
     }
 
     @GetMapping("/main/teacher")

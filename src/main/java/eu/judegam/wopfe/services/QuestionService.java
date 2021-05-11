@@ -1,10 +1,9 @@
 package eu.judegam.wopfe.services;
 
-
-import eu.judegam.wopfe.repositories.QuestionRepository;
-import eu.judegam.wopfe.repositories.TestsRepository;
 import eu.judegam.wopfe.models.tests.Question;
 import eu.judegam.wopfe.models.tests.Test;
+import eu.judegam.wopfe.repositories.QuestionRepository;
+import eu.judegam.wopfe.repositories.TestsRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -20,14 +19,12 @@ public class QuestionService {
         this.testsRepository = testsRepository;
     }
 
-
     public Question saveQuestion(Question question, Long testId) {
         Test test = testsRepository.findById(testId).get();
         question.setTest(test);
         question.setTestId(testId);
         test.getQuestions().add(question);
         testsRepository.save(test);
-//        repository.save(question);
         return question;
     }
 
@@ -52,6 +49,5 @@ public class QuestionService {
         return repository.save(existingProduct);
 
     }
-
 
 }

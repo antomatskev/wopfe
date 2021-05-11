@@ -8,6 +8,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static eu.judegam.wopfe.security.UserRole.*;
 
 @Component
@@ -24,7 +27,10 @@ public class DatabaseLoader implements CommandLineRunner {
 
     @Override
     public void run(String... strings) throws Exception {
-        if (repo.findById(1717L).isEmpty()) {
+        List<String> usernames = ((List<User>) repo.findAll()).stream()
+                        .map(User::getUsername)
+                        .collect(Collectors.toList());
+        if (!usernames.contains("anton")) {
             User anton = new User(
                     1717L,
                     "anton",
@@ -37,7 +43,7 @@ public class DatabaseLoader implements CommandLineRunner {
             );
             repo.save(anton);
         }
-        if (repo.findById(1718L).isEmpty()) {
+        if (!usernames.contains("ellina")) {
             User ellina = new User(
                     1718L,
                     "ellina",
@@ -50,7 +56,7 @@ public class DatabaseLoader implements CommandLineRunner {
             );
             repo.save(ellina);
         }
-        if (repo.findById(1719L).isEmpty()) {
+        if (!usernames.contains("julia")) {
             User julia = new User(
                     1719L,
                     "julia",
@@ -63,7 +69,7 @@ public class DatabaseLoader implements CommandLineRunner {
             );
             repo.save(julia);
         }
-        if (repo.findById(1720L).isEmpty()) {
+        if (!usernames.contains("manager")) {
             repo.save(new User(
                     1720L,
                     "manager",
@@ -75,7 +81,7 @@ public class DatabaseLoader implements CommandLineRunner {
                     true
             ));
         }
-        if (repo.findById(1721L).isEmpty()) {
+        if (!usernames.contains("admin")) {
             repo.save(new User(
                     1721L,
                     "admin",
@@ -87,7 +93,7 @@ public class DatabaseLoader implements CommandLineRunner {
                     true
             ));
         }
-        if (repo.findById(1723L).isEmpty()) {
+        if (!usernames.contains("teacher")) {
             User teacher = new User(
                     1723L,
                     "teacher",
@@ -101,7 +107,7 @@ public class DatabaseLoader implements CommandLineRunner {
             teacher.setClazz("0a");
             repo.save(teacher);
         }
-        if (repo.findById(1724L).isEmpty()) {
+        if (!usernames.contains("student")) {
             User student = new User(
                     1724L,
                     "student",

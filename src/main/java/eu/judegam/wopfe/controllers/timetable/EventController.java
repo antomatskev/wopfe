@@ -1,7 +1,7 @@
 package eu.judegam.wopfe.controllers.timetable;
 
-import eu.judegam.wopfe.services.EventService;
 import eu.judegam.wopfe.models.timetable.Event;
+import eu.judegam.wopfe.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,7 +32,7 @@ public class EventController {
     @RequestMapping(path = "/main/timetables/{id}/deleteEvent/{eId}", method = RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_PRINCIPAL', 'ROLE_ADMIN')")
     public RedirectView deleteEvent(RedirectAttributes redirectAttributes, @ModelAttribute Event event,
-                                  @PathVariable("id") Long ttId, @PathVariable("eId") Long eId) {
+                                    @PathVariable("id") Long ttId, @PathVariable("eId") Long eId) {
         service.deleteEvent(eId);
         final String msg = "Created event <b>" + event.getName() + "</b> ✨.";
         RedirectView view = new RedirectView("/main/timetables/{id}", true);

@@ -64,14 +64,14 @@ public class ManagerController {
         return Utils.addUsrAttrToModel(model, "manager/manager_admins");
     }
 
-    @RequestMapping(path = "/main/admins/{id}/delete", method =
+    @RequestMapping(path = "/main/users/{id}/delete", method =
             RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
-    public RedirectView deleteAdmin(RedirectAttributes redirectAttributes,
+    public RedirectView deleteUser(RedirectAttributes redirectAttributes,
                                     @PathVariable("id") Long id,
-                                    @ModelAttribute User admin) {
+                                    @ModelAttribute User user) {
         RedirectView redirectView = new RedirectView("..", true);
-        redirectAttributes.addFlashAttribute("adminMessage",
+        redirectAttributes.addFlashAttribute("usrMessage",
                 service.deleteUser(id));
         return redirectView;
     }

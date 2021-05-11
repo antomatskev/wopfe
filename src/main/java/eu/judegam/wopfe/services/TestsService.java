@@ -20,7 +20,6 @@ public class TestsService {
         this.repository = repository;
     }
 
-
     public Test saveTest(Test test) {
         return repository.save(test);
     }

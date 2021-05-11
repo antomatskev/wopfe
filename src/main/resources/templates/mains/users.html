@@ -21,6 +21,7 @@
                 <th>Role</th>
                 <th>Class</th>
                 <th>Username</th>
+                <th>Remove</th>
             </tr>
             </thead>
             <tbody>
@@ -33,6 +34,13 @@
                 <td th:text="${user.userRole}"></td>
                 <td th:text="${user.clazz}"></td>
                 <td th:text="${user.username}"></td>
+                <td>
+                    <form method="post"
+                          th:action="'/main/users/' + ${user.id} + '/delete'"
+                          th:object="${user}">
+                        <input type="submit" value="X">
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>

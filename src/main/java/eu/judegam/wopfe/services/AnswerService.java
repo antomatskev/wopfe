@@ -1,9 +1,9 @@
 package eu.judegam.wopfe.services;
 
-import eu.judegam.wopfe.repositories.AnswerRepository;
-import eu.judegam.wopfe.repositories.QuestionRepository;
 import eu.judegam.wopfe.models.tests.Answer;
 import eu.judegam.wopfe.models.tests.Question;
+import eu.judegam.wopfe.repositories.AnswerRepository;
+import eu.judegam.wopfe.repositories.QuestionRepository;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -20,7 +20,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name="tests")
+@Table(name = "tests")
 public class Test implements Serializable {
 
     @Id
@@ -33,7 +33,7 @@ public class Test implements Serializable {
     private String clazz;
     @OneToMany(mappedBy = "test", cascade = CascadeType.ALL)
     private List<Question> questions;
-    @ManyToMany(fetch= FetchType.LAZY, cascade = CascadeType.PERSIST,
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST,
             mappedBy = "assignedTests")
     private List<User> users = new ArrayList<>();
     @ElementCollection

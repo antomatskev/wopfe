@@ -45,7 +45,7 @@
                 <td><a th:href="'/main/admins/' + ${admin.id}">✏</a></td>
                 <td>
                     <form method="post"
-                          th:action="'/main/admins/' + ${admin.id} + '/delete'"
+                          th:action="'/main/users/' + ${admin.id} + '/delete'"
                           th:object="${admin}">
                         <input type="submit" value="X">
                     </form>

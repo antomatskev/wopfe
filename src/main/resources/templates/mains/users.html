@@ -38,7 +38,8 @@
                     <form method="post"
                           th:action="'/main/users/' + ${user.id} + '/delete'"
                           th:object="${user}">
-                        <input type="submit" value="X">
+                        <input type="submit" value="X"
+                               th:disabled="${user.userRole.name == 'ALL'}">
                     </form>
                 </td>
             </tr>

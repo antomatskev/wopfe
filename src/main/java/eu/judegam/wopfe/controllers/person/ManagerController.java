@@ -68,8 +68,8 @@ public class ManagerController {
             RequestMethod.POST)
     @PreAuthorize("hasAnyRole('ROLE_ALL', 'ROLE_MANAGER')")
     public RedirectView deleteUser(RedirectAttributes redirectAttributes,
-                                    @PathVariable("id") Long id,
-                                    @ModelAttribute User user) {
+                                   @PathVariable("id") Long id,
+                                   @ModelAttribute User user) {
         RedirectView redirectView = new RedirectView("..", true);
         redirectAttributes.addFlashAttribute("usrMessage",
                 service.deleteUser(id));

@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>WOPFE</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
@@ -26,7 +27,9 @@
             </tr>
             <tbody>
             <tr th:each="test : ${tests}">
-                <td><a th:href="'/main/tasks/' + ${test.id}">[[${test.name}]]</a></td>
+                <td>
+                    <a th:href="'/main/tasks/' + ${test.id}">[[${test.name}]]</a>
+                </td>
                 <td th:text="${#lists.size(test.correctlyAnswered)} + '/'
                         + ${#lists.size(test
                 .questions)}"></td>

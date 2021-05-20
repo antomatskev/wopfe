@@ -79,12 +79,4 @@ public class Subject {
     public Subject() {
     }
 
-    public Subject(String name, String specialty, String classes, String school, String teacher, String period) {
-        this.name = name;
-        this.specialty = specialty;
-        this.classes = classes;
-        this.school = school;
-        this.teacher = teacher;
-        this.period = period;
-    }
 }

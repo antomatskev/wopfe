@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>WOPFE</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
@@ -17,19 +18,26 @@
         <h3 th:inline="text">
             Test [[${test.name}]] for class [[${test.clazz}]]
         </h3>
-        <form method="post" th:action="'/main/tests/' + ${test.id} + '/update'" th:object="${test}">
-            <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
+        <form method="post" th:action="'/main/tests/' + ${test.id} + '/update'"
+              th:object="${test}">
+            <input id="name" placeholder="Name" required th:field="*{name}"
+                   type="text"/>
             <input id="class" placeholder="Class" th:field="*{clazz}"
                    type="text"/>
             <input id="date" placeholder="dd/mm/yyyy" required
                    th:field="*{date}" type="text"/>
             <input id="time" placeholder="hh:mm" required th:field="*{time}"
                    type="text"/>
-            <input class="button button5" type="submit" value="Update" th:onclick="'/main/tests/'+${test.id}+'/update'">
+            <input class="button button5" type="submit" value="Update"
+                   th:onclick="'/main/tests/'+${test.id}+'/update'">
         </form>
-        <form method="post" th:action="'/main/question/' + ${test.id} + '/addQuestion'" th:object="${question}">
-            <input id="questionName" placeholder="Name" required th:field="*{name}" type="text"/>
-            <input id="questionText" placeholder="Text" required th:field="*{questionText}" type="text"/>
+        <form method="post"
+              th:action="'/main/question/' + ${test.id} + '/addQuestion'"
+              th:object="${question}">
+            <input id="questionName" placeholder="Name" required
+                   th:field="*{name}" type="text"/>
+            <input id="questionText" placeholder="Text" required
+                   th:field="*{questionText}" type="text"/>
             <input class="button button5" type="submit" value="Add Question">
             <input class="button button5" type="reset" value="Reset">
         </form>
@@ -49,7 +57,8 @@
             <tr th:each="question : ${questions}">
                 <td th:text="${question.name}"></td>
                 <td th:text="${question.questionText}"></td>
-                <td><a th:href="'/main/questions/' + ${question.id}">Add answers</a></td>
+                <td><a th:href="'/main/questions/' + ${question.id}">Add
+                    answers</a></td>
                 <td>
                     <form method="post"
                           th:action="'/main/question/' + ${test.id} + '/deleteQuestion/' + ${question.id}"

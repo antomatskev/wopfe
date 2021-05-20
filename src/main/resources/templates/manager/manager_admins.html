@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
+    <meta name="viewport"
+          content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
     <title>WOPFE</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
@@ -16,8 +17,10 @@
     <div class="content">
         <h3>Schools' administrators</h3>
         <form method="post" th:action="@{/main/admins}" th:object="${admin}">
-            <input id="name" placeholder="First Name" required th:field="*{firstName}" type="text"/>
-            <input id="lastName" placeholder="Last Name" required th:field="*{lastName}" type="text"/>
+            <input id="name" placeholder="First Name" required
+                   th:field="*{firstName}" type="text"/>
+            <input id="lastName" placeholder="Last Name" required
+                   th:field="*{lastName}" type="text"/>
             <button class="button button5" type="submit">Add Admin</button>
             <button class="button button5" type="reset">Reset</button>
             <div th:if="${adminMessage}" th:utext="${adminMessage}"></div>

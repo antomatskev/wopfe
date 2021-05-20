@@ -27,7 +27,7 @@ public class TimetableService {
     }
 
     public Timetable getTtById(Long id) {
-        return ttRepo.findById(id).get();
+        return ttRepo.findById(id).orElse(null);
     }
 
     public Timetable getTtByName(String name) {

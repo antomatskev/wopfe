@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title> WOPFE </title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}">
 </head>
@@ -12,18 +13,22 @@
     <h1 class="login">Log In</h1>
     <form class="form-signin" method="post" action="/login">
         <div class="textbox">
-        <p>
-            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
-        </p>
+            <p>
+                <input type="text" id="username" name="username"
+                       class="form-control" placeholder="Username" required=""
+                       autofocus="">
+            </p>
         </div>
         <div class="textbox">
-        <p>
-            <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
-        </p>
+            <p>
+                <input type="password" id="password" name="password"
+                       class="form-control" placeholder="Password" required="">
+            </p>
         </div>
         <p class="rememberMe">
             Remember me
-            <input type="checkbox" id="remember-me" name="remember-me" class="form-control">
+            <input type="checkbox" id="remember-me" name="remember-me"
+                   class="form-control">
         </p>
         <input class="btn" type="submit" name="" value="Sign in">
     </form>

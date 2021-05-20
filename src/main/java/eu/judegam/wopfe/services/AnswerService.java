@@ -6,6 +6,8 @@ import eu.judegam.wopfe.repositories.AnswerRepository;
 import eu.judegam.wopfe.repositories.QuestionRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AnswerService {
     private final AnswerRepository repository;
@@ -16,13 +18,16 @@ public class AnswerService {
         this.questionRepository = questionRepository;
     }
 
-
     public Answer saveAnswer(Answer answer, Long questionId) {
-        Question question = questionRepository.findById(questionId).get();
-        answer.setQuestion(question);
-        answer.setQuestionId(questionId);
-        question.getAnswers().add(answer);
-        questionRepository.save(question);
+        Optional<Question> qOpt =
+                questionRepository.findById(questionId);
+        if (qOpt.isPresent()) {
+            final Question question = qOpt.get();
+            answer.setQuestion(question);
+            answer.setQuestionId(questionId);
+            question.getAnswers().add(answer);
+            questionRepository.save(question);
+        }
         return answer;
     }
 
@@ -36,7 +41,6 @@ public class AnswerService {
             q.getCorrectAnswers().add(aId);
             questionRepository.save(q);
         });
-
     }
 
     public void removeCorrectAnswer(Long qId, Long aId) {
@@ -44,7 +48,6 @@ public class AnswerService {
             q.getCorrectAnswers().remove(aId);
             questionRepository.save(q);
         });
-
     }
 
     public Answer getAnswerById(Long id) {

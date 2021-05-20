@@ -28,8 +28,8 @@ public class DatabaseLoader implements CommandLineRunner {
     @Override
     public void run(String... strings) throws Exception {
         List<String> usernames = ((List<User>) repo.findAll()).stream()
-                        .map(User::getUsername)
-                        .collect(Collectors.toList());
+                .map(User::getUsername)
+                .collect(Collectors.toList());
         if (!usernames.contains("anton")) {
             User anton = new User(
                     1717L,

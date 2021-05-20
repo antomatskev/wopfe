@@ -52,6 +52,4 @@ public class Timetable implements Serializable {
         this.events = events;
     }
 
-    // TODO: implement comparator for sorting.
-
 }

@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>WOPFE</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
@@ -19,20 +20,33 @@
             </h3>
             <form method="post"
                   th:action="'/main/timetables/' + ${timetable.id} + '/update'"
-                  th:object="${timetable}" th:if="${userObj.userRole.name != 'STUDENT'}">
+                  th:object="${timetable}"
+                  th:if="${userObj.userRole.name != 'STUDENT'}">
                 <input id="name" placeholder="Name" required th:field="*{name}"
-                       type="text" th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
+                       type="text"
+                       th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
                 <button class="button button5"
-                        th:onclick="'/main/timetables/'+${timetable.id}+'/update'" type="submit" th:disabled="${userObj.userRole.name == 'TEACHER'}">
+                        th:onclick="'/main/timetables/'+${timetable.id}+'/update'"
+                        type="submit"
+                        th:disabled="${userObj.userRole.name == 'TEACHER'}">
                     Update
                 </button>
             </form>
-            <form method="post" th:action="'/main/timetables/' + ${timetable.id} + '/addEvent'" th:object="${event}" th:if="${userObj.userRole.name != 'STUDENT'}">
+            <form method="post"
+                  th:action="'/main/timetables/' + ${timetable.id} + '/addEvent'"
+                  th:object="${event}"
+                  th:if="${userObj.userRole.name != 'STUDENT'}">
                 <input id="eventName" placeholder="Name" required
-                       th:field="*{name}" type="text" th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
-                <input id="eventPlace" placeholder="Place" required th:field="*{place}" type="text" th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
-                <input id="eventTeacher" placeholder="Teacher" required th:field="*{teacher}" type="text" th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
-                <select id="eventDay" required th:field="*{day}" th:disabled="${userObj.userRole.name == 'TEACHER'}">
+                       th:field="*{name}" type="text"
+                       th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
+                <input id="eventPlace" placeholder="Place" required
+                       th:field="*{place}" type="text"
+                       th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
+                <input id="eventTeacher" placeholder="Teacher" required
+                       th:field="*{teacher}" type="text"
+                       th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
+                <select id="eventDay" required th:field="*{day}"
+                        th:disabled="${userObj.userRole.name == 'TEACHER'}">
                     <option hidden value="">Select a day</option>
                     <option value="Monday">Monday</option>
                     <option value="Tuesday">Tuesday</option>
@@ -40,7 +54,8 @@
                     <option value="Thursday">Thursday</option>
                     <option value="Friday">Friday</option>
                 </select>
-                <select id="eventTime" required th:field="*{time}" th:disabled="${userObj.userRole.name == 'TEACHER'}">
+                <select id="eventTime" required th:field="*{time}"
+                        th:disabled="${userObj.userRole.name == 'TEACHER'}">
                     <option hidden value="">Select time</option>
                     <option value="08:00">08:00</option>
                     <option value="09:00">09:00</option>
@@ -54,8 +69,14 @@
                     <option value="17:00">17:00</option>
                     <option value="18:00">18:00</option>
                 </select>
-                <button class="button button5" type="submit" th:disabled="${userObj.userRole.name == 'TEACHER'}">Add Event</button>
-                <button class="button button5" type="reset" th:disabled="${userObj.userRole.name == 'TEACHER'}">Reset</button>
+                <button class="button button5" type="submit"
+                        th:disabled="${userObj.userRole.name == 'TEACHER'}">Add
+                    Event
+                </button>
+                <button class="button button5" type="reset"
+                        th:disabled="${userObj.userRole.name == 'TEACHER'}">
+                    Reset
+                </button>
             </form>
             <table class="greyGridTable">
                 <thead>
@@ -64,7 +85,8 @@
                     <th>Name</th>
                     <th>Place</th>
                     <th>Teacher</th>
-                    <th th:if="${userObj.userRole.name != 'STUDENT'}">Remove</th>
+                    <th th:if="${userObj.userRole.name != 'STUDENT'}">Remove
+                    </th>
                 </tr>
                 </thead>
                 <tbody>

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QuestionService {
@@ -20,11 +21,14 @@ public class QuestionService {
     }
 
     public Question saveQuestion(Question question, Long testId) {
-        Test test = testsRepository.findById(testId).get();
-        question.setTest(test);
-        question.setTestId(testId);
-        test.getQuestions().add(question);
-        testsRepository.save(test);
+        Optional<Test> tOpt = testsRepository.findById(testId);
+        if (tOpt.isPresent()) {
+            final Test test = tOpt.get();
+            question.setTest(test);
+            question.setTestId(testId);
+            test.getQuestions().add(question);
+            testsRepository.save(test);
+        }
         return question;
     }
 
@@ -47,7 +51,6 @@ public class QuestionService {
         existingProduct.setName(question.getName());
         existingProduct.setQuestionText(question.getQuestionText());
         return repository.save(existingProduct);
-
     }
 
 }

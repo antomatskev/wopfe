@@ -19,8 +19,10 @@
             [[${question.questionText}]]
         </h2>
         <form method="post"
-              th:action="@{'/main/questionsAnswer/' + ${question.id} + '/addAnswer'}" th:object="${answer}">
-            <input id="AnswerText" placeholder="answerText" required th:field="*{answerText}" type="text"/>
+              th:action="@{'/main/questionsAnswer/' + ${question.id} + '/addAnswer'}"
+              th:object="${answer}">
+            <input id="AnswerText" placeholder="answerText" required
+                   th:field="*{answerText}" type="text"/>
             <input class="button button5" type="submit" value="Add Answer">
             <input class="button button5" type="reset" value="Reset">
         </form>

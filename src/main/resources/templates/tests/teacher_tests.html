@@ -14,9 +14,11 @@
     <div class="content">
         <h3>Tests</h3>
         <form method="post" th:action="@{/main/addTest}" th:object="${test}">
-            <input id="name" placeholder="Name" required th:field="*{name}" type="text"/>
-            <input id="class" placeholder="Class" th:field="*{clazz}" type="text"/>
-            <button class="button button5" type="submit"  >Create Test</button>
+            <input id="name" placeholder="Name" required th:field="*{name}"
+                   type="text"/>
+            <input id="class" placeholder="Class" th:field="*{clazz}"
+                   type="text"/>
+            <button class="button button5" type="submit">Create Test</button>
             <input class="button button5" type="reset" value="Reset">
         </form>
         <table class="greyGridTable">
@@ -34,9 +36,12 @@
             <tr th:each="test : ${tests}">
                 <td th:text="${test.name}"></td>
                 <td th:text="${test.clazz}"></td>
-                <td><a th:href="'/main/tests/' + ${test.id}">Update test</a></td>
+                <td><a th:href="'/main/tests/' + ${test.id}">Update test</a>
+                </td>
                 <td>
-                    <form method="post" th:action="'/main/test/' + ${test.id} + '/delete'" th:object="${test}">
+                    <form method="post"
+                          th:action="'/main/test/' + ${test.id} + '/delete'"
+                          th:object="${test}">
                         <input type="submit" value="X">
                     </form>
             </tr>

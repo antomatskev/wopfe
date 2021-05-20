@@ -6,6 +6,8 @@ import eu.judegam.wopfe.repositories.EventRepo;
 import eu.judegam.wopfe.repositories.TimetableRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EventService {
 
@@ -23,11 +25,14 @@ public class EventService {
     }
 
     public Event saveEvent(Event ev, Long ttId) {
-        Timetable tt = ttRepo.findById(ttId).get();
-        ev.setTimetableId(tt.getId());
-        ev.setTimetable(tt);
-        tt.getEvents().add(ev);
-        ttRepo.save(tt);
+        Optional<Timetable> ttOpt = ttRepo.findById(ttId);
+        if (ttOpt.isPresent()) {
+            final Timetable tt = ttOpt.get();
+            ev.setTimetableId(tt.getId());
+            ev.setTimetable(tt);
+            tt.getEvents().add(ev);
+            ttRepo.save(tt);
+        }
         return ev;
     }
 

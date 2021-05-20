@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>WOPFE</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
@@ -47,14 +48,18 @@
                 </td>
                 <td th:if="${user.userRole.name == 'STUDENT'}">
                     <form method="post"
-                          th:action="'/main/students/' + ${user.id} + '/delete'" th:object="${user}">
-                        <input type="submit" value="X" th:disabled="${userObj.userRole.name == 'TEACHER'}">
+                          th:action="'/main/students/' + ${user.id} + '/delete'"
+                          th:object="${user}">
+                        <input type="submit" value="X"
+                               th:disabled="${userObj.userRole.name == 'TEACHER'}">
                     </form>
                 </td>
                 <td th:if="${user.userRole.name == 'TEACHER'}">
                     <form method="post"
-                          th:action="'/main/teachers/' + ${user.id} + '/delete'" th:object="${user}">
-                        <input type="submit" value="X" th:disabled="${userObj.userRole.name == 'TEACHER'}">
+                          th:action="'/main/teachers/' + ${user.id} + '/delete'"
+                          th:object="${user}">
+                        <input type="submit" value="X"
+                               th:disabled="${userObj.userRole.name == 'TEACHER'}">
                     </form>
                 </td>
             </tr>

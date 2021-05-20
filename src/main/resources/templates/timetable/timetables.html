@@ -2,7 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>WOPFE</title>
     <link rel="stylesheet" th:href="@{/css/main.css}">
 </head>
@@ -14,10 +15,18 @@
     <hr class="line">
     <div class="content">
         <h3>Timetables</h3>
-        <form method="post" th:action="@{/main/timetables/addTimetable}" th:object="${timetable}">
-            <input id="name" placeholder="Name" required th:field="*{name}" type="text" th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
-            <button class="button button5" type="submit" th:disabled="${userObj.userRole.name == 'TEACHER'}">Create Timetable</button>
-            <button class="button button5" type="reset" th:disabled="${userObj.userRole.name == 'TEACHER'}">Reset</button>
+        <form method="post" th:action="@{/main/timetables/addTimetable}"
+              th:object="${timetable}">
+            <input id="name" placeholder="Name" required th:field="*{name}"
+                   type="text"
+                   th:disabled="${userObj.userRole.name == 'TEACHER'}"/>
+            <button class="button button5" type="submit"
+                    th:disabled="${userObj.userRole.name == 'TEACHER'}">Create
+                Timetable
+            </button>
+            <button class="button button5" type="reset"
+                    th:disabled="${userObj.userRole.name == 'TEACHER'}">Reset
+            </button>
         </form>
         <table class="greyGridTable">
             <thead>
@@ -33,11 +42,14 @@
             </tr>
             <tr th:each="timetable : ${timetables}">
                 <td th:text="${timetable.name}"></td>
-                <td><a th:href="'/main/timetables/' + ${timetable.id}">✏</a></td>
+                <td><a th:href="'/main/timetables/' + ${timetable.id}">✏</a>
+                </td>
                 <td>
-                    <form method="post" th:action="'/main/timetables/' + ${timetable.id} + '/delete'"
+                    <form method="post"
+                          th:action="'/main/timetables/' + ${timetable.id} + '/delete'"
                           th:object="${timetable}">
-                        <input type="submit" value="X" th:disabled="${userObj.userRole.name == 'TEACHER'}">
+                        <input type="submit" value="X"
+                               th:disabled="${userObj.userRole.name == 'TEACHER'}">
                     </form>
             </tr>
             </tbody>

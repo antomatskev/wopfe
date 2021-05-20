@@ -50,11 +50,6 @@ public class SubjectController {
         return service.getSubjectByName(name);
     }
 
-//    @PutMapping("/subject/{id}/update")
-//    public Subject updateSubject(@RequestBody Subject subject) {
-//        return service.updateSubject(subject);
-//    }
-
     @DeleteMapping("/subject/{id}/delete/{id}")
     @PreAuthorize("hasAnyRole('ROLE_ALL')")
     public String deleteSubject(@PathVariable Long id) {

@@ -40,7 +40,6 @@ public class Test implements Serializable {
     private List<Long> correctlyAnswered = new ArrayList<>();
 
     public Test() {
-
     }
 
     public Long getId() {

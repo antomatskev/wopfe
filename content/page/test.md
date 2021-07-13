@@ -8,8 +8,8 @@ date: 2021-07-13
 
 
 
-| Nädal | Teema | Loeng | Praktikumide ajad | Ülesanded |
-| ---   | ---   | ---   | ---               | ---       |
+|| Nädal || Teema || Loeng || Praktikumide ajad || Ülesanded ||
+|| ---   || ---   || ---   || ---               || ---       ||
 | 1 | [muutuja](https://pydoc.pages.taltech.ee/program_flow/variable.html), print, input, [string](https://pydoc.pages.taltech.ee/data_types/string.html) | [youtube](https://www.youtube.com/watch?v=btjAQw8yLPg) | *TODO* | [moodle](https://moodle.taltech.ee/login/index.php) |
 | 2 | [matemaatilised avaldised](https://pydoc.pages.taltech.ee/extra/math.html), [tingimuslause](https://pydoc.pages.taltech.ee/program_flow/if_statements.html), [funktsioon](https://pydoc.pages.taltech.ee/function/func_overview.html) | [youtube]() |  | [moodle]() |
 | 3 | [funktsioon](https://pydoc.pages.taltech.ee/function/func.html), [tingimuslause](https://pydoc.pages.taltech.ee/program_flow/if_statements.html), [tsükkel](https://pydoc.pages.taltech.ee/data_iterations/loop.html) | [youtube]() |  | [moodle]() |

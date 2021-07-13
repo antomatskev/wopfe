@@ -88,3 +88,8 @@ pygmentsCodefencesGuessSyntax = true
     name = "Project Link"
     url = "iti0301-2021/page/link"
     weight = 3
+
+[[menu.main]]
+    name = "Test"
+    url = "iti0301-2021/page/test"
+    weight = 4
